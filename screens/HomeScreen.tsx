@@ -1,11 +1,10 @@
-import { Text, View } from 'react-native';
+import AppHeader from '@/components/AppHeader';
+import { View } from 'react-native';
 
-const HomeScreen = () => {
+export default function HomeScreen() {
 	return (
-		<View style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-			<Text>Home Screen</Text>
+		<View>
+			<AppHeader title="Welcome"></AppHeader>
 		</View>
 	);
 };
-
-export default HomeScreen;

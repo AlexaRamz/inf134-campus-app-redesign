@@ -1,6 +1,8 @@
 import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
+import { Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 
 import ARCScreen from '../screens/ARCScreen';
 import DiningScreen from '../screens/DiningScreen';
@@ -15,6 +17,10 @@ import ProfileIcon from '../assets/icons/profile-icon.png';
 const Tab = createBottomTabNavigator()
 
 export default function AppNavigator() {
+  const [fontsLoaded] = useFonts({
+    Montserrat_700Bold: Montserrat_700Bold, // Map the font name to the imported font
+  });
+
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={{
@@ -30,6 +36,7 @@ export default function AppNavigator() {
           name="Home" 
           component={HomeScreen} 
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
               <Image
                 source={HomeIcon}
@@ -46,6 +53,7 @@ export default function AppNavigator() {
           name="Dining" 
           component={DiningScreen} 
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
               <Image
                 source={DiningIcon}
@@ -63,6 +71,7 @@ export default function AppNavigator() {
           name="ARC" 
           component={ARCScreen} 
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
               <Image
                 source={ARCIcon}
@@ -80,6 +89,7 @@ export default function AppNavigator() {
           name="Profile" 
           component={ProfileScreen} 
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
               <Image
                 source={ProfileIcon}

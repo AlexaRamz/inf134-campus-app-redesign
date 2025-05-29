@@ -1,11 +1,10 @@
-import { Text, View } from 'react-native';
+import AppHeader from '@/components/AppHeader';
+import { View } from 'react-native';
 
-const ProfileScreen = () => {
+export default function ProfileScreen() {
 	return (
-		<View style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-			<Text>Profile Screen</Text>
+		<View>
+			<AppHeader title="Profile"></AppHeader>
 		</View>
 	);
 };
-
-export default ProfileScreen;

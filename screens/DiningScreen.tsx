@@ -1,9 +1,10 @@
-import { Text, View } from 'react-native';
+import AppHeader from '@/components/AppHeader';
+import { View } from 'react-native';
 
 export default function DiningScreen() {
 	return (
-		<View style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-			<Text>Dining Screen</Text>
+		<View>
+			<AppHeader title="Dining"></AppHeader>
 		</View>
 	);
 };

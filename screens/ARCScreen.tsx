@@ -1,9 +1,10 @@
-import { Text, View } from 'react-native';
+import AppHeader from '@/components/AppHeader';
+import { View } from 'react-native';
 
 export default function ARCScreen() {
 	return (
-		<View style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-			<Text>ARC Screen</Text>
+		<View>
+			<AppHeader title="ARC"></AppHeader>
 		</View>
 	);
 };
