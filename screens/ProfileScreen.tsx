@@ -31,9 +31,13 @@ export default function ProfileScreen() {
 
 						<Text style={styles.barcodeLabel}>Anteater, Peter - 12345678</Text>
 					</View>
-
+				</View>
+				<View style={styles.signOutButton}>
+					<Text style={styles.signOutText}>Sign Out</Text>
 				</View>
 			</ScrollView>
+
+			
 		</View>
 	);
 };
@@ -75,13 +79,14 @@ const styles = StyleSheet.create({
 	
 	profileName: {
 		fontFamily: 'Montserrat_700Bold',
-		fontSize: 16,
-		marginBottom: 4,
+		fontSize: 20,
+		marginBottom: 6,
 	},
 
 	profileDetails: {
 		fontFamily: 'Montserrat_400Regular',
-		fontSize: 12,
+		fontSize: 15,
+		lineHeight: 25,
 		color: '#333',
 	},
 
@@ -89,6 +94,7 @@ const styles = StyleSheet.create({
 		width: 150,
 		height: 150,
 		marginBottom: 4,
+		borderRadius: 12,
 	},
 
 	profileRow: {
@@ -112,16 +118,14 @@ const styles = StyleSheet.create({
 		marginBottom: 21,
 	},
 	barcodeImage: {
-		width: 166,
-		height: 103,
+		width: 200,
+		height: 105,
 		marginBottom: 6,
 	},
 	barcodeLabel: {
 		fontFamily: 'Montserrat_400Regular',
 		fontSize: 12,
 	},
-
-	
 	line: {
 		borderBottomWidth: 1,
 		borderBottomColor: '#D9D9D9',
@@ -132,5 +136,21 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		fontWeight: 'bold',
 		marginBottom: 8,
+	},
+
+	/* SIGNOUT */
+	signOutButton: {
+		alignSelf: 'center',
+		marginTop: 24,
+		backgroundColor: '#255799',
+		paddingVertical: 10,
+		paddingHorizontal: 24,
+		borderRadius: 8,
+	},
+
+	signOutText: {
+		color: '#ffffff',
+		fontSize: 14,
+		fontFamily: 'Montserrat_400Regular',
 	},
 });
