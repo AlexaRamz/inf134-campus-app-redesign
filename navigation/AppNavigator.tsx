@@ -2,34 +2,40 @@ import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Montserrat_700Bold } from '@expo-google-fonts/montserrat';
+import { Montserrat_700Bold, Montserrat_500Medium, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
 
 import ARCScreen from '../screens/ARCScreen';
 import DiningScreen from '../screens/DiningScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
-import HomeIcon from '../assets/icons/home-icon.png';
-import DiningIcon from '../assets/icons/dining-icon.png';
-import ARCIcon from '../assets/icons/arc-icon.png';
-import ProfileIcon from '../assets/icons/profile-icon.png';
+import HomeIcon from '../assets/icons/home_icon.png';
+import DiningIcon from '../assets/icons/dining_icon.png';
+import ARCIcon from '../assets/icons/arc_icon.png';
+import ProfileIcon from '../assets/icons/profile_icon.png';
 
 const Tab = createBottomTabNavigator()
 
 export default function AppNavigator() {
   const [fontsLoaded] = useFonts({
-    Montserrat_700Bold: Montserrat_700Bold, // Map the font name to the imported font
+    Montserrat_700Bold: Montserrat_700Bold,
+    Montserrat_500Medium: Montserrat_500Medium,
+    Montserrat_400Regular: Montserrat_400Regular,
   });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={{
         tabBarStyle: {
             backgroundColor: '#255799',
+            height: 74,
         },
         tabBarActiveTintColor: '#FECC07',
         tabBarInactiveTintColor: 'white', 
-        tabBarShowLabel: false,
       }}
       >
         <Tab.Screen 
