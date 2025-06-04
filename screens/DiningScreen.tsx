@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AppHeader from '@/components/AppHeader';
 import AppCard from "@/components/AppCard";
-import DataBox from "@/components/DataBox";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import { globalStyles } from '@/styles/globalStyles';
 
@@ -13,8 +12,7 @@ export default function DiningScreen() {
 
 	const renderMenuContent = function() {
 		if (activeTab == ANTEATERY_KEY) {
-			return <View>
-				<ScrollView contentContainerStyle={styles.screenContainer} style={globalStyles.scrollView}>
+			return <>
 				{/* Crowd Meter */}
 				<View style={styles.crowdContainer}>
 					<Text style={styles.crowdTitle}>Crowd Meter</Text>
@@ -61,13 +59,10 @@ export default function DiningScreen() {
 					<Text style={styles.itemTitle}>Pepperoni Pizza<Text style={styles.cal}>370 cal</Text></Text>
 					<Text style={styles.itemDesc}>Topped with crispy pepperoni slices, rich tomato sauce & mozzerella cheese on a golden brown crust</Text>
 				</AppCard>
-				</ScrollView>
-			</View>
+			</>
 		}
 		else {
-			return <View>
-				<Text>Content for Brandywine</Text>
-				<ScrollView contentContainerStyle={styles.screenContainer} style={globalStyles.scrollView}>
+			return <>
 				{/* Crowd Meter */}
 				<View style={styles.crowdContainer}>
 					<Text style={styles.crowdTitle}>Crowd Meter</Text>
@@ -109,12 +104,11 @@ export default function DiningScreen() {
 					<Text style={styles.itemTitle}>Lemongrass Banh Mi <Text style={styles.cal}>500 cal</Text></Text>
 					<Text style={styles.itemDesc}>Lemongrass marinated chicken, pickled daikon and carrots, cilantro and lime corriander mayo on a light and crispy roll. </Text>
 				</AppCard>
-				</ScrollView>
-			</View>
+			</>
 		}
 	}
 	return (
-		<View>
+		<View style={globalStyles.outerContainer}>
 			<AppHeader title="Dining"></AppHeader>
 			<View style={styles.tabsContainer}>
 				<TouchableOpacity
@@ -146,7 +140,7 @@ export default function DiningScreen() {
 
 const styles = StyleSheet.create({
 	screenContainer: {
-
+		paddingHorizontal: 29,
 	},
 
 /* TABS */
