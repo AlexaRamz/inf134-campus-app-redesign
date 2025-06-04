@@ -166,11 +166,19 @@ const styles = StyleSheet.create({
 	crowdContainer: {
 		alignItems: 'center',
 		marginVertical: 20,
+		marginHorizontal: 20,
+		backgroundColor: 'rgb(37, 87, 153)',
+		paddingVertical: 15,
+		paddingHorizontal: 35,
+		borderRadius: 18,
+		overflow: 'hidden',
+		marginBottom: 15,
 	},
 	crowdTitle: {
-		fontFamily: 'Montserrat_700Bold',
+		fontFamily: 'Montserrat_500Medium',
 		fontSize: 18,
 		marginBottom: 8,
+		color: 'white',
 	},
 	barRow: {
 		flexDirection: 'row',
@@ -190,7 +198,7 @@ const styles = StyleSheet.create({
 	},
 	crowdLevel: {
 		fontSize: 14,
-		color: '#555',
+		color: 'white',
 		fontFamily: 'Montserrat_400Regular',
 	},
 
@@ -220,6 +228,7 @@ const styles = StyleSheet.create({
 	itemTitle: {
 		fontFamily: 'Montserrat_700Bold',
 		fontSize: 15,
+		marginRight: 40,
 	},
 	itemDesc: {
 		fontFamily: 'Montserrat_400Regular',

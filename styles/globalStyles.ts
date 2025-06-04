@@ -6,7 +6,8 @@ export const globalStyles = StyleSheet.create({
 		backgroundColor: 'white',
 	},
 	scrollView: {
-		flex: 1
+		flex: 1,
+		backgroundColor: 'white',
 	},
 	scrollContentContainer: {
 		paddingHorizontal: 29,

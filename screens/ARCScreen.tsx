@@ -63,11 +63,7 @@ export default function ARCScreen() {
 						<Text style={globalStyles.heading2}>ARC</Text>
 						<View style={styles.courtContentWrapper}>
 							<View style={styles.openStatusContainer}>
-								<Image
-									source={OpenCircle}
-									style={styles.openCircleImage}
-								/>
-								<Text style={globalStyles.paragraphText}>Open until 12:00AM</Text>
+								<Text style={styles.openText}>● Open until 12:00AM</Text>
 							</View>
 							<View>
 								<Image
@@ -290,6 +286,12 @@ const styles = StyleSheet.create({
 		resizeMode: 'contain',
 		marginRight: 3,
 	},
+	openText: {
+		fontSize: 14,
+		fontFamily: 'Montserrat_400Regular',
+		color: '#1E8D2F',
+	},
+
 
 
 
