@@ -11,7 +11,7 @@ export default function HomeScreen() {
 	return (
 		<View style={globalStyles.outerContainer}>
 			<AppHeader title="Welcome"></AppHeader>
-			<ScrollView contentContainerStyle={globalStyles.scrollContentContainer} style={globalStyles.scrollView}>
+			<ScrollView contentContainerStyle={globalStyles.scrollContentContainer} style={globalStyles.scrollView} showsVerticalScrollIndicator={false}>
 				<AppCard style={globalStyles.barcodeBox}>
 					<Image
 						source={BarcodeImage}
