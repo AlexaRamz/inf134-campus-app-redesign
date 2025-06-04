@@ -8,11 +8,6 @@ export const globalStyles = StyleSheet.create({
 	scrollView: {
 		flex: 1
 	},
-	scrollContentContainer: {
-		paddingHorizontal: 29,
-		paddingTop: 25,
-		paddingBottom: 14,
-	},
 	
 /* BARCODE */
 	barcodeBox: {
