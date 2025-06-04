@@ -50,7 +50,7 @@ export default function DiningScreen() {
 					<Text style={styles.itemDesc}>Pinto beans with broth, salsa, and cumin</Text>
 				</AppCard>
 
-				<Text style={styles.subheading}>The Oven</Text>
+				<Text style={styles.subheading}>The Oven </Text>
 
 				<AppCard style={styles.card}>
 					<Text style={styles.itemTitle}>Classic Cheese Pizza <Text style={styles.cal}>340 cal</Text></Text>
