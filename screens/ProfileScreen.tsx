@@ -5,6 +5,7 @@ import BarcodeImage from '../assets/images/barcode.png';
 import ProfileImage from '../assets/images/profile.png';
 import { globalStyles } from '@/styles/globalStyles';
 import AppCard from '@/components/AppCard';
+import { TouchableOpacity } from 'react-native';
 
 export default function ProfileScreen() {
 	return (
@@ -17,7 +18,7 @@ export default function ProfileScreen() {
 					<Image source={ProfileImage} style={styles.profileImage}/>
 					
 					<View style={styles.textColumn}>
-						<Text style={styles.profileName}>Anteater, Peter</Text>
+						<Text style={styles.profileName}>Peter Hill {"\n"}Anteater{"\n"}</Text>
 						
 						<Text style={styles.profileDetails}>
 							First Year{"\n"}Paul Merage{"\n"}School of Business
@@ -34,6 +35,9 @@ export default function ProfileScreen() {
 						<Text style={styles.barcodeLabel}>Anteater, Peter - 12345678</Text>
 					</View>
 				</AppCard>
+				<TouchableOpacity style={styles.signOutButton} onPress={() => console.log('Button Pressed')}>
+  				<Text style={styles.signOutButtonText}>Sign Out</Text>
+				</TouchableOpacity>
 			</View>
 		</View>
 	);
@@ -45,6 +49,22 @@ const styles = StyleSheet.create({
 	},
 
 /* PROFILE */
+	signOutButton: {
+		backgroundColor: '#255799',
+		paddingVertical: 8,
+		paddingHorizontal: 20,
+		borderRadius: 10,
+		alignSelf: 'center',
+		marginTop: 10,
+	},
+
+	signOutButtonText: {
+		color: 'white',
+		fontSize: 14,
+		fontFamily: 'Montserrat_500Medium',
+		textAlign: 'center',
+	},
+
 	profileBox: {
 		alignItems: 'flex-start',
 		alignSelf: 'center',

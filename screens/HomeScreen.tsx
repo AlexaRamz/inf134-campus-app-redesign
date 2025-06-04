@@ -11,7 +11,7 @@ export default function HomeScreen() {
 	return (
 		<View style={globalStyles.outerContainer}>
 			<AppHeader title="Welcome"></AppHeader>
-			<ScrollView contentContainerStyle={globalStyles.scrollContentContainer} style={globalStyles.scrollView} showsVerticalScrollIndicator={false}>
+			<ScrollView contentContainerStyle={globalStyles.scrollContentContainer} style={globalStyles.scrollView}>
 				<AppCard style={globalStyles.barcodeBox}>
 					<Image
 						source={BarcodeImage}
@@ -47,6 +47,12 @@ export default function HomeScreen() {
 };
 
 const styles = StyleSheet.create({
+	screenContainer: {
+		paddingHorizontal: 29,
+		paddingTop: 25,
+		paddingBottom: 14,
+	},
+
 /* MEAL PLAN DATA */
 	dataBoxesContainer: {
 		marginBottom: 10,
