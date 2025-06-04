@@ -58,7 +58,7 @@ export default function DiningScreen() {
 				</AppCard>
 
 				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Pepperoni Pizza <Text style={styles.cal}>370 cal</Text></Text>
+					<Text style={styles.itemTitle}>Pepperoni Pizza<Text style={styles.cal}>370 cal</Text></Text>
 					<Text style={styles.itemDesc}>Topped with crispy pepperoni slices, rich tomato sauce & mozzerella cheese on a golden brown crust</Text>
 				</AppCard>
 				</ScrollView>
