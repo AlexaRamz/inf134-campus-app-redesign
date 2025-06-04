@@ -33,6 +33,8 @@ export default function AppNavigator() {
         tabBarStyle: {
             backgroundColor: '#255799',
             height: 74,
+            paddingTop: 10,       // Push icons downward
+            paddingBottom: 10,
         },
         tabBarActiveTintColor: '#FECC07',
         tabBarInactiveTintColor: 'white', 
@@ -47,8 +49,8 @@ export default function AppNavigator() {
               <Image
                 source={HomeIcon}
                 style={{
-                  width: size,
-                  height: size,
+                  width: size +6,
+                  height: size +6,
                   tintColor: color,
                 }}
               />
@@ -64,8 +66,8 @@ export default function AppNavigator() {
               <Image
                 source={DiningIcon}
                 style={{
-                  width: size,
-                  height: size,
+                  width: size +6,
+                  height: size +6,
                   tintColor: color,
                   resizeMode: 'contain',
                 }}
@@ -82,8 +84,8 @@ export default function AppNavigator() {
               <Image
                 source={ARCIcon}
                 style={{
-                  width: size,
-                  height: size,
+                  width: size +6,
+                  height: size +6,
                   tintColor: color,
                   resizeMode: 'contain',
                 }}
@@ -100,8 +102,8 @@ export default function AppNavigator() {
               <Image
                 source={ProfileIcon}
                 style={{
-                  width: size,
-                  height: size,
+                  width: size +6,
+                  height: size +6,
                   tintColor: color,
                   resizeMode: 'contain',
                 }}
