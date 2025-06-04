@@ -46,7 +46,7 @@ export default function DiningScreen() {
 				</AppCard>
 
 				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Charro Beans <Text style={styles.cal}>80 cal</Text></Text>
+					<Text style={styles.itemTitle}>Charro Beans<Text style={styles.cal}>80 cal</Text></Text>
 					<Text style={styles.itemDesc}>Pinto beans with broth, salsa, and cumin</Text>
 				</AppCard>
 
