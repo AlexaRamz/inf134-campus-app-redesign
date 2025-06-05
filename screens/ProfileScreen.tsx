@@ -1,47 +1,79 @@
 import AppHeader from '@/components/AppHeader';
-import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
-
+import { View, StyleSheet, Image, Text, TouchableOpacity, TextInput } from 'react-native';
+import React, { useState } from 'react';
 import BarcodeImage from '../assets/images/barcode.png';
 import ProfileImage from '../assets/images/profile.png';
 import { globalStyles } from '@/styles/globalStyles';
 import AppCard from '@/components/AppCard';
-import { TouchableOpacity } from 'react-native';
 
 export default function ProfileScreen() {
-	return (
-		<View style={globalStyles.outerContainer}>
-			<AppHeader title="Profile"></AppHeader>
-			<View style={styles.screenContainer}>
-				<AppCard style={styles.barcodeBox}>
-					<View style={styles.profileRow}>
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [name, setName] = useState('Peter Hill\nAnteater');
 
-					<Image source={ProfileImage} style={styles.profileImage}/>
-					
-					<View style={styles.textColumn}>
-						<Text style={styles.profileName}>Peter Hill {"\n"}Anteater{"\n"}</Text>
-						
-						<Text style={styles.profileDetails}>
-							First Year{"\n"}Paul Merage{"\n"}School of Business
-						</Text>
-					</View>
-				
-					</View>
+  const [isEditingInfo, setIsEditingInfo] = useState(false);
+  const [schoolInfo, setSchoolInfo] = useState(
+    'First Year\nPaul Merage\nSchool of Business'
+  );
 
-					<View style={styles.barcodeBox}>
-						<Image
-						source={BarcodeImage}
-						style={styles.barcodeImage}/>
+  return (
+    <View style={globalStyles.outerContainer}>
+      <AppHeader title="Profile" />
+      <View style={styles.screenContainer}>
+        <AppCard style={styles.barcodeBox}>
+          <View style={styles.profileRow}>
+            <Image source={ProfileImage} style={styles.profileImage} />
 
-						<Text style={styles.barcodeLabel}>Anteater, Peter - 12345678</Text>
-					</View>
-				</AppCard>
-				<TouchableOpacity style={styles.signOutButton} onPress={() => console.log('Button Pressed')}>
-  				<Text style={styles.signOutButtonText}>Sign Out</Text>
-				</TouchableOpacity>
+            <View style={styles.textColumn}>
+              {isEditingName ? (
+                <TextInput
+                  style={[styles.profileName, { borderWidth: 1, padding: 4 }]}
+                  multiline
+                  value={name}
+                  onChangeText={setName}
+                  onBlur={() => setIsEditingName(false)}
+                  autoFocus
+                />
+              ) : (
+                <TouchableOpacity onPress={() => setIsEditingName(true)}>
+                  <Text style={styles.profileName}>{name}</Text>
+                </TouchableOpacity>
+              )}
+
+              {isEditingInfo ? (
+                <TextInput
+                  style={[styles.profileDetails, { borderWidth: 1, padding: 4 }]}
+                  multiline
+                  value={schoolInfo}
+                  onChangeText={setSchoolInfo}
+                  onBlur={() => setIsEditingInfo(false)}
+                  autoFocus
+                />
+              ) : (
+                <TouchableOpacity onPress={() => setIsEditingInfo(true)}>
+                  <Text style={styles.profileDetails}>{schoolInfo}</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
+
+          <View style={styles.barcodeBox}>
+            <Image source={BarcodeImage} style={styles.barcodeImage} />
+			<Text style={styles.barcodeLabel}>
+			{name.replace(/\n/g, ' ')} - 12345678
+			</Text>          
 			</View>
-		</View>
-	);
-};
+        </AppCard>
+
+        <TouchableOpacity
+          style={styles.signOutButton}
+          onPress={() => console.log('Sign Out pressed')}
+        >
+          <Text style={styles.signOutButtonText}>Sign Out</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
 	screenContainer: {
@@ -90,6 +122,7 @@ const styles = StyleSheet.create({
 		width: 150,
 		height: 150,
 		marginBottom: 4,
+		borderRadius: 12,
 	},
 
 	profileRow: {

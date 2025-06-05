@@ -1,23 +1,25 @@
 import AppHeader from '@/components/AppHeader';
 import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
-
+import { TouchableOpacity } from 'react-native';
 import BarcodeImage from '../assets/images/barcode.png';
 import CrowdMeterImage from '../assets/images/crowd_meter.png';
 import AppCard from '@/components/AppCard';
 import { globalStyles } from '@/styles/globalStyles';
 import DataBox from '@/components/DataBox';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation} : any) {
 	return (
 		<View style={globalStyles.outerContainer}>
 			<AppHeader title="Welcome"></AppHeader>
 			<ScrollView contentContainerStyle={globalStyles.scrollContentContainer} style={globalStyles.scrollView}>
 				<AppCard style={globalStyles.barcodeBox}>
+					<TouchableOpacity onPress={() => navigation.navigate('Profile')}>
 					<Image
 						source={BarcodeImage}
 						style={globalStyles.barcodeImage}
 					/>
 					<Text style={globalStyles.barcodeLabel}>Anteater, Peter - 12345678</Text>
+					</TouchableOpacity>
 				</AppCard>
 
 				<View style={globalStyles.line} />
