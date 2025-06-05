@@ -7,7 +7,6 @@ import AppCard from '@/components/AppCard';
 import CrowdMeterImage from '../assets/images/mondaycard.png';
 import CrowdBar from '../assets/images/crowd_bar.png';
 import { globalStyles } from '@/styles/globalStyles';
-import DataBox from '@/components/DataBox';
 import OpenCircle from '../assets/images/opencircle.png';
 import ClosedCircle from '../assets/images/closedcircle.png';
 import F45 from '../assets/images/f45.png';
@@ -212,9 +211,7 @@ const styles = StyleSheet.create({
 	imageBackgroundContainer: {
 		width: '100%',
 		height: 180,
-
 		marginTop: 0,
-		backgroundColor: 'red',
 	},
 	imageBackground: {
 		flex: 1,

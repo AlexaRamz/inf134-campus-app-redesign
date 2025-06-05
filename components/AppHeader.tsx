@@ -3,15 +3,21 @@ import { View, Text, SafeAreaView, StyleSheet} from "react-native";
 
 interface HeaderProps {
 	title: string;
+	renderTabs?: () => React.ReactNode;
 }
 
-export default function AppHeader({ title }: HeaderProps) {
+export default function AppHeader({ title, renderTabs }: HeaderProps) {
 	return (
 		<SafeAreaView style={styles.safeArea}>
-			<View style={styles.header}>
-				<Text style={styles.headerText}>
+			<View style={[styles.header, renderTabs && styles.tabsHeader]}>
+				<Text style={[styles.headerText, renderTabs && styles.tabsHeaderText]}>
 					{title}
 				</Text>
+				{renderTabs && (
+					<View>
+						{renderTabs()}
+					</View>
+				)}
 			</View>
 		</SafeAreaView>
 	);
@@ -22,15 +28,20 @@ const styles = StyleSheet.create({
 		backgroundColor: '#255799',
 	},
 	header: {
-		backgroundColor: '#255799',
-		height: 123,
+		height: 117,
 		justifyContent: 'flex-end',
-		alignItems: 'center',
-		paddingBottom: 18,
+	},
+	tabsHeader: {
+		height: 136,
 	},
 	headerText: {
 		color: 'white',
 		fontSize: 32,
 		fontFamily: 'Montserrat_700Bold',
+		marginBottom: 24,
+		alignSelf: 'center',
+	},
+	tabsHeaderText: {
+		marginBottom: 8,
 	},
 });

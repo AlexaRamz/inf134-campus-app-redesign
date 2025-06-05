@@ -10,6 +10,32 @@ const BRANDYWINE_KEY = 'brandywine'
 export default function DiningScreen() {
 	const [activeTab, setActiveTab] = useState<string>(ANTEATERY_KEY);
 
+	const diningHallTabs = function() {
+		return (
+			<View style={styles.tabsContainer}>
+				<TouchableOpacity
+					style={[
+						styles.tabButton,
+						activeTab === ANTEATERY_KEY && styles.activeTabBorder
+					]}
+					onPress={() => setActiveTab(ANTEATERY_KEY)}
+				>
+					<Text style={styles.tabText}>Anteatery</Text>
+				</TouchableOpacity>
+				
+				<TouchableOpacity
+					style={[
+						styles.tabButton,
+						activeTab === BRANDYWINE_KEY && styles.activeTabBorder
+					]}
+					onPress={() => setActiveTab(BRANDYWINE_KEY)}
+				>
+					<Text style={styles.tabText}>Brandywine</Text>
+				</TouchableOpacity>
+			</View>
+		);
+	};
+
 	const renderMenuContent = function() {
 		if (activeTab == ANTEATERY_KEY) {
 			return <>
@@ -44,7 +70,7 @@ export default function DiningScreen() {
 				</AppCard>
 
 				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Charro Beans<Text style={styles.cal}>80 cal</Text></Text>
+					<Text style={styles.itemTitle}>Charro Beans <Text style={styles.cal}>80 cal</Text></Text>
 					<Text style={styles.itemDesc}>Pinto beans with broth, salsa, and cumin</Text>
 				</AppCard>
 
@@ -56,7 +82,7 @@ export default function DiningScreen() {
 				</AppCard>
 
 				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Pepperoni Pizza<Text style={styles.cal}>370 cal</Text></Text>
+					<Text style={styles.itemTitle}>Pepperoni Pizza <Text style={styles.cal}>370 cal</Text></Text>
 					<Text style={styles.itemDesc}>Topped with crispy pepperoni slices, rich tomato sauce & mozzerella cheese on a golden brown crust</Text>
 				</AppCard>
 			</>
@@ -109,28 +135,8 @@ export default function DiningScreen() {
 	}
 	return (
 		<View style={globalStyles.outerContainer}>
-			<AppHeader title="Dining"></AppHeader>
-			<View style={styles.tabsContainer}>
-				<TouchableOpacity
-					style={[
-						styles.tabButton,
-						activeTab === ANTEATERY_KEY && styles.activeTabBorder
-					]}
-					onPress={() => setActiveTab(ANTEATERY_KEY)}
-				>
-					<Text style={styles.tabText}>Anteatery</Text>
-				</TouchableOpacity>
-				
-				<TouchableOpacity
-					style={[
-						styles.tabButton,
-						activeTab === BRANDYWINE_KEY && styles.activeTabBorder
-					]}
-					onPress={() => setActiveTab(BRANDYWINE_KEY)}
-				>
-					<Text style={styles.tabText}>Brandywine</Text>
-				</TouchableOpacity>
-			</View>
+			<AppHeader title="Dining" renderTabs={diningHallTabs}></AppHeader>
+			
 			<ScrollView contentContainerStyle={styles.screenContainer} style={globalStyles.scrollView}>
 				{renderMenuContent()}
 			</ScrollView>
@@ -146,7 +152,7 @@ const styles = StyleSheet.create({
 /* TABS */
 	tabsContainer: {
 		flexDirection: 'row',
-		backgroundColor: '#255799',
+		alignItems: 'flex-start',
 	},
 	tabButton: {
 		flex: 1,
