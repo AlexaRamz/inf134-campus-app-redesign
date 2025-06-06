@@ -30,9 +30,6 @@ export default function ARCScreen() {
     return (
         <ScrollView showsVerticalScrollIndicator={true} style={globalStyles.scrollView}>
             <AppHeaderWithBack title="F45"></AppHeaderWithBack>
-
-
-
             <View style={globalStyles.scrollContentContainer}>
                 {/* Descrption Container */}
                 <View>

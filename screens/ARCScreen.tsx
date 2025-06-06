@@ -27,7 +27,7 @@ import wednesdayChart from '../assets/images/wednesdaycard.png';
 
 //Get screen width calculation to ensure horizontal scrolling for card snaps into place 
 const { width: screenWidth } = Dimensions.get('window');
-export default function ARCScreen() {
+export default function ARCScreen({navigation} : any) {
 	const image = { arcBackground };
 	const monday = { mondayChart };
 	const [showModal, setShowModal] = useState(false);
@@ -164,11 +164,13 @@ export default function ARCScreen() {
 				>
 
 					<AppCard style={styles.classCard}>
+						<TouchableOpacity onPress={() => navigation.navigate('F45')}>
 						<ImageBackground source={F45} resizeMode='cover' style={styles.classCardImageBackground}>
 							<View>
 								<Text style={styles.cardText}>F45</Text>
 							</View>
 						</ImageBackground>
+						</TouchableOpacity>
 					</AppCard>
 
 					<AppCard style={styles.classCard}>
