@@ -2,7 +2,7 @@ import AppHeader from '@/components/AppHeader';
 import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import BarcodeImage from '../assets/images/barcode.png';
-import CrowdMeterImage from '../assets/images/crowd_meter.png';
+import CrowdMeterImage from '../assets/images/crowd_meter.png'
 import AppCard from '@/components/AppCard';
 import { globalStyles } from '@/styles/globalStyles';
 import DataBox from '@/components/DataBox';

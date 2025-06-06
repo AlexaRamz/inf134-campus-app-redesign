@@ -8,6 +8,7 @@ import ARCScreen from '../screens/ARCScreen';
 import DiningScreen from '../screens/DiningScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import F45 from '../screens/F45';
 
 import HomeIcon from '../assets/icons/home_icon.png';
 import DiningIcon from '../assets/icons/dining_icon.png';
@@ -96,6 +97,24 @@ export default function AppNavigator() {
         <Tab.Screen 
           name="Profile" 
           component={ProfileScreen} 
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => (
+              <Image
+                source={ProfileIcon}
+                style={{
+                  width: size +6,
+                  height: size +6,
+                  tintColor: color,
+                  resizeMode: 'contain',
+                }}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen 
+          name="F45" 
+          component={F45} 
           options={{
             headerShown: false,
             tabBarIcon: ({ color, size }) => (
