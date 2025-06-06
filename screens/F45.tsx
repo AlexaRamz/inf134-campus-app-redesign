@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { ScrollView, Text, View, ImageBackground, StyleSheet, Dimensions, Image, TouchableOpacity, } from 'react-native';
+import { ScrollView, Text, View, ImageBackground, StyleSheet, Dimensions, Image, TouchableOpacity, Modal } from 'react-native';
 import AppHeader from '@/components/AppHeader';
 import AppCard from '@/components/AppCard';
 import { globalStyles } from '@/styles/globalStyles';
 import AppHeaderWithBack from '@/components/AppHeaderWithBack';
+
 
 
 import Arrow from '../assets/images/backarrow.png';
@@ -16,7 +17,15 @@ import LocationPin from '../assets/images/locationpin.png';
 const { width: screenWidth } = Dimensions.get('window');
 export default function ARCScreen() {
     const navigation = useNavigation();
+    const [showModal, setShowModal] = useState(false);
 
+    const openModal = () => {
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
 
     return (
         <ScrollView showsVerticalScrollIndicator={true} style={globalStyles.scrollView}>
@@ -61,15 +70,30 @@ export default function ARCScreen() {
                         </View>
 
                         <View style={styles.rightSide}>
-                            <TouchableOpacity
-                                style={[
-                                    styles.bookButton,
-
-                                ]}
-                            //onPress={() => }
-                            >
+                            <TouchableOpacity style={styles.bookButton} onPress={openModal}>
                                 <Text style={styles.bookButtonText}>Book Now</Text>
                             </TouchableOpacity>
+                            <Modal
+                                animationType="slide"
+                                transparent={true}
+                                visible={showModal}
+                                onRequestClose={closeModal}
+                            >
+                                <View style={styles.modalContainer}>
+                                    <View style={styles.modalContent}>
+                                        <Text style={styles.heading2}>Book class from{"\n"}1:00 - 1:45PM?</Text>
+
+                                        <View style={styles.modalBtn}>
+                                            <TouchableOpacity style={styles.closeBtn} onPress={closeModal} >
+                                                <Text style={styles.modalBtnText}>Confirm</Text>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity style={styles.modalCancelBtn} onPress={closeModal}>
+                                                <Text style={styles.modalCancelBtnText}>Cancel</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </View>
+                            </Modal>
                         </View>
                     </AppCard>
 
@@ -87,16 +111,31 @@ export default function ARCScreen() {
                             <Text style={styles.openClassText}>14 Spots Left</Text>
                         </View>
 
-                        <View style={styles.rightSide}>
-                            <TouchableOpacity
-                                style={[
-                                    styles.bookButton,
-
-                                ]}
-                            //onPress={() => }
-                            >
+                         <View style={styles.rightSide}>
+                            <TouchableOpacity style={styles.bookButton} onPress={openModal}>
                                 <Text style={styles.bookButtonText}>Book Now</Text>
                             </TouchableOpacity>
+                            <Modal
+                                animationType="slide"
+                                transparent={true}
+                                visible={showModal}
+                                onRequestClose={closeModal}
+                            >
+                                <View style={styles.modalContainer}>
+                                    <View style={styles.modalContent}>
+                                        <Text style={styles.heading2}>Book class from{"\n"}1:00 - 1:45PM?</Text>
+
+                                        <View style={styles.modalBtn}>
+                                            <TouchableOpacity style={styles.closeBtn} onPress={closeModal}>
+                                                <Text style={styles.modalBtnText}>Confirm</Text>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity style={styles.modalCancelBtn} onPress={closeModal}>
+                                                <Text style={styles.modalCancelBtnText}>Cancel</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </View>
+                            </Modal>
                         </View>
                     </AppCard>
 
@@ -111,19 +150,34 @@ export default function ARCScreen() {
                                 <Text style={globalStyles.paragraphText}>F45 Studio</Text>
 
                             </View>
-                            <Text style={styles.fullClassText}>Class Full</Text>
+                            <Text style={styles.fullClassText}>1 spot left</Text>
                         </View>
 
-                        <View style={styles.rightSide}>
-                            <TouchableOpacity
-                                style={[
-                                    styles.bookButton,
-
-                                ]}
-                            //onPress={() => }
-                            >
+                         <View style={styles.rightSide}>
+                            <TouchableOpacity style={styles.bookButton} onPress={openModal}>
                                 <Text style={styles.bookButtonText}>Book Now</Text>
                             </TouchableOpacity>
+                            <Modal
+                                animationType="slide"
+                                transparent={true}
+                                visible={showModal}
+                                onRequestClose={closeModal}
+                            >
+                                <View style={styles.modalContainer}>
+                                    <View style={styles.modalContent}>
+                                        <Text style={styles.heading2}>Book class from{"\n"}1:00 - 1:45PM?</Text>
+
+                                        <View style={styles.modalBtn}>
+                                            <TouchableOpacity style={styles.closeBtn} >
+                                                <Text style={styles.modalBtnText} onPress={closeModal}>Confirm</Text>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity style={styles.modalCancelBtn} onPress={closeModal}>
+                                                <Text style={styles.modalCancelBtnText}>Cancel</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </View>
+                            </Modal>
                         </View>
                     </AppCard>
                     <AppCard style={styles.classCard}>
@@ -139,17 +193,33 @@ export default function ARCScreen() {
                             </View>
                             <Text style={styles.openClassText}>8 Spots Left</Text>
                         </View>
+                      
 
                         <View style={styles.rightSide}>
-                            <TouchableOpacity
-                                style={[
-                                    styles.bookButton,
-
-                                ]}
-                            //onPress={() => }
-                            >
+                            <TouchableOpacity style={styles.bookButton} onPress={openModal}>
                                 <Text style={styles.bookButtonText}>Book Now</Text>
                             </TouchableOpacity>
+                            <Modal
+                                animationType="slide"
+                                transparent={true}
+                                visible={showModal}
+                                onRequestClose={closeModal}
+                            >
+                                <View style={styles.modalContainer}>
+                                    <View style={styles.modalContent}>
+                                        <Text style={styles.heading2}>Book class from{"\n"}1:00 - 1:45PM?</Text>
+
+                                        <View style={styles.modalBtn}>
+                                            <TouchableOpacity style={styles.closeBtn} onPress={closeModal} >
+                                                <Text style={styles.modalBtnText}>Confirm</Text>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity style={styles.modalCancelBtn} onPress={closeModal}>
+                                                <Text style={styles.modalCancelBtnText}>Cancel</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </View>
+                            </Modal>
                         </View>
                     </AppCard>
                 </View>
@@ -174,7 +244,7 @@ const styles = StyleSheet.create({
         marginTop: 4,
         marginBottom: 8,
         color: 'black',
-        textAlign: 'left',
+        textAlign: 'center',
 
     },
     classLocationAndSpots: {
@@ -271,4 +341,66 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat_400Regular',
         color: 'white',
     },
+
+    //MODAL STYLING
+    modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.22)',
+  },
+  modalContent: {
+    width: 290,
+    height: 300,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    justifyContent: 'center',
+    marginHorizontal: 100,
+  },
+  modalBtn:{
+      flexDirection:'column',
+      justifyContent:'center',
+  },
+  closeBtn: {
+    backgroundColor: '#255799',
+    padding: 10,
+    borderRadius: 8,
+    alignSelf: 'center',
+    width: '85%',
+    textAlign: 'center',
+    color: 'white',
+    fontFamily: 'Montserrat_400Regular',
+    fontSize: 14,
+    marginTop: 5,
+  },
+  modelText:{
+    padding:10,
+    textAlign:'center',
+  },
+  modalBtnText: {
+    color: 'white',
+    textAlign: 'center',
+    fontFamily: 'Montserrat_400Regular',
+    fontSize: 14,
+  },
+  modalCancelBtn: {
+    backgroundColor: '#white',
+    padding: 10,
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    alignSelf: 'center',
+    marginTop: 8,
+    width: '85%',
+    textAlign: 'center',
+    color: 'white',
+    fontFamily: 'Montserrat_400Regular',
+    fontSize: 14,
+  },
+  modalCancelBtnText: {
+    color: 'black',
+    textAlign: 'center',
+    fontFamily: 'Montserrat_400Regular',
+    fontSize: 14,
+  },
 })
