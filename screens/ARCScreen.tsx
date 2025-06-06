@@ -94,21 +94,25 @@ export default function ARCScreen() {
 												</TouchableOpacity>
 											</View>
 											<View style={styles.modalHours}>
-												<Text style={globalStyles.heading4}>ARC</Text>
-												<Text style={globalStyles.paragraphText}>Monday - Friday: 6:00am - 12:00am</Text>
-												<Text style={globalStyles.paragraphText}>Saturday: 8:00am - 9:00pm</Text>
-												<Text style={globalStyles.paragraphText}>Sunday: 8:00am - 12:00am</Text>
+												<View style={styles.hourGroup}>
+													<Text style={globalStyles.heading4}>ARC</Text>
+													<Text style={globalStyles.paragraphText}>Monday - Friday: 6:00am - 12:00am</Text>
+													<Text style={globalStyles.paragraphText}>Saturday: 8:00am - 9:00pm</Text>
+													<Text style={globalStyles.paragraphText}>Sunday: 8:00am - 12:00am</Text>
+												</View>
+												<View style={styles.hourGroup}>
+													<Text style={globalStyles.heading4}>Pool</Text>
+													<Text style={globalStyles.paragraphText}>Monday - Friday: 6:30am - 12:00am</Text>
+													<Text style={globalStyles.paragraphText}>Saturday: 8:30am - 9:00pm</Text>
+													<Text style={globalStyles.paragraphText}>Sunday: 8:30am - 12:00am</Text>
+												</View>
 
-												<Text style={globalStyles.heading4}>ARC</Text>
-												<Text style={globalStyles.paragraphText}>Monday - Friday: 6:30am - 12:00am</Text>
-												<Text style={globalStyles.paragraphText}>Saturday: 8:30am - 9:00pm</Text>
-												<Text style={globalStyles.paragraphText}>Sunday: 8:30am - 12:00am</Text>
-												<Text style={globalStyles.heading4}>ARC</Text>
-
-												<Text style={globalStyles.paragraphText}>Monday - Friday: 7:00am - 9:00pm</Text>
-												<Text style={globalStyles.paragraphText}>Saturday: 8:00am - 8:00pm</Text>
-												<Text style={globalStyles.paragraphText}>Sunday: 8:00am - 10:00pm</Text>
-
+												<View style={styles.hourGroup}>
+													<Text style={globalStyles.heading4}>Field</Text>
+													<Text style={globalStyles.paragraphText}>Monday - Friday: 7:00am - 9:00pm</Text>
+													<Text style={globalStyles.paragraphText}>Saturday: 8:00am - 8:00pm</Text>
+													<Text style={globalStyles.paragraphText}>Sunday: 8:00am - 10:00pm</Text>
+												</View>
 											</View>
 										</View>
 
@@ -289,7 +293,9 @@ const styles = StyleSheet.create({
 		marginTop: -20,
 	},
 
-
+	hourGroup: {
+		marginTop: 10,
+	},
 
 
 	/* ARC CROWD METER */
@@ -343,7 +349,7 @@ const styles = StyleSheet.create({
 	},
 	modalContent: {
 		width: 300,
-		height: 300,
+		height: 330,
 		backgroundColor: 'white',
 		borderRadius: 10,
 		display: 'flex',
@@ -383,7 +389,7 @@ const styles = StyleSheet.create({
 		color: 'black',
 		textAlign: 'left',
 	},
-	
+
 
 	hourTitle: {
 		display: 'flex',
@@ -392,7 +398,7 @@ const styles = StyleSheet.create({
 		marginBottom: 0,
 	},
 	modalHours: {
-		
+
 	},
 	exitX: {
 		position: 'absolute',
