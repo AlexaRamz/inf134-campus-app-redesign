@@ -1,6 +1,6 @@
-import { Assets } from '@react-navigation/elements';
+import React, { useState } from 'react';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { ScrollView, Text, View, ImageBackground, StyleSheet, Dimensions, Image, Linking, } from 'react-native';
+import { ScrollView, Text, View, ImageBackground, StyleSheet, Dimensions, Image, Linking, TouchableOpacity, Modal } from 'react-native';
 import AppHeader from '@/components/AppHeader';
 import arcBackground from '../assets/images/arcbackgroundpic.png'
 import AppCard from '@/components/AppCard';
@@ -16,12 +16,12 @@ import Volleyball from '../assets/images/volleyball.png';
 import Pickleball from '../assets/images/pickleball.png';
 import Badminton from '../assets/images/badminton.png';
 import Arrow from '../assets/images/arrow.png';
+import ExitX from '../assets/images/exitX.png';
 
 
 import mondayChart from '../assets/images/profile.png';
 import tuesdayChart from '../assets/images/tuesdaycard.png';
 import wednesdayChart from '../assets/images/wednesdaycard.png';
-import { Link } from 'expo-router';
 
 
 
@@ -29,11 +29,16 @@ import { Link } from 'expo-router';
 const { width: screenWidth } = Dimensions.get('window');
 export default function ARCScreen() {
 	const image = { arcBackground };
-
 	const monday = { mondayChart };
-	const navigation = useNavigation();
+	const [showModal, setShowModal] = useState(false);
 
+	const openModal = () => {
+		setShowModal(true);
+	};
 
+	const closeModal = () => {
+		setShowModal(false);
+	};
 	return (
 		<ScrollView showsVerticalScrollIndicator={true} style={globalStyles.scrollView}>
 			<AppHeader title="ARC"></AppHeader>
@@ -65,10 +70,50 @@ export default function ARCScreen() {
 								<Text style={styles.openText}>● Open until 12:00AM</Text>
 							</View>
 							<View>
-								<Image
-									source={Arrow}
-									style={styles.arrow}
-								/>
+								<TouchableOpacity onPress={openModal}>
+									<Image
+										source={Arrow}
+										style={styles.arrow}
+									/>
+								</TouchableOpacity>
+
+								<Modal
+									transparent={true}
+									visible={showModal}
+									onRequestClose={closeModal}
+								>
+									<View style={styles.modalContainer}>
+										<View style={styles.modalContent}>
+											<View style={styles.hourTitle}>
+												<Text style={globalStyles.heading2}>Hours</Text>
+												<TouchableOpacity style={styles.closeBtn} onPress={closeModal}>
+													<Image
+														source={ExitX}
+														style={styles.exitX}
+													/>
+												</TouchableOpacity>
+											</View>
+											<View style={styles.modalHours}>
+												<Text style={globalStyles.heading4}>ARC</Text>
+												<Text style={globalStyles.paragraphText}>Monday - Friday: 6:00am - 12:00am</Text>
+												<Text style={globalStyles.paragraphText}>Saturday: 8:00am - 9:00pm</Text>
+												<Text style={globalStyles.paragraphText}>Sunday: 8:00am - 12:00am</Text>
+
+												<Text style={globalStyles.heading4}>ARC</Text>
+												<Text style={globalStyles.paragraphText}>Monday - Friday: 6:30am - 12:00am</Text>
+												<Text style={globalStyles.paragraphText}>Saturday: 8:30am - 9:00pm</Text>
+												<Text style={globalStyles.paragraphText}>Sunday: 8:30am - 12:00am</Text>
+												<Text style={globalStyles.heading4}>ARC</Text>
+
+												<Text style={globalStyles.paragraphText}>Monday - Friday: 7:00am - 9:00pm</Text>
+												<Text style={globalStyles.paragraphText}>Saturday: 8:00am - 8:00pm</Text>
+												<Text style={globalStyles.paragraphText}>Sunday: 8:00am - 10:00pm</Text>
+
+											</View>
+										</View>
+
+									</View>
+								</Modal>
 							</View>
 						</View>
 					</View>
@@ -238,8 +283,8 @@ const styles = StyleSheet.create({
 	},
 
 	arrow: {
-		width: 8,
-		height: 8,
+		width: 10,
+		height: 10,
 		resizeMode: 'contain',
 		marginTop: -20,
 	},
@@ -289,9 +334,77 @@ const styles = StyleSheet.create({
 		color: '#1E8D2F',
 	},
 
+	//MODAL
+	modalContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+	},
+	modalContent: {
+		width: 300,
+		height: 300,
+		backgroundColor: 'white',
+		borderRadius: 10,
+		display: 'flex',
+		paddingVertical: 30,
+		paddingHorizontal: 20,
 
 
+	},
+	modalBtn: {
+		flexDirection: 'column',
+		justifyContent: 'center',
+	},
+	modalBtnText: {
+		fontSize: 14,
+		color: 'black',
+		textAlign: 'center',
+		fontFamily: 'Montserrat_400Regular',
+	},
+	confirmBtn: {
+		backgroundColor: '#255799',
+		padding: 10,
+		borderRadius: 8,
+		marginTop: 20,
+		width: 150
+	},
+	closeBtn: {
+		backgroundColor: 'white',
+		padding: 10,
+		borderRadius: 8,
+		marginTop: 20,
+		width: 150
+	},
+	modelText: {
+		padding: 10,
+		fontFamily: 'Montserrat_700Bold',
+		fontSize: 20,
+		color: 'black',
+		textAlign: 'left',
+	},
+	
 
+	hourTitle: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginBottom: 0,
+	},
+	modalHours: {
+		
+	},
+	exitX: {
+		position: 'absolute',
+		top: 0,
+		right: 10,
+		marginTop: -10,
+		zIndex: 1,
+		width: 12,
+		height: 12,
+		resizeMode: 'contain',
+
+	},
 
 	/*CLASS CARDS */
 	classesCarouselContent: {
