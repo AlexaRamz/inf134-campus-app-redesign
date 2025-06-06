@@ -3,6 +3,7 @@ import AppHeader from '@/components/AppHeader';
 import AppCard from "@/components/AppCard";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import { globalStyles } from '@/styles/globalStyles';
+import FoodCard from '@/components/FoodCard';
 
 const ANTEATERY_KEY = 'anteatery'
 const BRANDYWINE_KEY = 'brandywine'
@@ -59,32 +60,14 @@ export default function DiningScreen() {
 
 				<Text style={styles.subheading}>Home</Text>
 
-				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Taco Seasoned Beef <Text style={styles.cal}>110 cal</Text></Text>
-					<Text style={styles.itemDesc}>Ground beef seasoned with chili, garlic, and cumin</Text>
-				</AppCard>
-
-				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Spanish Rice <Text style={styles.cal}>100 cal</Text></Text>
-					<Text style={styles.itemDesc}>White rice with tomatoes, onions, garlic</Text>
-				</AppCard>
-
-				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Charro Beans <Text style={styles.cal}>80 cal</Text></Text>
-					<Text style={styles.itemDesc}>Pinto beans with broth, salsa, and cumin</Text>
-				</AppCard>
+				<FoodCard name="Taco Seasoned Beef" calories={110} description="Ground beef seasoned with chili, garlic, and cumin"/>
+				<FoodCard name="Spanish Rice" calories={100} description="White rice with tomatoes, onions, garlic"/>
+				<FoodCard name="Charro Beans" calories={80} description="Pinto beans with broth, salsa, and cumin"/>
 
 				<Text style={styles.subheading}>The Oven </Text>
 
-				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Classic Cheese Pizza <Text style={styles.cal}>340 cal</Text></Text>
-					<Text style={styles.itemDesc}>Rich tomato sauce & generous layer of mozzerella cheese on a golden brown crust</Text>
-				</AppCard>
-
-				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Pepperoni Pizza <Text style={styles.cal}>370 cal</Text></Text>
-					<Text style={styles.itemDesc}>Topped with crispy pepperoni slices, rich tomato sauce & mozzerella cheese on a golden brown crust</Text>
-				</AppCard>
+				<FoodCard name="Classic Cheese Pizza" calories={340} description="Rich tomato sauce & generous layer of mozzerella cheese on a golden brown crust"/>
+				<FoodCard name="Pepperoni Pizza" calories={370} description="Topped with crispy pepperoni slices, rich tomato sauce & mozzerella cheese on a golden brown crust"/>
 			</>
 		}
 		else {
@@ -109,27 +92,13 @@ export default function DiningScreen() {
 
 				<Text style={styles.subheading}>Grubb</Text>
 
-				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>BBQ Chicken Drumstick <Text style={styles.cal}>220 cal</Text></Text>
-					<Text style={styles.itemDesc}>Savor the bold flavors of our Baked BBQ-Seasoned Chicken Drumstick, a perfect blend of smoky and sweet</Text>
-				</AppCard>
-
-				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Corb on the Cobb<Text style={styles.cal}>45 cal</Text></Text>
-					<Text style={styles.itemDesc}>Steamed corn on the cob</Text>
-				</AppCard>
-
-				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Lexington Slaw <Text style={styles.cal}>80 cal</Text></Text>
-					<Text style={styles.itemDesc}>Pinto beans simmered with broth, salsa, and cumin</Text>
-				</AppCard>
+				<FoodCard name="BBQ Chicken Drumstick" calories={220} description="Savor the bold flavors of our Baked BBQ-Seasoned Chicken Drumstick, a perfect blend of smoky and sweet"/>
+				<FoodCard name="Corn on the Cobb" calories={45} description="Steamed corn on the cob"/>
+				<FoodCard name="Lexington Slaw" calories={80} description="Pinto beans simmered with broth, salsa, and cumin"/>
 
 				<Text style={styles.subheading}>The Crossroads</Text>
 
-				<AppCard style={styles.card}>
-					<Text style={styles.itemTitle}>Lemongrass Banh Mi <Text style={styles.cal}>500 cal</Text></Text>
-					<Text style={styles.itemDesc}>Lemongrass marinated chicken, pickled daikon and carrots, cilantro and lime corriander mayo on a light and crispy roll. </Text>
-				</AppCard>
+				<FoodCard name="Lemongrass Banh Mi" calories={500} description="Lemongrass marinated chicken, pickled daikon and carrots, cilantro and lime corriander mayo on a light and crispy roll."/>
 			</>
 		}
 	}
@@ -224,28 +193,6 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		marginTop: 16,
 		marginBottom: 8,
-	},
-
-	card: {
-		padding: 12,
-		marginBottom: 12,
-	},
-
-	itemTitle: {
-		fontFamily: 'Montserrat_700Bold',
-		fontSize: 15,
-		marginRight: 40,
-	},
-	itemDesc: {
-		fontFamily: 'Montserrat_400Regular',
-		fontSize: 13,
-		color: '#666',
-		marginTop: 4,
-	},
-	cal: {
-		fontFamily: 'Montserrat_400Regular',
-		color: '#999',
-		fontSize: 13,
 	},
 
 	dataBoxesContainer: {
