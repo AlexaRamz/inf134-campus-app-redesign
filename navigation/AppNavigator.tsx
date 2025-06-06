@@ -112,24 +112,7 @@ export default function AppNavigator() {
             ),
           }}
         />
-        <Tab.Screen 
-          name="F45" 
-          component={F45} 
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ color, size }) => (
-              <Image
-                source={ProfileIcon}
-                style={{
-                  width: size +6,
-                  height: size +6,
-                  tintColor: color,
-                  resizeMode: 'contain',
-                }}
-              />
-            ),
-          }}
-        />
+       
       </Tab.Navigator>
     </NavigationContainer>
   );
