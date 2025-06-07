@@ -9,27 +9,23 @@ import LocationPin from '../assets/images/locationpin.png';
 const { width: screenWidth } = Dimensions.get('window');
 
 export default function F45Screen() {
-    const [bookings, setBookings] = useState<Record<ClassId, boolean>>({
-    '630': false,
-    '800': false,
-    '930': false,
-    '100': false,
-    });
-
     type ClassId = '630' | '800' | '930' | '100';
+
+    const [bookings, setBookings] = useState<Record<ClassId, boolean>>({
+        '630': false,
+        '800': false,
+        '930': false,
+        '100': false,
+    });
 
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedClass, setSelectedClass] = useState<ClassId | null>(null);
 
-    // Helper function for button press
+    // Always open modal when button pressed
     const handleBookingPress = (classId: ClassId) => {
-    if (bookings[classId]) {
         setSelectedClass(classId);
         setModalVisible(true);
-    } else {
-        setBookings(prev => ({ ...prev, [classId]: true }));
-    }
-};
+    };
 
     return (
         <View style={{ flex: 1 }}>
@@ -58,127 +54,74 @@ export default function F45Screen() {
                     <View style={styles.classTimeContainer}>
                         <Text style={[globalStyles.heading2, { marginTop: 16, marginBottom: 8 }]}>Class Times</Text>
 
-                        {/* 6:30 AM */}
-                        <AppCard style={styles.classCard}>
-                            <View style={styles.leftSide}>
-                                <Text style={styles.classTime}>6:30-7:15AM</Text>
-                                <View style={styles.locationRow}>
-                                    <Image source={LocationPin} style={styles.locationPin} />
-                                    <Text style={globalStyles.paragraphText}>F45 Studio</Text>
-                                </View>
-                                <Text style={styles.openClassText}>23 Spots Left</Text>
-                            </View>
-
-                            <View style={styles.rightSide}>
-                                <TouchableOpacity
-                                    style={[
-                                        styles.bookButton,
-                                        bookings['630'] && styles.cancelButton,
-                                    ]}
-                                    onPress={() => handleBookingPress('630')}
-                                >
-                                    <Text style={styles.bookButtonText}>
-                                        {bookings['630'] ? 'Cancel Booking' : 'Book Now'}
+                        {['630', '800', '930', '100'].map(classId => (
+                            <AppCard style={styles.classCard} key={classId}>
+                                <View style={styles.leftSide}>
+                                    <Text style={styles.classTime}>
+                                        {{
+                                            '630': '6:30-7:15AM',
+                                            '800': '8:00-8:45AM',
+                                            '930': '9:30-10:15AM',
+                                            '100': '1:00-1:45PM',
+                                        }[classId as ClassId]}
                                     </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </AppCard>
 
-                        {/* 8:00 AM */}
-                        <AppCard style={styles.classCard}>
-                            <View style={styles.leftSide}>
-                                <Text style={styles.classTime}>8:00-8:45AM</Text>
-                                <View style={styles.locationRow}>
-                                    <Image source={LocationPin} style={styles.locationPin} />
-                                    <Text style={globalStyles.paragraphText}>F45 Studio</Text>
-                                </View>
-                                <Text style={styles.openClassText}>14 Spots Left</Text>
-                            </View>
+                                    <View style={styles.locationRow}>
+                                        <Image source={LocationPin} style={styles.locationPin} />
+                                        <Text style={globalStyles.paragraphText}>F45 Studio</Text>
+                                    </View>
 
-                            <View style={styles.rightSide}>
-                                <TouchableOpacity
-                                    style={[
-                                        styles.bookButton,
-                                        bookings['800'] && styles.cancelButton,
-                                    ]}
-                                    onPress={() => handleBookingPress('800')}
-                                >
-                                    <Text style={styles.bookButtonText}>
-                                        {bookings['800'] ? 'Cancel Booking' : 'Book Now'}
+                                    <Text style={styles.openClassText}>
+                                        {{
+                                            '630': '23 Spots Left',
+                                            '800': '14 Spots Left',
+                                            '930': '1 Spot Left',
+                                            '100': '8 Spots Left',
+                                        }[classId as ClassId]}
                                     </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </AppCard>
-
-                        {/* 9:30 AM */}
-                        <AppCard style={styles.classCard}>
-                            <View style={styles.leftSide}>
-                                <Text style={styles.classTime}>9:30-10:15AM</Text>
-                                <View style={styles.locationRow}>
-                                    <Image source={LocationPin} style={styles.locationPin} />
-                                    <Text style={globalStyles.paragraphText}>F45 Studio</Text>
                                 </View>
-                                <Text style={styles.fullClassText}>1 Spot Left</Text>
-                            </View>
 
-                            <View style={styles.rightSide}>
-                                <TouchableOpacity
-                                    style={[
-                                        styles.bookButton,
-                                        bookings['930'] && styles.cancelButton,
-                                    ]}
-                                    onPress={() => handleBookingPress('930')}
-                                >
-                                    <Text style={styles.bookButtonText}>
-                                        {bookings['930'] ? 'Cancel Booking' : 'Book Now'}
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </AppCard>
-
-                        {/* 1:00 PM */}
-                        <AppCard style={styles.classCard}>
-                            <View style={styles.leftSide}>
-                                <Text style={styles.classTime}>1:00-1:45PM</Text>
-                                <View style={styles.locationRow}>
-                                    <Image source={LocationPin} style={styles.locationPin} />
-                                    <Text style={globalStyles.paragraphText}>F45 Studio</Text>
+                                <View style={styles.rightSide}>
+                                    <TouchableOpacity
+                                        style={[
+                                            styles.bookButton,
+                                            bookings[classId as ClassId] && styles.cancelButton,
+                                        ]}
+                                        onPress={() => handleBookingPress(classId as ClassId)}
+                                    >
+                                        <Text style={styles.bookButtonText}>
+                                            {bookings[classId as ClassId] ? 'Cancel Booking' : 'Book Now'}
+                                        </Text>
+                                    </TouchableOpacity>
                                 </View>
-                                <Text style={styles.openClassText}>8 Spots Left</Text>
-                            </View>
-
-                            <View style={styles.rightSide}>
-                                <TouchableOpacity
-                                    style={[
-                                        styles.bookButton,
-                                        bookings['100'] && styles.cancelButton,
-                                    ]}
-                                    onPress={() => handleBookingPress('100')}
-                                >
-                                    <Text style={styles.bookButtonText}>
-                                        {bookings['100'] ? 'Cancel Booking' : 'Book Now'}
-                                    </Text>
-                                </TouchableOpacity>
-                            </View>
-                        </AppCard>
+                            </AppCard>
+                        ))}
                     </View>
                 </View>
             </ScrollView>
 
-            {/* Cancel Booking Modal */}
-            {modalVisible && (
+            {/* Booking/Cancel Modal */}
+            {modalVisible && selectedClass && (
                 <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
-                        <Text style={styles.modalTitle}>Cancel booking for this class?</Text>
+                        <Text style={styles.modalTitle}>
+                            {bookings[selectedClass]
+                                ? 'Cancel booking for this class?'
+                                : 'Confirm booking for this class?'}
+                        </Text>
 
                         <View style={styles.modalButtonRow}>
                             <TouchableOpacity
                                 style={styles.confirmButton}
                                 onPress={() => {
                                     if (selectedClass) {
-                                    setBookings(prev => ({ ...prev, [selectedClass]: false }));}
-                                    setModalVisible(false);
-                                    setSelectedClass(null);
+                                        setBookings(prev => ({
+                                            ...prev,
+                                            [selectedClass]: !prev[selectedClass], // toggle booking
+                                        }));
+                                        setModalVisible(false);
+                                        setSelectedClass(null);
+                                    }
                                 }}
                             >
                                 <Text style={styles.modalButtonText}>Confirm</Text>
@@ -200,7 +143,6 @@ export default function F45Screen() {
         </View>
     );
 }
-
 
 // Stylesheet 
     const styles = StyleSheet.create({
@@ -328,34 +270,36 @@ export default function F45Screen() {
     },
 
     modalButtonRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 12,
+    marginTop: 20,
     },
 
     confirmButton: {
-        flex: 1,
-        backgroundColor: '#8B0000',
-        paddingVertical: 10,
-        marginRight: 5,
-        borderRadius: 8,
-        alignItems: 'center',
+    backgroundColor: '#255799',
+    padding: 12,
+    borderRadius: 8,
+    flex: 1,
+    alignItems: 'center',
     },
 
     cancelButtonModal: {
-        flex: 1,
-        backgroundColor: '#555',
-        paddingVertical: 10,
-        marginLeft: 5,
-        borderRadius: 8,
-        alignItems: 'center',
+    backgroundColor: '#FF0000',
+    padding: 12,
+    borderRadius: 8,
+    flex: 1,
+    alignItems: 'center',
     },
 
     modalButtonText: {
-        color: 'white',
-        fontFamily: 'Montserrat_400Regular',
-        fontSize: 14,
+    color: 'white',
+    fontSize: 14,
+    fontFamily: 'Montserrat_400Regular',
+    textAlign: 'center',
     },
+
+    
 
 });
 
