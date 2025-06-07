@@ -172,7 +172,7 @@ export default function ARCScreen({navigation} : any) {
 
 					<AppCard style={styles.classCard}>
 						<TouchableOpacity
-							onPress={() => navigation.navigate('F45')}
+							onPress={() => navigation.navigate('ARCDetails')}
 							style={{ flex: 1 }}
 						>
 							<ImageBackground

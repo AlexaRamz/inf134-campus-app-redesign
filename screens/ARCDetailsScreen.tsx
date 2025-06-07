@@ -6,9 +6,7 @@ import AppHeaderWithBack from '@/components/AppHeaderWithBack';
 import PriceTag from '../assets/images/pricetag.png';
 import LocationPin from '../assets/images/locationpin.png';
 
-const { width: screenWidth } = Dimensions.get('window');
-
-export default function F45Screen() {
+export default function ARCDetailsScreen() {
     type ClassId = '630' | '800' | '930' | '100';
 
     const [bookings, setBookings] = useState<Record<ClassId, boolean>>({

@@ -14,3 +14,6 @@ This app is created using React Native along with Expo.
 ### Running the application
 1. Start the development server: ```npx expo start```
 2. Follow the instructions in the terminal to open the app in your browser or on the device or emulator you have chosen. Refer to the Expo docs for more details: https://docs.expo.dev/get-started/start-developing/
+
+npx expo export --platform web
+eas deploy --prod
