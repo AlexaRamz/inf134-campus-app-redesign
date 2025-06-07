@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { ScrollView, Text, View, ImageBackground, StyleSheet, Dimensions, Image, TouchableOpacity, Modal } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, Dimensions, Image, TouchableOpacity, Modal } from 'react-native';
 import AppHeader from '@/components/AppHeader';
 import AppCard from '@/components/AppCard';
 import { globalStyles } from '@/styles/globalStyles';
 import AppHeaderWithBack from '@/components/AppHeaderWithBack';
-
-
-
 import Arrow from '../assets/images/backarrow.png';
 import PriceTag from '../assets/images/pricetag.png';
 import LocationPin from '../assets/images/locationpin.png';
-
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 //Get screen width calculation to ensure horizontal scrolling for card snaps into place 
 const { width: screenWidth } = Dimensions.get('window');
-export default function ARCScreen() {
+export default function F45Screen({title} : any) {
     const navigation = useNavigation();
     const [showModal, setShowModal] = useState(false);
 
@@ -29,7 +26,8 @@ export default function ARCScreen() {
 
     return (
         <ScrollView showsVerticalScrollIndicator={true} style={globalStyles.scrollView}>
-            <AppHeaderWithBack title="F45"></AppHeaderWithBack>
+            <AppHeaderWithBack title="F45"/>
+
             <View style={globalStyles.scrollContentContainer}>
                 {/* Descrption Container */}
                 <View>
@@ -399,5 +397,29 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Montserrat_400Regular',
     fontSize: 14,
+  },
+
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  backButton: {
+    padding: 10, // good tap area
+  },
+  backArrow: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontFamily: 'Montserrat_700Bold',
+    color: 'black',
+    marginLeft: 10,
   },
 })

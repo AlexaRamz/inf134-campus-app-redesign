@@ -44,4 +44,15 @@ const styles = StyleSheet.create({
 	tabsHeaderText: {
 		marginBottom: 8,
 	},
+
+	backArrow: {
+    width: 24,
+    height: 24,
+    marginRight: 10,
+    resizeMode: 'contain',
+  	},
+
+	backButton: {
+    padding: 10, 
+  	},
 });

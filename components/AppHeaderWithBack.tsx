@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, SafeAreaView, StyleSheet, Image } from "react-native";
+import { View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import BackArrow from '../assets/images/backarrow.png';
-
 
 interface HeaderProps {
 	title: string;
@@ -9,13 +9,17 @@ interface HeaderProps {
 }
 
 export default function AppHeaderWithBack({ title, renderTabs }: HeaderProps) {
+	const navigation = useNavigation();
+
 	return (
 		<SafeAreaView style={styles.safeArea}>
 			<View style={[styles.header, renderTabs && styles.tabsHeader]}>
-				<Image
-					source={BackArrow}
-					style={styles.backArrow}
-				/>
+				<TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+					<Image
+						source={BackArrow}
+						style={styles.backArrow}
+					/>
+				</TouchableOpacity>
 				<Text style={[styles.headerText, renderTabs && styles.tabsHeaderText]}>
 					{title}
 				</Text>
@@ -50,12 +54,15 @@ const styles = StyleSheet.create({
 	tabsHeaderText: {
 		marginBottom: 8,
 	},
+	backButton: {
+		position: 'absolute',
+		left: 25,
+		top: 62,
+		padding: 10, // Makes it easier to click
+	},
 	backArrow: {
 		width: 20,
 		height: 20,
 		resizeMode: 'contain',
-		position:'absolute',
-		left: 25,
-		top: 62,
-	}
+	},
 });

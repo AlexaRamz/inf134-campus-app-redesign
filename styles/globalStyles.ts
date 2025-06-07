@@ -79,5 +79,16 @@ export const globalStyles = StyleSheet.create({
 		fontFamily: 'Montserrat_400Regular',
 		color: '#255799',
 	},
+
+	backArrow: {
+    width: 24,
+    height: 24,
+    marginRight: 10,
+    resizeMode: 'contain',
+  	},
+
+	backButton: {
+    padding: 10, 
+  	},
 	
 });
