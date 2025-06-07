@@ -1,329 +1,286 @@
 import React, { useState } from 'react';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { ScrollView, Text, View, StyleSheet, Dimensions, Image, TouchableOpacity, Modal } from 'react-native';
-import AppHeader from '@/components/AppHeader';
+import { ScrollView, Text, View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import AppCard from '@/components/AppCard';
 import { globalStyles } from '@/styles/globalStyles';
 import AppHeaderWithBack from '@/components/AppHeaderWithBack';
-import Arrow from '../assets/images/backarrow.png';
 import PriceTag from '../assets/images/pricetag.png';
 import LocationPin from '../assets/images/locationpin.png';
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
-//Get screen width calculation to ensure horizontal scrolling for card snaps into place 
 const { width: screenWidth } = Dimensions.get('window');
-export default function F45Screen({title} : any) {
-    const navigation = useNavigation();
-    const [showModal, setShowModal] = useState(false);
 
-    const openModal = () => {
-        setShowModal(true);
-    };
+export default function F45Screen() {
+    const [bookings, setBookings] = useState<Record<ClassId, boolean>>({
+    '630': false,
+    '800': false,
+    '930': false,
+    '100': false,
+    });
 
-    const closeModal = () => {
-        setShowModal(false);
-    };
+    type ClassId = '630' | '800' | '930' | '100';
 
-    return (
-        <ScrollView showsVerticalScrollIndicator={true} style={globalStyles.scrollView}>
-            <AppHeaderWithBack title="F45"/>
+    const [modalVisible, setModalVisible] = useState(false);
+    const [selectedClass, setSelectedClass] = useState<ClassId | null>(null);
 
-            <View style={globalStyles.scrollContentContainer}>
-                {/* Descrption Container */}
-                <View>
-                    <Text style={globalStyles.heading2}>Class Description</Text>
-                    <View style={styles.classLocationAndSpots}>
-                        <Image
-                            source={PriceTag}
-                            style={styles.priceTag}
-                        />
-                        <Text style={globalStyles.heading4}>$0.00</Text>
-
-                    </View>
-                    <Text style={globalStyles.paragraphText}>This 45 minute class is fast-paced, efficient, and fun. Each workout is a complete
-                        Calorie killer that will keep you motivated to move more. F-45 is a fun HIIT (high intensity interval training)
-                        workout that uses functional exercise equipment like battling ropes, sleds, bikes, rowers, medicine balls, and more
-                        – with exercises that are demonstrated on televisions. The workouts are wild – more than 10 completely different protocols,
-                        changing every single day. F45 Pass or All Access Pass required for registration. Registration opens 48 hours in advance.</Text>
-                </View>
-
-                {/* Class Time Container */}
-                <View style={styles.classTimeContainer}>
-                    <Text style={styles.heading2}>Class Times</Text>
-                    <AppCard style={styles.classCard}>
-                        <View style={styles.leftSide}>
-                            <Text style={styles.classTime}>6:30-7:15AM</Text>
-                            <View style={styles.locationRow}>
-                                <Image
-                                    source={LocationPin}
-                                    style={styles.locationPin}
-                                />
-                                <Text style={globalStyles.paragraphText}>F45 Studio</Text>
-
-                            </View>
-                            <Text style={styles.openClassText}>23 Spots Left</Text>
-                        </View>
-
-                        <View style={styles.rightSide}>
-                            <TouchableOpacity style={styles.bookButton} onPress={openModal}>
-                                <Text style={styles.bookButtonText}>Book Now</Text>
-                            </TouchableOpacity>
-                            <Modal
-                                animationType="slide"
-                                transparent={true}
-                                visible={showModal}
-                                onRequestClose={closeModal}
-                            >
-                                <View style={styles.modalContainer}>
-                                    <View style={styles.modalContent}>
-                                        <Text style={styles.heading2}>Book class from{"\n"}1:00 - 1:45PM?</Text>
-
-                                        <View style={styles.modalBtn}>
-                                            <TouchableOpacity style={styles.closeBtn} onPress={closeModal} >
-                                                <Text style={styles.modalBtnText}>Confirm</Text>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity style={styles.modalCancelBtn} onPress={closeModal}>
-                                                <Text style={styles.modalCancelBtnText}>Cancel</Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
-                                </View>
-                            </Modal>
-                        </View>
-                    </AppCard>
-
-                    <AppCard style={styles.classCard}>
-                        <View style={styles.leftSide}>
-                            <Text style={styles.classTime}>8:00-8:45AM</Text>
-                            <View style={styles.locationRow}>
-                                <Image
-                                    source={LocationPin}
-                                    style={styles.locationPin}
-                                />
-                                <Text style={globalStyles.paragraphText}>F45 Studio</Text>
-
-                            </View>
-                            <Text style={styles.openClassText}>14 Spots Left</Text>
-                        </View>
-
-                         <View style={styles.rightSide}>
-                            <TouchableOpacity style={styles.bookButton} onPress={openModal}>
-                                <Text style={styles.bookButtonText}>Book Now</Text>
-                            </TouchableOpacity>
-                            <Modal
-                                animationType="slide"
-                                transparent={true}
-                                visible={showModal}
-                                onRequestClose={closeModal}
-                            >
-                                <View style={styles.modalContainer}>
-                                    <View style={styles.modalContent}>
-                                        <Text style={styles.heading2}>Book class from{"\n"}1:00 - 1:45PM?</Text>
-
-                                        <View style={styles.modalBtn}>
-                                            <TouchableOpacity style={styles.closeBtn} onPress={closeModal}>
-                                                <Text style={styles.modalBtnText}>Confirm</Text>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity style={styles.modalCancelBtn} onPress={closeModal}>
-                                                <Text style={styles.modalCancelBtnText}>Cancel</Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
-                                </View>
-                            </Modal>
-                        </View>
-                    </AppCard>
-
-                    <AppCard style={styles.classCard}>
-                        <View style={styles.leftSide}>
-                            <Text style={styles.classTime}>9:30-10:15AM</Text>
-                            <View style={styles.locationRow}>
-                                <Image
-                                    source={LocationPin}
-                                    style={styles.locationPin}
-                                />
-                                <Text style={globalStyles.paragraphText}>F45 Studio</Text>
-
-                            </View>
-                            <Text style={styles.fullClassText}>1 spot left</Text>
-                        </View>
-
-                         <View style={styles.rightSide}>
-                            <TouchableOpacity style={styles.bookButton} onPress={openModal}>
-                                <Text style={styles.bookButtonText}>Book Now</Text>
-                            </TouchableOpacity>
-                            <Modal
-                                animationType="slide"
-                                transparent={true}
-                                visible={showModal}
-                                onRequestClose={closeModal}
-                            >
-                                <View style={styles.modalContainer}>
-                                    <View style={styles.modalContent}>
-                                        <Text style={styles.heading2}>Book class from{"\n"}1:00 - 1:45PM?</Text>
-
-                                        <View style={styles.modalBtn}>
-                                            <TouchableOpacity style={styles.closeBtn} >
-                                                <Text style={styles.modalBtnText} onPress={closeModal}>Confirm</Text>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity style={styles.modalCancelBtn} onPress={closeModal}>
-                                                <Text style={styles.modalCancelBtnText}>Cancel</Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
-                                </View>
-                            </Modal>
-                        </View>
-                    </AppCard>
-                    <AppCard style={styles.classCard}>
-                        <View style={styles.leftSide}>
-                            <Text style={styles.classTime}>1:00-1:45PM</Text>
-                            <View style={styles.locationRow}>
-                                <Image
-                                    source={LocationPin}
-                                    style={styles.locationPin}
-                                />
-                                <Text style={globalStyles.paragraphText}>F45 Studio</Text>
-
-                            </View>
-                            <Text style={styles.openClassText}>8 Spots Left</Text>
-                        </View>
-                      
-
-                        <View style={styles.rightSide}>
-                            <TouchableOpacity style={styles.bookButton} onPress={openModal}>
-                                <Text style={styles.bookButtonText}>Book Now</Text>
-                            </TouchableOpacity>
-                            <Modal
-                                animationType="slide"
-                                transparent={true}
-                                visible={showModal}
-                                onRequestClose={closeModal}
-                            >
-                                <View style={styles.modalContainer}>
-                                    <View style={styles.modalContent}>
-                                        <Text style={styles.heading2}>Book class from{"\n"}1:00 - 1:45PM?</Text>
-
-                                        <View style={styles.modalBtn}>
-                                            <TouchableOpacity style={styles.closeBtn} onPress={closeModal} >
-                                                <Text style={styles.modalBtnText}>Confirm</Text>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity style={styles.modalCancelBtn} onPress={closeModal}>
-                                                <Text style={styles.modalCancelBtnText}>Cancel</Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
-                                </View>
-                            </Modal>
-                        </View>
-                    </AppCard>
-                </View>
-
-            </View>
-        </ScrollView>
-    );
-
+    // Helper function for button press
+    const handleBookingPress = (classId: ClassId) => {
+    if (bookings[classId]) {
+        setSelectedClass(classId);
+        setModalVisible(true);
+    } else {
+        setBookings(prev => ({ ...prev, [classId]: true }));
+    }
 };
 
+    return (
+        <View style={{ flex: 1 }}>
+            <ScrollView showsVerticalScrollIndicator={true} style={globalStyles.scrollView}>
+                <AppHeaderWithBack title="F45" />
+
+                <View style={globalStyles.scrollContentContainer}>
+                    {/* Class Description */}
+                    <View>
+                        <Text style={globalStyles.heading2}>Class Description</Text>
+
+                        <View style={styles.classLocationAndSpots}>
+                            <Image source={PriceTag} style={styles.priceTag} />
+                            <Text style={globalStyles.heading4}>$0.00</Text>
+                        </View>
+
+                        <Text style={globalStyles.paragraphText}>
+                            This 45 minute class is fast-paced, efficient, and fun. Each workout is a complete calorie killer that will keep you motivated to move more. 
+                            F-45 is a fun HIIT (high intensity interval training) workout that uses functional exercise equipment like battling ropes, sleds, bikes, rowers, medicine balls, and more 
+                            – with exercises that are demonstrated on televisions. The workouts are wild – more than 10 completely different protocols, changing every single day. 
+                            F45 Pass or All Access Pass required for registration. Registration opens 48 hours in advance.
+                        </Text>
+                    </View>
+
+                    {/* Class Times */}
+                    <View style={styles.classTimeContainer}>
+                        <Text style={[globalStyles.heading2, { marginTop: 16, marginBottom: 8 }]}>Class Times</Text>
+
+                        {/* 6:30 AM */}
+                        <AppCard style={styles.classCard}>
+                            <View style={styles.leftSide}>
+                                <Text style={styles.classTime}>6:30-7:15AM</Text>
+                                <View style={styles.locationRow}>
+                                    <Image source={LocationPin} style={styles.locationPin} />
+                                    <Text style={globalStyles.paragraphText}>F45 Studio</Text>
+                                </View>
+                                <Text style={styles.openClassText}>23 Spots Left</Text>
+                            </View>
+
+                            <View style={styles.rightSide}>
+                                <TouchableOpacity
+                                    style={[
+                                        styles.bookButton,
+                                        bookings['630'] && styles.cancelButton,
+                                    ]}
+                                    onPress={() => handleBookingPress('630')}
+                                >
+                                    <Text style={styles.bookButtonText}>
+                                        {bookings['630'] ? 'Cancel Booking' : 'Book Now'}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </AppCard>
+
+                        {/* 8:00 AM */}
+                        <AppCard style={styles.classCard}>
+                            <View style={styles.leftSide}>
+                                <Text style={styles.classTime}>8:00-8:45AM</Text>
+                                <View style={styles.locationRow}>
+                                    <Image source={LocationPin} style={styles.locationPin} />
+                                    <Text style={globalStyles.paragraphText}>F45 Studio</Text>
+                                </View>
+                                <Text style={styles.openClassText}>14 Spots Left</Text>
+                            </View>
+
+                            <View style={styles.rightSide}>
+                                <TouchableOpacity
+                                    style={[
+                                        styles.bookButton,
+                                        bookings['800'] && styles.cancelButton,
+                                    ]}
+                                    onPress={() => handleBookingPress('800')}
+                                >
+                                    <Text style={styles.bookButtonText}>
+                                        {bookings['800'] ? 'Cancel Booking' : 'Book Now'}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </AppCard>
+
+                        {/* 9:30 AM */}
+                        <AppCard style={styles.classCard}>
+                            <View style={styles.leftSide}>
+                                <Text style={styles.classTime}>9:30-10:15AM</Text>
+                                <View style={styles.locationRow}>
+                                    <Image source={LocationPin} style={styles.locationPin} />
+                                    <Text style={globalStyles.paragraphText}>F45 Studio</Text>
+                                </View>
+                                <Text style={styles.fullClassText}>1 Spot Left</Text>
+                            </View>
+
+                            <View style={styles.rightSide}>
+                                <TouchableOpacity
+                                    style={[
+                                        styles.bookButton,
+                                        bookings['930'] && styles.cancelButton,
+                                    ]}
+                                    onPress={() => handleBookingPress('930')}
+                                >
+                                    <Text style={styles.bookButtonText}>
+                                        {bookings['930'] ? 'Cancel Booking' : 'Book Now'}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </AppCard>
+
+                        {/* 1:00 PM */}
+                        <AppCard style={styles.classCard}>
+                            <View style={styles.leftSide}>
+                                <Text style={styles.classTime}>1:00-1:45PM</Text>
+                                <View style={styles.locationRow}>
+                                    <Image source={LocationPin} style={styles.locationPin} />
+                                    <Text style={globalStyles.paragraphText}>F45 Studio</Text>
+                                </View>
+                                <Text style={styles.openClassText}>8 Spots Left</Text>
+                            </View>
+
+                            <View style={styles.rightSide}>
+                                <TouchableOpacity
+                                    style={[
+                                        styles.bookButton,
+                                        bookings['100'] && styles.cancelButton,
+                                    ]}
+                                    onPress={() => handleBookingPress('100')}
+                                >
+                                    <Text style={styles.bookButtonText}>
+                                        {bookings['100'] ? 'Cancel Booking' : 'Book Now'}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </AppCard>
+                    </View>
+                </View>
+            </ScrollView>
+
+            {/* Cancel Booking Modal */}
+            {modalVisible && (
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <Text style={styles.modalTitle}>Cancel booking for this class?</Text>
+
+                        <View style={styles.modalButtonRow}>
+                            <TouchableOpacity
+                                style={styles.confirmButton}
+                                onPress={() => {
+                                    if (selectedClass) {
+                                    setBookings(prev => ({ ...prev, [selectedClass]: false }));}
+                                    setModalVisible(false);
+                                    setSelectedClass(null);
+                                }}
+                            >
+                                <Text style={styles.modalButtonText}>Confirm</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                style={styles.cancelButtonModal}
+                                onPress={() => {
+                                    setModalVisible(false);
+                                    setSelectedClass(null);
+                                }}
+                            >
+                                <Text style={styles.modalButtonText}>Cancel</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            )}
+        </View>
+    );
+}
+
+
 // Stylesheet 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f0f2f5',
-    },
-    heading2: {
-
-        fontFamily: 'Montserrat_700Bold',
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginTop: 4,
-        marginBottom: 8,
-        color: 'black',
-        textAlign: 'center',
-
-    },
+    const styles = StyleSheet.create({
     classLocationAndSpots: {
-        display: 'flex',
         flexDirection: 'row',
-        height: 180,
-        marginTop: -6,
-        marginBottom: '-45%',
-    },
-    imageBackground: {
-        flex: 1,
-        width: '100%',
-        height: 'auto',
-        justifyContent: 'center',
         alignItems: 'center',
+        marginVertical: 8,
     },
+
     priceTag: {
         width: 14,
         height: 14,
         resizeMode: 'contain',
-        marginTop: 3,
         marginRight: 5,
     },
+
     classTimeContainer: {
         marginTop: 10,
         paddingVertical: 5,
+    },
 
+    classCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        paddingVertical: 16,
+        marginVertical: 5,
+        borderRadius: 8,
+        backgroundColor: 'white',
+        elevation: 2,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
     },
 
     leftSide: {
+        flex: 1,
         flexDirection: 'column',
+        justifyContent: 'center',
     },
-    rightSide: {
 
+    rightSide: {
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    classInfo: {
-        display: 'flex',
-        flexDirection: 'row',
-        height: 180,
-        marginTop: 0,
-        marginBottom: 0,
-    },
+
     classTime: {
         fontSize: 16,
         fontFamily: 'Montserrat_700Bold',
-        color: 'black'
+        color: 'black',
     },
+
+    locationRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 4,
+        marginBottom: 4,
+    },
+
     locationPin: {
-        marginTop: 1,
         marginRight: 4,
         width: 10,
         height: 10,
         resizeMode: 'contain',
     },
+
     openClassText: {
         color: '#1E8D2F',
         fontFamily: 'Montserrat_400Regular',
         fontSize: 12,
-        marginTop: 0,
     },
+
     fullClassText: {
         color: '#FF0000',
         fontFamily: 'Montserrat_400Regular',
         fontSize: 12,
-        marginTop: 0,
-    },
-    classCard: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 8,
-        marginVertical: 5,
-    },
-    locationRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: 2,
-        marginBottom: 0,
     },
 
     bookButton: {
-
         backgroundColor: '#255799',
         paddingVertical: 8,
         paddingHorizontal: 20,
@@ -331,95 +288,74 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: 10,
     },
+
+    cancelButton: {
+        backgroundColor: '#8B0000', // dark red
+    },
+
     bookButtonText: {
         fontSize: 12,
         fontFamily: 'Montserrat_400Regular',
         color: 'white',
     },
 
-    //MODAL STYLING
     modalContainer: {
-    flex: 1,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.22)',
-  },
-  modalContent: {
-    width: 290,
-    height: 300,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    justifyContent: 'center',
-    marginHorizontal: 100,
-  },
-  modalBtn:{
-      flexDirection:'column',
-      justifyContent:'center',
-  },
-  closeBtn: {
-    backgroundColor: '#255799',
-    padding: 10,
-    borderRadius: 8,
-    alignSelf: 'center',
-    width: '85%',
-    textAlign: 'center',
-    color: 'white',
-    fontFamily: 'Montserrat_400Regular',
-    fontSize: 14,
-    marginTop: 5,
-  },
-  modelText:{
-    padding:10,
-    textAlign:'center',
-  },
-  modalBtnText: {
-    color: 'white',
-    textAlign: 'center',
-    fontFamily: 'Montserrat_400Regular',
-    fontSize: 14,
-  },
-  modalCancelBtn: {
-    backgroundColor: '#white',
-    padding: 10,
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 8,
-    alignSelf: 'center',
-    marginTop: 8,
-    width: '85%',
-    textAlign: 'center',
-    color: 'white',
-    fontFamily: 'Montserrat_400Regular',
-    fontSize: 14,
-  },
-  modalCancelBtnText: {
-    color: 'black',
-    textAlign: 'center',
-    fontFamily: 'Montserrat_400Regular',
-    fontSize: 14,
-  },
+    zIndex: 999,
+    },
 
-  headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: 'white',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-  backButton: {
-    padding: 10, // good tap area
-  },
-  backArrow: {
-    width: 24,
-    height: 24,
-    resizeMode: 'contain',
-  },
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    fontFamily: 'Montserrat_700Bold',
-    color: 'black',
-    marginLeft: 10,
-  },
-})
+    modalContent: {
+        width: 300,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 20,
+        alignItems: 'center',
+    },
+
+    modalTitle: {
+        fontSize: 18,
+        fontFamily: 'Montserrat_700Bold',
+        color: 'black',
+        marginBottom: 16,
+        textAlign: 'center',
+    },
+
+    modalButtonRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+    },
+
+    confirmButton: {
+        flex: 1,
+        backgroundColor: '#8B0000',
+        paddingVertical: 10,
+        marginRight: 5,
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+
+    cancelButtonModal: {
+        flex: 1,
+        backgroundColor: '#555',
+        paddingVertical: 10,
+        marginLeft: 5,
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+
+    modalButtonText: {
+        color: 'white',
+        fontFamily: 'Montserrat_400Regular',
+        fontSize: 14,
+    },
+
+});
+

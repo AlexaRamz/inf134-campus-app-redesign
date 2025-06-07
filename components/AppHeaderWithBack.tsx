@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		left: 25,
 		top: 62,
-		padding: 10, // Makes it easier to click
+		padding: 10,
 	},
 	backArrow: {
 		width: 20,

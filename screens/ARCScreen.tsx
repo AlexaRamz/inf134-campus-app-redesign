@@ -78,46 +78,50 @@ export default function ARCScreen({navigation} : any) {
 								</TouchableOpacity>
 
 								<Modal
-									transparent={true}
-									visible={showModal}
-									onRequestClose={closeModal}
+								transparent={true}
+								visible={showModal}
+								onRequestClose={closeModal}
 								>
-									<View style={styles.modalContainer}>
-										<View style={styles.modalContent}>
-											<View style={styles.hourTitle}>
-												<Text style={globalStyles.heading2}>Hours</Text>
-												<TouchableOpacity style={styles.closeBtn} onPress={closeModal}>
-													<Image
-														source={ExitX}
-														style={styles.exitX}
-													/>
-												</TouchableOpacity>
-											</View>
-											<View style={styles.modalHours}>
-												<View style={styles.hourGroup}>
-													<Text style={globalStyles.heading4}>ARC</Text>
-													<Text style={globalStyles.paragraphText}>Monday - Friday: 6:00am - 12:00am</Text>
-													<Text style={globalStyles.paragraphText}>Saturday: 8:00am - 9:00pm</Text>
-													<Text style={globalStyles.paragraphText}>Sunday: 8:00am - 12:00am</Text>
-												</View>
-												<View style={styles.hourGroup}>
-													<Text style={globalStyles.heading4}>Pool</Text>
-													<Text style={globalStyles.paragraphText}>Monday - Friday: 6:30am - 12:00am</Text>
-													<Text style={globalStyles.paragraphText}>Saturday: 8:30am - 9:00pm</Text>
-													<Text style={globalStyles.paragraphText}>Sunday: 8:30am - 12:00am</Text>
-												</View>
+								<View style={styles.modalContainer}>
+									<View style={styles.modalContent}>
 
-												<View style={styles.hourGroup}>
-													<Text style={globalStyles.heading4}>Field</Text>
-													<Text style={globalStyles.paragraphText}>Monday - Friday: 7:00am - 9:00pm</Text>
-													<Text style={globalStyles.paragraphText}>Saturday: 8:00am - 8:00pm</Text>
-													<Text style={globalStyles.paragraphText}>Sunday: 8:00am - 10:00pm</Text>
-												</View>
+										{/* Close X button */}
+										<TouchableOpacity
+											onPress={closeModal}
+											style={styles.closeButtonAbsolute}
+											accessibilityLabel="Close Hours Modal"
+											accessibilityRole="button"
+										>
+											<Image source={ExitX} style={styles.exitX} />
+										</TouchableOpacity>
+
+										{/* Modal Title */}
+										<Text style={globalStyles.heading2}>Hours</Text>
+
+										{/* Modal Hours */}
+										<View style={styles.modalHours}>
+											<View style={styles.hourGroup}>
+												<Text style={globalStyles.heading4}>ARC</Text>
+												<Text style={styles.modalBodyText}>Monday - Friday: 6:00am - 12:00am</Text>
+												<Text style={styles.modalBodyText}>Saturday: 8:00am - 9:00pm</Text>
+												<Text style={styles.modalBodyText}>Sunday: 8:00am - 12:00am</Text>
+
+												<Text style={styles.modalBodyText}>Pool</Text>
+												<Text style={styles.modalBodyText}>Monday - Friday: 6:30am - 12:00am</Text>
+												<Text style={styles.modalBodyText}>Saturday: 8:30am - 9:00pm</Text>
+												<Text style={styles.modalBodyText}>Sunday: 8:30am - 12:00am</Text>
+
+												<Text style={styles.modalBodyText}>Field</Text>
+												<Text style={styles.modalBodyText}>Monday - Friday: 7:00am - 9:00pm</Text>
+												<Text style={styles.modalBodyText}>Saturday: 8:00am - 8:00pm</Text>
+												<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
 											</View>
 										</View>
 
+										</View>
 									</View>
 								</Modal>
+
 							</View>
 						</View>
 					</View>
@@ -164,12 +168,19 @@ export default function ARCScreen({navigation} : any) {
 				>
 
 					<AppCard style={styles.classCard}>
-						<TouchableOpacity onPress={() => navigation.navigate('F45')}>
-						<ImageBackground source={F45} resizeMode='cover' style={styles.classCardImageBackground}>
-							<View>
-								<Text style={styles.cardText}>F45</Text>
-							</View>
-						</ImageBackground>
+						<TouchableOpacity
+							onPress={() => navigation.navigate('F45')}
+							style={{ flex: 1 }}
+						>
+							<ImageBackground
+								source={F45}
+								style={styles.classCardImageBackground}
+								imageStyle={{ borderRadius: 8 }}
+							>
+								<View> 
+									<Text style={styles.cardText}>F45</Text>
+								</View>
+							</ImageBackground>
 						</TouchableOpacity>
 					</AppCard>
 
@@ -289,8 +300,8 @@ const styles = StyleSheet.create({
 	},
 
 	arrow: {
-		width: 10,
-		height: 10,
+		width: 16, // increased size
+		height: 16,
 		resizeMode: 'contain',
 		marginTop: -20,
 	},
@@ -298,7 +309,6 @@ const styles = StyleSheet.create({
 	hourGroup: {
 		marginTop: 10,
 	},
-
 
 	/* ARC CROWD METER */
 	crowdContainer: {
@@ -342,7 +352,7 @@ const styles = StyleSheet.create({
 		color: '#1E8D2F',
 	},
 
-	//MODAL
+	// MODAL — IMPROVED
 	modalContainer: {
 		flex: 1,
 		justifyContent: 'center',
@@ -350,48 +360,59 @@ const styles = StyleSheet.create({
 		backgroundColor: 'rgba(0, 0, 0, 0.5)',
 	},
 	modalContent: {
-		width: 300,
-		height: 330,
+		width: '90%', // responsive
+		maxWidth: 400, // max size
 		backgroundColor: 'white',
-		borderRadius: 10,
-		display: 'flex',
+		borderRadius: 16, // more modern look
 		paddingVertical: 30,
-		paddingHorizontal: 20,
-
-
+		paddingHorizontal: 24,
+		alignItems: 'center',
 	},
+	modalBodyText: {
+    fontSize: 16, // increase to 16px or 17px for mobile-friendly
+    fontFamily: 'Montserrat_400Regular',
+    color: 'black',
+    marginBottom: 6,
+    textAlign: 'left',
+    lineHeight: 24, // add line height for spacing between lines
+},
 	modalBtn: {
 		flexDirection: 'column',
 		justifyContent: 'center',
 	},
 	modalBtnText: {
-		fontSize: 14,
+		fontSize: 16, // increased font size
 		color: 'black',
 		textAlign: 'center',
 		fontFamily: 'Montserrat_400Regular',
 	},
 	confirmBtn: {
 		backgroundColor: '#255799',
-		padding: 10,
-		borderRadius: 8,
+		paddingVertical: 14, // increased button height
+		paddingHorizontal: 20,
+		borderRadius: 10,
 		marginTop: 20,
-		width: 150
+		width: 180, // bigger width
+		alignItems: 'center',
 	},
 	closeBtn: {
 		backgroundColor: 'white',
-		padding: 10,
-		borderRadius: 8,
+		paddingVertical: 14,
+		paddingHorizontal: 20,
+		borderRadius: 10,
 		marginTop: 20,
-		width: 150
+		width: 180,
+		alignItems: 'center',
+		borderWidth: 1,
+		borderColor: '#ccc',
 	},
 	modelText: {
 		padding: 10,
 		fontFamily: 'Montserrat_700Bold',
-		fontSize: 20,
+		fontSize: 22, // larger title
 		color: 'black',
-		textAlign: 'left',
+		textAlign: 'center',
 	},
-
 
 	hourTitle: {
 		display: 'flex',
@@ -399,22 +420,28 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		marginBottom: 0,
 	},
-	modalHours: {
+	modalHours: {},
 
+	closeButtonAbsolute: {
+    position: 'absolute',
+    top: 16,
+    right: 16,
+    width: 48,
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 10,
 	},
+
 	exitX: {
-		position: 'absolute',
-		top: 0,
-		right: 10,
-		marginTop: -10,
-		zIndex: 1,
-		width: 12,
-		height: 12,
-		resizeMode: 'contain',
-
+    width: 24,         // actual image size — smaller inside big click area
+    height: 24,
+    resizeMode: 'contain',
 	},
 
-	/*CLASS CARDS */
+
+
+	/* CLASS CARDS */
 	classesCarouselContent: {
 		marginTop: 0,
 		marginBottom: 30,
@@ -452,7 +479,7 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		alignItems: 'center'
+		alignItems: 'center',
 	},
 	courtCard: {
 		backgroundColor: '#fff',
@@ -483,6 +510,6 @@ const styles = StyleSheet.create({
 	courtTextContainer: {
 		flex: 1,
 		justifyContent: 'center',
-
 	},
-})
+});
+
