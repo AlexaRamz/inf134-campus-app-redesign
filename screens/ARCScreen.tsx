@@ -64,11 +64,14 @@ export default function ARCScreen({navigation} : any) {
 				{/* ARC Hours Section */}
 				<View>
 					<View>
-						<Text style={globalStyles.heading2}>ARC</Text>
-						<View style={styles.courtContentWrapper}>
-							<View style={styles.openStatusContainer}>
-								<Text style={styles.openText}>● Open until 12:00AM</Text>
-							</View>
+							<TouchableOpacity onPress={openModal}>
+								<Text style={globalStyles.heading2}>ARC</Text>
+							</TouchableOpacity>			
+
+							<View style={styles.courtContentWrapper}>
+								<View style={styles.openStatusContainer}>
+									<Text style={styles.openText}>● Open until 12:00AM</Text>
+								</View>
 							<View>
 								<TouchableOpacity onPress={openModal}>
 									<Image
