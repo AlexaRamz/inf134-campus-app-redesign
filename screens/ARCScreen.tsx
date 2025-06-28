@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { ScrollView, Text, View, ImageBackground, StyleSheet, Dimensions, Image, Linking, TouchableOpacity, Modal } from 'react-native';
 import AppHeader from '@/components/AppHeader';
-import arcBackground from '../assets/images/arcbackgroundpic.png'
+import CrowdBarHeader from '@/components/CrowdBarHeader';
+import ArcBackground from '../assets/images/arcbackgroundpic.png'
 import AppCard from '@/components/AppCard';
 import CrowdMeterImage from '../assets/images/mondaycard.png';
-import CrowdBar from '../assets/images/crowd_bar.png';
 import { globalStyles } from '@/styles/globalStyles';
 import OpenCircle from '../assets/images/opencircle.png';
 import ClosedCircle from '../assets/images/closedcircle.png';
@@ -28,8 +28,6 @@ import wednesdayChart from '../assets/images/wednesdaycard.png';
 //Get screen width calculation to ensure horizontal scrolling for card snaps into place 
 const { width: screenWidth } = Dimensions.get('window');
 export default function ARCScreen({navigation} : any) {
-	const image = { arcBackground };
-	const monday = { mondayChart };
 	const [showModal, setShowModal] = useState(false);
 
 	const openModal = () => {
@@ -42,25 +40,10 @@ export default function ARCScreen({navigation} : any) {
 	return (
 		<ScrollView showsVerticalScrollIndicator={true} style={globalStyles.scrollView}>
 			<AppHeader title="ARC"></AppHeader>
-			{/* Top Crowd Meter Container */}
-			<View style={styles.imageBackgroundContainer}>
-				{/* Image Background Container */}
-				<ImageBackground source={arcBackground} resizeMode='cover' style={styles.imageBackground}>
-					{/* Crowd Meter Text View */}
-					<View style={styles.overlayTextBackground}>
-						<Text style={globalStyles.heading3}>Crowd Meter</Text>
-						<Image
-							source={CrowdBar}
-							style={styles.crowdMeterBar}
-						/>
-						<Text style={styles.overlayText}>Moderately Busy</Text>
-					</View>
-				</ImageBackground>
-			</View>
-			<View style={globalStyles.scrollContentContainer} >
+			
+			<CrowdBarHeader backgroundImage={ArcBackground}/>
 
-
-
+			<View style={globalStyles.bodyContentContainer} >
 				{/* ARC Hours Section */}
 				<View>
 					<View>
@@ -125,37 +108,35 @@ export default function ARCScreen({navigation} : any) {
 									</View>
 								</Modal>
 
+								</View>
 							</View>
 						</View>
-					</View>
 
 					<Text style={globalStyles.heading2}>Crowd History</Text>
 					<ScrollView
 						horizontal={true}
-						style={styles.crowdContainer}
+						style={globalStyles.crowdContainer}
 						showsHorizontalScrollIndicator={false}>
 
-						<AppCard style={styles.crowdMeterBox}>
+						<AppCard style={globalStyles.crowdMeterBox}>
 							<Image
 								source={CrowdMeterImage}
-								style={styles.crowdMeterImage}
+								style={globalStyles.crowdMeterImage}
 							/>
 						</AppCard>
-						<AppCard style={styles.crowdMeterBox}>
+						<AppCard style={globalStyles.crowdMeterBox}>
 							<Image
 								source={tuesdayChart}
-								style={styles.crowdMeterImage}
+								style={globalStyles.crowdMeterImage}
 							/>
 						</AppCard>
-						<AppCard style={styles.crowdMeterBox}>
+						<AppCard style={globalStyles.crowdMeterBox}>
 							<Image
 								source={wednesdayChart}
-								style={styles.crowdMeterImage}
+								style={globalStyles.crowdMeterImage}
 							/>
 						</AppCard>
 					</ScrollView>
-
-
 				</View>
 
 				{/* Class Container */}
@@ -194,73 +175,69 @@ export default function ARCScreen({navigation} : any) {
 							</View>
 						</ImageBackground>
 					</AppCard>
+			</ScrollView>
 
-				</ScrollView>
-
-				{/*Court Status Section */}
-				<View>
-					<Text style={globalStyles.heading2}>Court Status</Text>
-					<AppCard style={styles.courtCard}>
-						<View style={styles.courtContentWrapper}>
-							<Image source={Basketball} resizeMode='cover' style={styles.courtIcon} />
-							<View style={styles.courtTextContainer}>
-								<Text style={globalStyles.heading4}>Basketball</Text>
-								<Text style={globalStyles.paragraphText}>Courts 1 & 2</Text>
-								<Text style={globalStyles.paragraphText}>6:00AM-11:30PM</Text>
-							</View>
-							<Image
-								source={OpenCircle}
-								style={styles.openCircleImage}
-							/>
+			{/*Court Status Section */}
+			<View>
+				<Text style={globalStyles.heading2}>Court Status</Text>
+				<AppCard style={styles.courtCard}>
+					<View style={styles.courtContentWrapper}>
+						<Image source={Basketball} resizeMode='cover' style={styles.courtIcon} />
+						<View style={styles.courtTextContainer}>
+							<Text style={globalStyles.heading4}>Basketball</Text>
+							<Text style={globalStyles.paragraphText}>Courts 1 & 2</Text>
+							<Text style={globalStyles.paragraphText}>6:00AM-11:30PM</Text>
 						</View>
-					</AppCard>
-					<AppCard style={styles.courtCard}>
-						<View style={styles.courtContentWrapper}>
-							<Image source={Volleyball} resizeMode='cover' style={styles.courtIcon} />
-							<View style={styles.courtTextContainer}>
-								<Text style={globalStyles.heading4}>Volleyball</Text>
-								<Text style={globalStyles.paragraphText}>Court 3</Text>
-								<Text style={globalStyles.paragraphText}>7:00AM-11:30PM</Text>
-							</View>
-							<Image
-								source={OpenCircle}
-								style={styles.openCircleImage}
-							/>
+						<Image
+							source={OpenCircle}
+							style={styles.openCircleImage}
+						/>
+					</View>
+				</AppCard>
+				<AppCard style={styles.courtCard}>
+					<View style={styles.courtContentWrapper}>
+						<Image source={Volleyball} resizeMode='cover' style={styles.courtIcon} />
+						<View style={styles.courtTextContainer}>
+							<Text style={globalStyles.heading4}>Volleyball</Text>
+							<Text style={globalStyles.paragraphText}>Court 3</Text>
+							<Text style={globalStyles.paragraphText}>7:00AM-11:30PM</Text>
 						</View>
-					</AppCard>
-					<AppCard style={styles.courtCard}>
-						<View style={styles.courtContentWrapper}>
-							<Image source={Badminton} resizeMode='cover' style={styles.courtIcon} />
-							<View style={styles.courtTextContainer}>
-								<Text style={globalStyles.heading4}>Badminton</Text>
-								<Text style={globalStyles.paragraphText}>Back Court</Text>
-								<Text style={globalStyles.paragraphText}>11:00AM-11:30PM</Text>
-							</View>
-							<Image
-								source={ClosedCircle}
-								style={styles.openCircleImage}
-							/>
+						<Image
+							source={OpenCircle}
+							style={styles.openCircleImage}
+						/>
+					</View>
+				</AppCard>
+				<AppCard style={styles.courtCard}>
+					<View style={styles.courtContentWrapper}>
+						<Image source={Badminton} resizeMode='cover' style={styles.courtIcon} />
+						<View style={styles.courtTextContainer}>
+							<Text style={globalStyles.heading4}>Badminton</Text>
+							<Text style={globalStyles.paragraphText}>Back Court</Text>
+							<Text style={globalStyles.paragraphText}>11:00AM-11:30PM</Text>
 						</View>
-					</AppCard>
-					<AppCard style={styles.courtCard}>
-						<View style={styles.courtContentWrapper}>
-							<Image source={Pickleball} resizeMode='cover' style={styles.courtIcon} />
-							<View style={styles.courtTextContainer}>
-								<Text style={globalStyles.heading4}>Pickleball</Text>
-								<Text style={globalStyles.paragraphText}>Pickleball Courts</Text>
-								<Text style={globalStyles.paragraphText}>12:00PM-5:30PM</Text>
-							</View>
-							<Image
-								source={ClosedCircle}
-								style={styles.openCircleImage}
-							/>
+						<Image
+							source={ClosedCircle}
+							style={styles.openCircleImage}
+						/>
+					</View>
+				</AppCard>
+				<AppCard style={styles.courtCard}>
+					<View style={styles.courtContentWrapper}>
+						<Image source={Pickleball} resizeMode='cover' style={styles.courtIcon} />
+						<View style={styles.courtTextContainer}>
+							<Text style={globalStyles.heading4}>Pickleball</Text>
+							<Text style={globalStyles.paragraphText}>Pickleball Courts</Text>
+							<Text style={globalStyles.paragraphText}>12:00PM-5:30PM</Text>
 						</View>
-					</AppCard>
+						<Image
+							source={ClosedCircle}
+							style={styles.openCircleImage}
+						/>
+					</View>
+				</AppCard>
 
 				</View>
-
-
-
 			</View>
 		</ScrollView>
 	);
@@ -272,34 +249,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#f0f2f5',
-	},
-	imageBackgroundContainer: {
-		width: '100%',
-		height: 180,
-		marginTop: 0,
-	},
-	imageBackground: {
-		flex: 1,
-		width: '100%',
-		height: 'auto',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-
-	overlayTextBackground: {
-		backgroundColor: 'rgba(37, 87, 153, 0.8)',
-		paddingVertical: 8,
-		paddingHorizontal: 25,
-		borderRadius: 15,
-		overflow: 'hidden',
-		marginBottom: 10,
-	},
-	overlayText: {
-		color: 'white',
-		fontSize: 12,
-		fontWeight: 400,
-		textAlign: 'center',
-		fontFamily: 'Montserrat_400Regular',
 	},
 
 	arrow: {
@@ -313,30 +262,6 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 	},
 
-	/* ARC CROWD METER */
-	crowdContainer: {
-		marginBottom: 20,
-	},
-
-	crowdMeterBox: {
-		width: screenWidth * 0.7,
-		height: 140,
-		marginRight: 10,
-		padding: 5,
-	},
-	crowdMeterImage: {
-		width: '100%',
-		height: 130,
-		padding: 0,
-		resizeMode: 'contain',
-		overflow: 'hidden',
-	},
-	crowdMeterBar: {
-		width: 190,
-		resizeMode: 'contain',
-		marginBottom: -14,
-		marginTop: -12,
-	},
 	openStatusContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',

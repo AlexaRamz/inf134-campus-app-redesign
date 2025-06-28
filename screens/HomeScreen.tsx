@@ -11,7 +11,7 @@ export default function HomeScreen({navigation} : any) {
 	return (
 		<View style={globalStyles.outerContainer}>
 			<AppHeader title="Welcome"></AppHeader>
-			<ScrollView contentContainerStyle={globalStyles.scrollContentContainer} style={globalStyles.scrollView}>
+			<ScrollView contentContainerStyle={globalStyles.bodyContentContainer} style={globalStyles.scrollView}>
 				<AppCard style={globalStyles.barcodeBox}>
 					<TouchableOpacity onPress={() => navigation.navigate('Profile')}>
 					<Image

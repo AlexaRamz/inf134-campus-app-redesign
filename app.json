@@ -16,7 +16,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.alexaramz.inf134campusappredesign"
     },
     "web": {
       "bundler": "metro",
@@ -42,6 +43,12 @@
       "eas": {
         "projectId": "d64609a0-352a-4203-805a-0352255efaed"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/d64609a0-352a-4203-805a-0352255efaed"
     }
   }
 }

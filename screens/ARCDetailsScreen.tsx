@@ -30,7 +30,7 @@ export default function ARCDetailsScreen() {
             <ScrollView showsVerticalScrollIndicator={true} style={globalStyles.scrollView}>
                 <AppHeaderWithBack title="F45" />
 
-                <View style={globalStyles.scrollContentContainer}>
+                <View style={globalStyles.bodyContentContainer}>
                     {/* Class Description */}
                     <View>
                         <Text style={globalStyles.heading2}>Class Description</Text>

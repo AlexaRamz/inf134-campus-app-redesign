@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import AppHeader from '@/components/AppHeader';
-import AppCard from "@/components/AppCard";
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, ImageBackground } from 'react-native';
 import { globalStyles } from '@/styles/globalStyles';
 import FoodCard from '@/components/FoodCard';
 import Arrow from '../assets/images/backarrow.png'; // rotate 270 deg
 import ExitX from '../assets/images/exitX.png';
+import CrowdBarHeader from '@/components/CrowdBarHeader';
+import AnteateryBackground from '../assets/images/anteaterybg.png';
+import BrandywineBackground from '../assets/images/brandywinebg.png';
 
 const ANTEATERY_KEY = 'anteatery';
 const BRANDYWINE_KEY = 'brandywine';
@@ -52,68 +54,48 @@ export default function DiningScreen() {
 	const renderMenuContent = function() {
 		if (activeTab === ANTEATERY_KEY) {
 			return <>
-				{/* Crowd Meter */}
-				<View style={styles.crowdContainer}>
-					<Text style={styles.crowdTitle}>Crowd Meter</Text>
-					<View style={styles.barRow}>
-						{Array.from({ length: 10 }, (_, i) => (
-							<View
-								key={i}
-								style={[styles.bar, i < 6 ? styles.barFilled : styles.barEmpty]}
-							/>
-						))}
-					</View>
-					<Text style={styles.crowdLevel}>Moderately Busy</Text>
+				<CrowdBarHeader backgroundImage={AnteateryBackground}/>
+				
+				<View style={globalStyles.bodyContentContainer}>
+					{/* Meal Header */}
+					<TouchableOpacity onPress={() => setMealModalVisible(true)} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
+						<Text style={styles.sectionTitle}>{selectedMeal}</Text>
+						<Image source={Arrow} style={{ width: 12, height: 12, marginLeft: 8, transform: [{ rotate: '270deg' }] }} />
+					</TouchableOpacity>
+
+					<Text style={styles.openText}>● Open until 11:00PM</Text>
+
+					<Text style={styles.subheading}>Home</Text>
+					<FoodCard name="Taco Seasoned Beef" calories={110} description="Ground beef seasoned with chili, garlic, and cumin"/>
+					<FoodCard name="Spanish Rice" calories={100} description="White rice with tomatoes, onions, garlic"/>
+					<FoodCard name="Charro Beans" calories={80} description="Pinto beans with broth, salsa, and cumin"/>
+
+					<Text style={styles.subheading}>The Oven</Text>
+					<FoodCard name="Classic Cheese Pizza" calories={340} description="Rich tomato sauce & generous layer of mozzerella cheese on a golden brown crust"/>
+					<FoodCard name="Pepperoni Pizza" calories={370} description="Topped with crispy pepperoni slices, rich tomato sauce & mozzerella cheese on a golden brown crust"/>
 				</View>
-
-				{/* Meal Header */}
-				<TouchableOpacity onPress={() => setMealModalVisible(true)} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-					<Text style={styles.sectionTitle}>{selectedMeal}</Text>
-					<Image source={Arrow} style={{ width: 12, height: 12, marginLeft: 8, transform: [{ rotate: '270deg' }] }} />
-				</TouchableOpacity>
-
-				<Text style={styles.openText}>● Open until 11:00PM</Text>
-
-				<Text style={styles.subheading}>Home</Text>
-				<FoodCard name="Taco Seasoned Beef" calories={110} description="Ground beef seasoned with chili, garlic, and cumin"/>
-				<FoodCard name="Spanish Rice" calories={100} description="White rice with tomatoes, onions, garlic"/>
-				<FoodCard name="Charro Beans" calories={80} description="Pinto beans with broth, salsa, and cumin"/>
-
-				<Text style={styles.subheading}>The Oven</Text>
-				<FoodCard name="Classic Cheese Pizza" calories={340} description="Rich tomato sauce & generous layer of mozzerella cheese on a golden brown crust"/>
-				<FoodCard name="Pepperoni Pizza" calories={370} description="Topped with crispy pepperoni slices, rich tomato sauce & mozzerella cheese on a golden brown crust"/>
 			</>
 		} else {
 			return <>
-				{/* Crowd Meter */}
-				<View style={styles.crowdContainer}>
-					<Text style={styles.crowdTitle}>Crowd Meter</Text>
-					<View style={styles.barRow}>
-						{Array.from({ length: 10 }, (_, i) => (
-							<View
-								key={i}
-								style={[styles.bar, i < 6 ? styles.barFilled : styles.barEmpty]}
-							/>
-						))}
-					</View>
-					<Text style={styles.crowdLevel}>Moderately Busy</Text>
+				<CrowdBarHeader backgroundImage={BrandywineBackground}/>
+
+				<View style={globalStyles.bodyContentContainer}>
+					{/* Meal Header */}
+					<TouchableOpacity onPress={() => setMealModalVisible(true)} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
+						<Text style={styles.sectionTitle}>{selectedMeal}</Text>
+						<Image source={Arrow} style={{ width: 12, height: 12, marginLeft: 8, transform: [{ rotate: '270deg' }] }} />
+					</TouchableOpacity>
+
+					<Text style={styles.openText}>● Open until 11:00PM</Text>
+
+					<Text style={styles.subheading}>Grubb</Text>
+					<FoodCard name="BBQ Chicken Drumstick" calories={220} description="Savor the bold flavors of our Baked BBQ-Seasoned Chicken Drumstick, a perfect blend of smoky and sweet"/>
+					<FoodCard name="Corn on the Cobb" calories={45} description="Steamed corn on the cob"/>
+					<FoodCard name="Lexington Slaw" calories={80} description="Pinto beans simmered with broth, salsa, and cumin"/>
+
+					<Text style={styles.subheading}>The Crossroads</Text>
+					<FoodCard name="Lemongrass Banh Mi" calories={500} description="Lemongrass marinated chicken, pickled daikon and carrots, cilantro and lime corriander mayo on a light and crispy roll."/>
 				</View>
-
-				{/* Meal Header */}
-				<TouchableOpacity onPress={() => setMealModalVisible(true)} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-					<Text style={styles.sectionTitle}>{selectedMeal}</Text>
-					<Image source={Arrow} style={{ width: 12, height: 12, marginLeft: 8, transform: [{ rotate: '270deg' }] }} />
-				</TouchableOpacity>
-
-				<Text style={styles.openText}>● Open until 11:00PM</Text>
-
-				<Text style={styles.subheading}>Grubb</Text>
-				<FoodCard name="BBQ Chicken Drumstick" calories={220} description="Savor the bold flavors of our Baked BBQ-Seasoned Chicken Drumstick, a perfect blend of smoky and sweet"/>
-				<FoodCard name="Corn on the Cobb" calories={45} description="Steamed corn on the cob"/>
-				<FoodCard name="Lexington Slaw" calories={80} description="Pinto beans simmered with broth, salsa, and cumin"/>
-
-				<Text style={styles.subheading}>The Crossroads</Text>
-				<FoodCard name="Lemongrass Banh Mi" calories={500} description="Lemongrass marinated chicken, pickled daikon and carrots, cilantro and lime corriander mayo on a light and crispy roll."/>
 			</>
 		}
 	};
@@ -122,7 +104,7 @@ export default function DiningScreen() {
 		<View style={globalStyles.outerContainer}>
 			<AppHeader title="Dining" renderTabs={diningHallTabs}></AppHeader>
 			
-			<ScrollView contentContainerStyle={styles.screenContainer} style={globalStyles.scrollView}>
+			<ScrollView style={globalStyles.scrollView}>
 				{renderMenuContent()}
 			</ScrollView>
 
@@ -219,10 +201,6 @@ export default function DiningScreen() {
 };
 
 const styles = StyleSheet.create({
-	screenContainer: {
-		paddingHorizontal: 29,
-	},
-
 /* TABS */
 	tabsContainer: {
 		flexDirection: 'row',

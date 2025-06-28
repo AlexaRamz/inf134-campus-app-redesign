@@ -5,12 +5,12 @@ interface AppCardProps {
 	style?: ViewStyle;
 }
 
-const AppCard: React.FC<AppCardProps> = ({ children, style }) => {
+export default function AppCard({ children, style }: AppCardProps) {
 	return (
 		<View style={[styles.card, style]}>
 			{children}
 		</View>
-	)
+	);
 }
 
 const styles = StyleSheet.create({
@@ -26,5 +26,3 @@ const styles = StyleSheet.create({
 		elevation: 3,
 	},
 })
-
-export default AppCard;

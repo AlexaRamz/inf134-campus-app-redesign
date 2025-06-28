@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width: screenWidth } = Dimensions.get('window');
 
 export const globalStyles = StyleSheet.create({
 	outerContainer: {
@@ -9,7 +11,7 @@ export const globalStyles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: 'white',
 	},
-	scrollContentContainer: {
+	bodyContentContainer: {
 		paddingHorizontal: 29,
 		paddingTop: 25,
 		paddingBottom: 14,
@@ -91,4 +93,20 @@ export const globalStyles = StyleSheet.create({
     padding: 10, 
   	},
 	
+	crowdContainer: {
+		marginBottom: 20,
+	},
+	crowdMeterBox: {
+		width: screenWidth * 0.7,
+		height: 140,
+		marginRight: 10,
+		padding: 5,
+	},
+	crowdMeterImage: {
+		width: '100%',
+		height: 130,
+		padding: 0,
+		resizeMode: 'contain',
+		overflow: 'hidden',
+	},
 });
