@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { ScrollView, Text, View, ImageBackground, StyleSheet, Dimensions, Image, Linking, TouchableOpacity, Modal } from 'react-native';
 import AppHeader from '@/components/AppHeader';
 import CrowdBarHeader from '@/components/CrowdBarHeader';
 import ArcBackground from '../assets/images/arcbackgroundpic.png'
 import AppCard from '@/components/AppCard';
-import CrowdMeterImage from '../assets/images/mondaycard.png';
 import { globalStyles } from '@/styles/globalStyles';
-import OpenCircle from '../assets/images/opencircle.png';
-import ClosedCircle from '../assets/images/closedcircle.png';
 import F45 from '../assets/images/f45.png';
 import Boxing from '../assets/images/boxing.png';
 import Basketball from '../assets/images/basketball.png';
@@ -18,11 +14,11 @@ import Badminton from '../assets/images/badminton.png';
 import Arrow from '../assets/images/arrow.png';
 import ExitX from '../assets/images/exitX.png';
 
-
-import mondayChart from '../assets/images/profile.png';
+import mondayChart from '../assets/images/mondaycard.png';
 import tuesdayChart from '../assets/images/tuesdaycard.png';
 import wednesdayChart from '../assets/images/wednesdaycard.png';
-
+import CourtCard from '@/components/CourtCard';
+import ClassCard from '@/components/ClassCard';
 
 
 //Get screen width calculation to ensure horizontal scrolling for card snaps into place 
@@ -51,7 +47,7 @@ export default function ARCScreen({navigation} : any) {
 								<Text style={globalStyles.heading2}>ARC</Text>
 							</TouchableOpacity>			
 
-							<View style={styles.courtContentWrapper}>
+							<View style={styles.hoursContentWrapper}>
 								<View style={styles.openStatusContainer}>
 									<Text style={styles.openText}>● Open until 12:00AM</Text>
 								</View>
@@ -120,7 +116,7 @@ export default function ARCScreen({navigation} : any) {
 
 						<AppCard style={globalStyles.crowdMeterBox}>
 							<Image
-								source={CrowdMeterImage}
+								source={mondayChart}
 								style={globalStyles.crowdMeterImage}
 							/>
 						</AppCard>
@@ -150,94 +146,19 @@ export default function ARCScreen({navigation} : any) {
 					showsHorizontalScrollIndicator={false}
 					contentContainerStyle={styles.classesCarouselContent}
 				>
-
-					<AppCard style={styles.classCard}>
-						<TouchableOpacity
-							onPress={() => navigation.navigate('ARCDetails')}
-							style={{ flex: 1 }}
-						>
-							<ImageBackground
-								source={F45}
-								style={styles.classCardImageBackground}
-								imageStyle={{ borderRadius: 8 }}
-							>
-								<View> 
-									<Text style={styles.cardText}>F45</Text>
-								</View>
-							</ImageBackground>
-						</TouchableOpacity>
-					</AppCard>
-
-					<AppCard style={styles.classCard}>
-						<ImageBackground source={Boxing} resizeMode='cover' style={styles.classCardImageBackground}>
-							<View>
-								<Text style={styles.cardText}>Boxing Club</Text>
-							</View>
-						</ImageBackground>
-					</AppCard>
+					<ClassCard name={'F45'} backgroundImage={F45} navigation={navigation} detailsPage={'ARCDetails'}/>
+					<ClassCard name={'Boxing Club'} backgroundImage={Boxing} navigation={navigation} detailsPage={''}/>
 			</ScrollView>
 
 			{/*Court Status Section */}
 			<View>
 				<Text style={globalStyles.heading2}>Court Status</Text>
-				<AppCard style={styles.courtCard}>
-					<View style={styles.courtContentWrapper}>
-						<Image source={Basketball} resizeMode='cover' style={styles.courtIcon} />
-						<View style={styles.courtTextContainer}>
-							<Text style={globalStyles.heading4}>Basketball</Text>
-							<Text style={globalStyles.paragraphText}>Courts 1 & 2</Text>
-							<Text style={globalStyles.paragraphText}>6:00AM-11:30PM</Text>
-						</View>
-						<Image
-							source={OpenCircle}
-							style={styles.openCircleImage}
-						/>
-					</View>
-				</AppCard>
-				<AppCard style={styles.courtCard}>
-					<View style={styles.courtContentWrapper}>
-						<Image source={Volleyball} resizeMode='cover' style={styles.courtIcon} />
-						<View style={styles.courtTextContainer}>
-							<Text style={globalStyles.heading4}>Volleyball</Text>
-							<Text style={globalStyles.paragraphText}>Court 3</Text>
-							<Text style={globalStyles.paragraphText}>7:00AM-11:30PM</Text>
-						</View>
-						<Image
-							source={OpenCircle}
-							style={styles.openCircleImage}
-						/>
-					</View>
-				</AppCard>
-				<AppCard style={styles.courtCard}>
-					<View style={styles.courtContentWrapper}>
-						<Image source={Badminton} resizeMode='cover' style={styles.courtIcon} />
-						<View style={styles.courtTextContainer}>
-							<Text style={globalStyles.heading4}>Badminton</Text>
-							<Text style={globalStyles.paragraphText}>Back Court</Text>
-							<Text style={globalStyles.paragraphText}>11:00AM-11:30PM</Text>
-						</View>
-						<Image
-							source={ClosedCircle}
-							style={styles.openCircleImage}
-						/>
-					</View>
-				</AppCard>
-				<AppCard style={styles.courtCard}>
-					<View style={styles.courtContentWrapper}>
-						<Image source={Pickleball} resizeMode='cover' style={styles.courtIcon} />
-						<View style={styles.courtTextContainer}>
-							<Text style={globalStyles.heading4}>Pickleball</Text>
-							<Text style={globalStyles.paragraphText}>Pickleball Courts</Text>
-							<Text style={globalStyles.paragraphText}>12:00PM-5:30PM</Text>
-						</View>
-						<Image
-							source={ClosedCircle}
-							style={styles.openCircleImage}
-						/>
-					</View>
-				</AppCard>
 
-				</View>
+				<CourtCard name={'Basketball'} location={'Courts 1 & 2'} time={'6:00AM-11:30PM'} icon={Basketball} isOpen={true}/>
+				<CourtCard name={'Volleyball'} location={'Court 3'} time={'7:00AM-11:30PM'} icon={Volleyball} isOpen={true}/>
+				<CourtCard name={'Badminton'} location={'Back Court'} time={'11:00AM-11:30PM'} icon={Badminton} isOpen={false}/>
+				<CourtCard name={'Pickleball'} location={'Pickleball Courts'} time={'12:00PM-5:30PM'} icon={Pickleball} isOpen={false}/>
+			</View>
 			</View>
 		</ScrollView>
 	);
@@ -267,12 +188,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		marginTop: -8,
 		marginBottom: 24,
-	},
-	openCircleImage: {
-		width: 10,
-		height: 10,
-		resizeMode: 'contain',
-		marginRight: 3,
 	},
 	openText: {
 		fontSize: 14,
@@ -367,77 +282,23 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
 	},
 
-
-
 	/* CLASS CARDS */
 	classesCarouselContent: {
 		marginTop: 0,
 		marginBottom: 30,
 		paddingRight: 10,
 	},
-	classCard: {
-		backgroundColor: '#fff',
-		borderRadius: 12,
-		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 2 },
-		shadowOpacity: 0.1,
-		shadowRadius: 4,
-		elevation: 3,
-		overflow: 'hidden',
-		width: screenWidth * 0.6,
-		height: 120,
-		marginRight: 10,
-	},
-	classCardImageBackground: {
-		flex: 1,
-		width: '100%',
-		height: '100%',
-		justifyContent: 'flex-end',
-		padding: 15,
-	},
-
-	cardText: {
-		textAlign: 'left',
-		color: 'white',
-		fontFamily: 'Montserrat_700Bold',
-		fontSize: 18,
-	},
-
 	classContainer: {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
 	},
-	courtCard: {
-		backgroundColor: '#fff',
-		borderRadius: 12,
-		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 2 },
-		shadowOpacity: 0.1,
-		shadowRadius: 4,
-		elevation: 3,
-		width: '100%',
-		minHeight: 80,
-		marginBottom: 12,
-		paddingHorizontal: 15,
-		paddingVertical: 6,
-		justifyContent: 'center',
-	},
-	courtContentWrapper: {
+	
+	hoursContentWrapper: {
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-	},
-	courtIcon: {
-		width: 40,
-		height: 40,
-		resizeMode: 'contain',
-		marginRight: 15,
-	},
-	courtTextContainer: {
-		flex: 1,
-		justifyContent: 'center',
 	},
 });
 

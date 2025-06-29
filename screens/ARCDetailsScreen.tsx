@@ -297,7 +297,5 @@ export default function ARCDetailsScreen() {
     textAlign: 'center',
     },
 
-    
-
 });
 
