@@ -221,49 +221,11 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 3,
 		borderBottomColor: '#FECC07',
 	},
-	crowdContainer: {
-		alignItems: 'center',
-		marginVertical: 20,
-		marginHorizontal: 20,
-		backgroundColor: 'rgb(37, 87, 153)',
-		paddingVertical: 15,
-		paddingHorizontal: 35,
-		borderRadius: 18,
-		overflow: 'hidden',
-		marginBottom: 15,
-	},
-	crowdTitle: {
-		fontFamily: 'Montserrat_500Medium',
-		fontSize: 18,
-		marginBottom: 8,
-		color: 'white',
-	},
-	barRow: {
-		flexDirection: 'row',
-		gap: 4,
-		marginBottom: 6,
-	},
-	bar: {
-		width: 16,
-		height: 20,
-		borderRadius: 4,
-	},
-	barFilled: {
-		backgroundColor: '#FECC07',
-	},
-	barEmpty: {
-		backgroundColor: '#E0E0E0',
-	},
-	crowdLevel: {
-		fontSize: 14,
-		color: 'white',
-		fontFamily: 'Montserrat_400Regular',
-	},
 
+/* BODY */
 	sectionTitle: {
 		fontFamily: 'Montserrat_700Bold',
 		fontSize: 20,
-		marginBottom: 4,
 	},
 	openText: {
 		fontFamily: 'Montserrat_400Regular',
@@ -276,12 +238,5 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		marginTop: 16,
 		marginBottom: 8,
-	},
-
-	dataBoxesContainer: {
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		justifyContent: 'space-between',
-		marginTop: 20,
 	},
 });

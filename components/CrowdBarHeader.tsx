@@ -1,37 +1,38 @@
 import { View, StyleSheet, ImageBackground, Image, Text, Dimensions, ImageSourcePropType} from 'react-native';
 import { globalStyles } from '@/styles/globalStyles';
-import CrowdBar from '../assets/images/crowd_bar.png';
 
 interface AppCardProps {
 	backgroundImage: ImageSourcePropType
+	numBarsFilled?: number
 }
 
-export default function AppCard({ backgroundImage }: AppCardProps) {
+export default function CrowdBarHeader({ backgroundImage, numBarsFilled = 6 }: AppCardProps) {
 	return (
 		<View style={styles.imageBackgroundContainer}>
 			{/* Image Background Container */}
 			<ImageBackground source={backgroundImage} resizeMode='cover' style={styles.imageBackground}>
 				{/* Crowd Meter Text View */}
-				<View style={styles.overlayTextBackground}>
-					<Text style={globalStyles.heading3}>Crowd Meter</Text>
-					<Image
-						source={CrowdBar}
-						style={styles.crowdMeterBar}
-					/>
-					<Text style={styles.overlayText}>Moderately Busy</Text>
+				<View style={styles.crowdMeterContainer}>
+					<Text style={styles.crowdMeterTitle}>Crowd Meter</Text>
+					<View style={styles.barRow}>
+						{Array.from({ length: 10 }, (_, i) => (
+							<View
+								key={i}
+								style={[styles.bar, i < numBarsFilled ? styles.barFilled : styles.barEmpty]}
+							/>
+						))}
+					</View>
+					<Text style={styles.crowdLevelText}>Moderately Busy</Text>
 				</View>
 			</ImageBackground>
 		</View>
 	);
 }
 
-const { width: screenWidth } = Dimensions.get('window');
-
 const styles = StyleSheet.create({
 	imageBackgroundContainer: {
 		width: '100%',
 		height: 180,
-		marginTop: 0,
 	},
 
 	imageBackground: {
@@ -42,54 +43,39 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 
-	overlayTextBackground: {
+	crowdMeterContainer: {
 		backgroundColor: 'rgba(37, 87, 153, 0.8)',
-		paddingVertical: 8,
-		paddingHorizontal: 25,
+		paddingTop: 12,
+		paddingBottom: 10,
+		paddingHorizontal: 29,
 		borderRadius: 15,
-		overflow: 'hidden',
-		marginBottom: 10,
 	},
-	overlayText: {
-		color: 'white',
-		fontSize: 12,
-		fontWeight: 400,
-		textAlign: 'center',
+	crowdLevelText: {
 		fontFamily: 'Montserrat_400Regular',
+		fontSize: 12,
+		color: 'white',
+		textAlign: 'center',
 	},
-	
-	crowdMeterBar: {
-		width: 190,
-		resizeMode: 'contain',
-		marginBottom: -14,
-		marginTop: -12,
+	crowdMeterTitle: {
+		fontFamily: 'Montserrat_500Medium',
+		fontSize: 18,
+		color: 'white',
+		textAlign: 'center',
+	},
+	barRow: {
+		flexDirection: 'row',
+		gap: 4,
+		marginVertical: 7,
+	},
+	bar: {
+		width: 16,
+		height: 30,
+		borderRadius: 4,
+	},
+	barFilled: {
+		backgroundColor: '#FECC07',
+	},
+	barEmpty: {
+		backgroundColor: '#E0E0E0',
 	},
 })
-
-{/* Crowd Meter
-<View style={styles.crowdContainer}>
-	<Text style={styles.crowdTitle}>Crowd Meter</Text>
-	<View style={styles.barRow}>
-		{Array.from({ length: 10 }, (_, i) => (
-			<View
-				key={i}
-				style={[styles.bar, i < 6 ? styles.barFilled : styles.barEmpty]}
-			/>
-		))}
-	</View>
-	<Text style={styles.crowdLevel}>Moderately Busy</Text>
-</View> */}
-
-{/* Crowd Meter
-<View style={styles.crowdContainer}>
-	<Text style={styles.crowdTitle}>Crowd Meter</Text>
-	<View style={styles.barRow}>
-		{Array.from({ length: 10 }, (_, i) => (
-			<View
-				key={i}
-				style={[styles.bar, i < 6 ? styles.barFilled : styles.barEmpty]}
-			/>
-		))}
-	</View>
-	<Text style={styles.crowdLevel}>Moderately Busy</Text>
-</View> */}
