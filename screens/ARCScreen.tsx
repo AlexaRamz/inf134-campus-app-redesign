@@ -11,7 +11,6 @@ import Basketball from '../assets/images/basketball.png';
 import Volleyball from '../assets/images/volleyball.png';
 import Pickleball from '../assets/images/pickleball.png';
 import Badminton from '../assets/images/badminton.png';
-import Arrow from '../assets/images/arrow.png';
 import ExitX from '../assets/images/exitX.png';
 
 import mondayChart from '../assets/images/mondaycard.png';
@@ -19,6 +18,7 @@ import tuesdayChart from '../assets/images/tuesdaycard.png';
 import wednesdayChart from '../assets/images/wednesdaycard.png';
 import CourtCard from '@/components/CourtCard';
 import ClassCard from '@/components/ClassCard';
+import ServiceHoursHeader from '@/components/ServiceHoursHeader';
 
 
 //Get screen width calculation to ensure horizontal scrolling for card snaps into place 
@@ -43,70 +43,52 @@ export default function ARCScreen({navigation} : any) {
 				{/* ARC Hours Section */}
 				<View>
 					<View>
-							<TouchableOpacity onPress={openModal}>
-								<Text style={globalStyles.heading2}>ARC</Text>
-							</TouchableOpacity>			
+						<ServiceHoursHeader serviceName={'ARC'} isOpen={true} availabilityText={'Open until 12:00AM'} onPressCallback={openModal}></ServiceHoursHeader>
+						
+						<Modal
+						transparent={true}
+						visible={showModal}
+						onRequestClose={closeModal}
+						>
+							<View style={styles.modalContainer}>
+								<View style={styles.modalContent}>
 
-							<View style={styles.hoursContentWrapper}>
-								<View style={styles.openStatusContainer}>
-									<Text style={styles.openText}>● Open until 12:00AM</Text>
-								</View>
-							<View>
-								<TouchableOpacity onPress={openModal}>
-									<Image
-										source={Arrow}
-										style={styles.arrow}
-									/>
-								</TouchableOpacity>
+									{/* Close X button */}
+									<TouchableOpacity
+										onPress={closeModal}
+										style={styles.closeButtonAbsolute}
+										accessibilityLabel="Close Hours Modal"
+										accessibilityRole="button"
+									>
+										<Image source={ExitX} style={styles.exitX} />
+									</TouchableOpacity>
 
-								<Modal
-								transparent={true}
-								visible={showModal}
-								onRequestClose={closeModal}
-								>
-								<View style={styles.modalContainer}>
-									<View style={styles.modalContent}>
+									{/* Modal Title */}
+									<Text style={globalStyles.heading2}>Hours</Text>
 
-										{/* Close X button */}
-										<TouchableOpacity
-											onPress={closeModal}
-											style={styles.closeButtonAbsolute}
-											accessibilityLabel="Close Hours Modal"
-											accessibilityRole="button"
-										>
-											<Image source={ExitX} style={styles.exitX} />
-										</TouchableOpacity>
+									{/* Modal Hours */}
+									<View>
+										<View style={styles.hourGroup}>
+											<Text style={globalStyles.heading4}>ARC</Text>
+											<Text style={styles.modalBodyText}>Monday - Friday: 6:00am - 12:00am</Text>
+											<Text style={styles.modalBodyText}>Saturday: 8:00am - 9:00pm</Text>
+											<Text style={styles.modalBodyText}>Sunday: 8:00am - 12:00am</Text>
 
-										{/* Modal Title */}
-										<Text style={globalStyles.heading2}>Hours</Text>
+											<Text style={styles.modalBodyText}>Pool</Text>
+											<Text style={styles.modalBodyText}>Monday - Friday: 6:30am - 12:00am</Text>
+											<Text style={styles.modalBodyText}>Saturday: 8:30am - 9:00pm</Text>
+											<Text style={styles.modalBodyText}>Sunday: 8:30am - 12:00am</Text>
 
-										{/* Modal Hours */}
-										<View style={styles.modalHours}>
-											<View style={styles.hourGroup}>
-												<Text style={globalStyles.heading4}>ARC</Text>
-												<Text style={styles.modalBodyText}>Monday - Friday: 6:00am - 12:00am</Text>
-												<Text style={styles.modalBodyText}>Saturday: 8:00am - 9:00pm</Text>
-												<Text style={styles.modalBodyText}>Sunday: 8:00am - 12:00am</Text>
-
-												<Text style={styles.modalBodyText}>Pool</Text>
-												<Text style={styles.modalBodyText}>Monday - Friday: 6:30am - 12:00am</Text>
-												<Text style={styles.modalBodyText}>Saturday: 8:30am - 9:00pm</Text>
-												<Text style={styles.modalBodyText}>Sunday: 8:30am - 12:00am</Text>
-
-												<Text style={styles.modalBodyText}>Field</Text>
-												<Text style={styles.modalBodyText}>Monday - Friday: 7:00am - 9:00pm</Text>
-												<Text style={styles.modalBodyText}>Saturday: 8:00am - 8:00pm</Text>
-												<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
-											</View>
-										</View>
-
+											<Text style={styles.modalBodyText}>Field</Text>
+											<Text style={styles.modalBodyText}>Monday - Friday: 7:00am - 9:00pm</Text>
+											<Text style={styles.modalBodyText}>Saturday: 8:00am - 8:00pm</Text>
+											<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
 										</View>
 									</View>
-								</Modal>
-
 								</View>
 							</View>
-						</View>
+						</Modal>
+					</View>
 
 					<Text style={globalStyles.heading2}>Crowd History</Text>
 					<ScrollView
@@ -172,27 +154,8 @@ const styles = StyleSheet.create({
 		backgroundColor: '#f0f2f5',
 	},
 
-	arrow: {
-		width: 16, // increased size
-		height: 16,
-		resizeMode: 'contain',
-		marginTop: -20,
-	},
-
 	hourGroup: {
 		marginTop: 10,
-	},
-
-	openStatusContainer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		marginTop: -8,
-		marginBottom: 24,
-	},
-	openText: {
-		fontSize: 14,
-		fontFamily: 'Montserrat_400Regular',
-		color: '#1E8D2F',
 	},
 
 	// MODAL — IMPROVED
@@ -257,14 +220,6 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 
-	hourTitle: {
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		marginBottom: 0,
-	},
-	modalHours: {},
-
 	closeButtonAbsolute: {
     position: 'absolute',
     top: 16,
@@ -293,12 +248,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-	},
-	
-	hoursContentWrapper: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
 	},
 });
 

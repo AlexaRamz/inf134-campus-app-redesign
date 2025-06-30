@@ -68,6 +68,10 @@ export const globalStyles = StyleSheet.create({
 		color: 'black',
 	
 	},
+	sectionTitle: {
+		fontFamily: 'Montserrat_700Bold',
+		fontSize: 20,
+	},
 	paragraphText: {
 		fontSize: 12,
 		fontFamily: 'Montserrat_400Regular',

@@ -3,11 +3,11 @@ import AppHeader from '@/components/AppHeader';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { globalStyles } from '@/styles/globalStyles';
 import FoodCard from '@/components/FoodCard';
-import Arrow from '../assets/images/backarrow.png'; // rotate 270 deg
 import ExitX from '../assets/images/exitX.png';
 import CrowdBarHeader from '@/components/CrowdBarHeader';
 import AnteateryBackground from '../assets/images/anteaterybg.png';
 import BrandywineBackground from '../assets/images/brandywinebg.png';
+import ServiceHoursComponent from '@/components/ServiceHoursHeader';
 
 const ANTEATERY_KEY = 'anteatery';
 const BRANDYWINE_KEY = 'brandywine';
@@ -57,13 +57,7 @@ export default function DiningScreen() {
 				<CrowdBarHeader backgroundImage={AnteateryBackground}/>
 				
 				<View style={globalStyles.bodyContentContainer}>
-					{/* Meal Header */}
-					<TouchableOpacity onPress={() => setMealModalVisible(true)} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-						<Text style={styles.sectionTitle}>{selectedMeal}</Text>
-						<Image source={Arrow} style={{ width: 12, height: 12, marginLeft: 8, transform: [{ rotate: '270deg' }] }} />
-					</TouchableOpacity>
-
-					<Text style={styles.openText}>● Open until 11:00PM</Text>
+					<ServiceHoursComponent serviceName={selectedMeal} isOpen={true} availabilityText={'Open until 11:00PM'} onPressCallback={() => setMealModalVisible(true)}></ServiceHoursComponent>
 
 					<Text style={styles.subheading}>Home</Text>
 					<FoodCard name="Taco Seasoned Beef" calories={110} description="Ground beef seasoned with chili, garlic, and cumin"/>
@@ -80,13 +74,7 @@ export default function DiningScreen() {
 				<CrowdBarHeader backgroundImage={BrandywineBackground}/>
 
 				<View style={globalStyles.bodyContentContainer}>
-					{/* Meal Header */}
-					<TouchableOpacity onPress={() => setMealModalVisible(true)} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-						<Text style={styles.sectionTitle}>{selectedMeal}</Text>
-						<Image source={Arrow} style={{ width: 12, height: 12, marginLeft: 8, transform: [{ rotate: '270deg' }] }} />
-					</TouchableOpacity>
-
-					<Text style={styles.openText}>● Open until 11:00PM</Text>
+					<ServiceHoursComponent serviceName={selectedMeal} isOpen={true} availabilityText={'Open until 11:00PM'} onPressCallback={() => setMealModalVisible(true)}></ServiceHoursComponent>
 
 					<Text style={styles.subheading}>Grubb</Text>
 					<FoodCard name="BBQ Chicken Drumstick" calories={220} description="Savor the bold flavors of our Baked BBQ-Seasoned Chicken Drumstick, a perfect blend of smoky and sweet" dietHighlights={ ['gluten free', 'eat well'] }/>
@@ -140,7 +128,7 @@ export default function DiningScreen() {
 						</TouchableOpacity>
 
 						{/* Modal Title */}
-						<Text style={[styles.sectionTitle, { textAlign: 'left', marginBottom: 16 }]}>Chosen Menu</Text>
+						<Text style={[globalStyles.sectionTitle, { textAlign: 'left', marginBottom: 16 }]}>Chosen Menu</Text>
 
 						{/* Meal List */}
 						{meals.map(meal => (
@@ -220,17 +208,6 @@ const styles = StyleSheet.create({
 	activeTabBorder: {
 		borderBottomWidth: 3,
 		borderBottomColor: '#FECC07',
-	},
-
-/* BODY */
-	sectionTitle: {
-		fontFamily: 'Montserrat_700Bold',
-		fontSize: 20,
-	},
-	openText: {
-		fontFamily: 'Montserrat_400Regular',
-		color: '#1E8D2F',
-		marginBottom: 16,
 	},
 
 	subheading: {
