@@ -11,7 +11,6 @@ import Basketball from '../assets/images/basketball.png';
 import Volleyball from '../assets/images/volleyball.png';
 import Pickleball from '../assets/images/pickleball.png';
 import Badminton from '../assets/images/badminton.png';
-import ExitX from '../assets/images/exitX.png';
 
 import mondayChart from '../assets/images/mondaycard.png';
 import tuesdayChart from '../assets/images/tuesdaycard.png';
@@ -19,6 +18,7 @@ import wednesdayChart from '../assets/images/wednesdaycard.png';
 import CourtCard from '@/components/CourtCard';
 import ClassCard from '@/components/ClassCard';
 import ServiceHoursHeader from '@/components/ServiceHoursHeader';
+import AppModal from '@/components/AppModal';
 
 
 //Get screen width calculation to ensure horizontal scrolling for card snaps into place 
@@ -45,49 +45,24 @@ export default function ARCScreen({navigation} : any) {
 					<View>
 						<ServiceHoursHeader serviceName={'ARC'} isOpen={true} availabilityText={'Open until 12:00AM'} onPressCallback={openModal}></ServiceHoursHeader>
 						
-						<Modal
-						transparent={true}
-						visible={showModal}
-						onRequestClose={closeModal}
-						>
-							<View style={styles.modalContainer}>
-								<View style={styles.modalContent}>
+						<AppModal title='Hours' isVisible={showModal} setVisible={setShowModal} style={styles.hoursModal}>
+							<View style={styles.hoursModalContent}>
+								<Text style={globalStyles.heading2}>ARC</Text>
+								<Text style={styles.modalBodyText}>Monday - Friday: 6:00am - 12:00am</Text>
+								<Text style={styles.modalBodyText}>Saturday: 8:00am - 9:00pm</Text>
+								<Text style={styles.modalBodyText}>Sunday: 8:00am - 12:00am</Text>
 
-									{/* Close X button */}
-									<TouchableOpacity
-										onPress={closeModal}
-										style={styles.closeButtonAbsolute}
-										accessibilityLabel="Close Hours Modal"
-										accessibilityRole="button"
-									>
-										<Image source={ExitX} style={styles.exitX} />
-									</TouchableOpacity>
+								<Text style={globalStyles.heading2}>Pool</Text>
+								<Text style={styles.modalBodyText}>Monday - Friday: 6:30am - 12:00am</Text>
+								<Text style={styles.modalBodyText}>Saturday: 8:30am - 9:00pm</Text>
+								<Text style={styles.modalBodyText}>Sunday: 8:30am - 12:00am</Text>
 
-									{/* Modal Title */}
-									<Text style={globalStyles.heading2}>Hours</Text>
-
-									{/* Modal Hours */}
-									<View>
-										<View style={styles.hourGroup}>
-											<Text style={globalStyles.heading4}>ARC</Text>
-											<Text style={styles.modalBodyText}>Monday - Friday: 6:00am - 12:00am</Text>
-											<Text style={styles.modalBodyText}>Saturday: 8:00am - 9:00pm</Text>
-											<Text style={styles.modalBodyText}>Sunday: 8:00am - 12:00am</Text>
-
-											<Text style={styles.modalBodyText}>Pool</Text>
-											<Text style={styles.modalBodyText}>Monday - Friday: 6:30am - 12:00am</Text>
-											<Text style={styles.modalBodyText}>Saturday: 8:30am - 9:00pm</Text>
-											<Text style={styles.modalBodyText}>Sunday: 8:30am - 12:00am</Text>
-
-											<Text style={styles.modalBodyText}>Field</Text>
-											<Text style={styles.modalBodyText}>Monday - Friday: 7:00am - 9:00pm</Text>
-											<Text style={styles.modalBodyText}>Saturday: 8:00am - 8:00pm</Text>
-											<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
-										</View>
-									</View>
-								</View>
+								<Text style={globalStyles.heading2}>Field</Text>
+								<Text style={styles.modalBodyText}>Monday - Friday: 7:00am - 9:00pm</Text>
+								<Text style={styles.modalBodyText}>Saturday: 8:00am - 8:00pm</Text>
+								<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
 							</View>
-						</Modal>
+						</AppModal>
 					</View>
 
 					<Text style={globalStyles.heading2}>Crowd History</Text>
@@ -154,87 +129,18 @@ const styles = StyleSheet.create({
 		backgroundColor: '#f0f2f5',
 	},
 
-	hourGroup: {
-		marginTop: 10,
-	},
-
-	// MODAL — IMPROVED
-	modalContainer: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: 'rgba(0, 0, 0, 0.5)',
-	},
-	modalContent: {
-		width: '90%', // responsive
-		maxWidth: 400, // max size
-		backgroundColor: 'white',
-		borderRadius: 16, // more modern look
-		paddingVertical: 30,
-		paddingHorizontal: 24,
-		alignItems: 'center',
-	},
 	modalBodyText: {
-    fontSize: 16, // increase to 16px or 17px for mobile-friendly
-    fontFamily: 'Montserrat_400Regular',
-    color: 'black',
-    marginBottom: 6,
-    textAlign: 'left',
-    lineHeight: 24, // add line height for spacing between lines
-},
-	modalBtn: {
-		flexDirection: 'column',
-		justifyContent: 'center',
-	},
-	modalBtnText: {
-		fontSize: 16, // increased font size
-		color: 'black',
-		textAlign: 'center',
+		fontSize: 15,
 		fontFamily: 'Montserrat_400Regular',
+		color: '#434343',
+		lineHeight: 24,
 	},
-	confirmBtn: {
-		backgroundColor: '#255799',
-		paddingVertical: 14, // increased button height
-		paddingHorizontal: 20,
-		borderRadius: 10,
-		marginTop: 20,
-		width: 180, // bigger width
-		alignItems: 'center',
+	hoursModalContent: {
+		minWidth: 300,
 	},
-	closeBtn: {
-		backgroundColor: 'white',
-		paddingVertical: 14,
-		paddingHorizontal: 20,
-		borderRadius: 10,
-		marginTop: 20,
-		width: 180,
-		alignItems: 'center',
-		borderWidth: 1,
-		borderColor: '#ccc',
-	},
-	modelText: {
-		padding: 10,
-		fontFamily: 'Montserrat_700Bold',
-		fontSize: 22, // larger title
-		color: 'black',
-		textAlign: 'center',
-	},
-
-	closeButtonAbsolute: {
-    position: 'absolute',
-    top: 16,
-    right: 16,
-    width: 48,
-    height: 48,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 10,
-	},
-
-	exitX: {
-    width: 24,         // actual image size — smaller inside big click area
-    height: 24,
-    resizeMode: 'contain',
+	hoursModal: {
+		paddingHorizontal: 25,
+		paddingVertical: 25,
 	},
 
 	/* CLASS CARDS */
@@ -250,4 +156,3 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 });
-

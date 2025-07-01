@@ -50,9 +50,8 @@ export const globalStyles = StyleSheet.create({
 	},
 	heading2: {
 		fontFamily: 'Montserrat_700Bold',
-		fontSize: 20,
-		fontWeight: 'bold',
-		marginTop: 4,
+		fontSize: 16,
+		marginTop: 16,
 		marginBottom: 8,
 	},
 	heading3: {
