@@ -78,6 +78,7 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
 	screenContainer: {
 		paddingTop: 25,
+		paddingHorizontal: 25,
 	},
 
 /* PROFILE */
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
 	barcodeBox: {
 		alignItems: 'center',
 		alignSelf: 'center',
-		paddingHorizontal: 44,
+		paddingHorizontal: 24,
 		paddingTop: 24,
 		paddingBottom: 8,
 		marginBottom: 21,

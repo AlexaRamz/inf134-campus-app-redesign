@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ScrollView, Text, View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import AppCard from '@/components/AppCard';
-import { globalStyles } from '@/styles/globalStyles';
+import { globalStyles, headingStyles } from '@/styles/globalStyles';
 import AppHeaderWithBack from '@/components/AppHeaderWithBack';
 import PriceTag from '../assets/images/pricetag.png';
 import LocationPin from '../assets/images/locationpin.png';
@@ -27,20 +27,20 @@ export default function ARCDetailsScreen() {
 
     return (
         <View style={{ flex: 1 }}>
+            <AppHeaderWithBack title="F45" />
             <ScrollView showsVerticalScrollIndicator={true} style={globalStyles.scrollView}>
-                <AppHeaderWithBack title="F45" />
 
                 <View style={globalStyles.bodyContentContainer}>
                     {/* Class Description */}
                     <View>
-                        <Text style={globalStyles.heading2}>Class Description</Text>
+                        <Text style={globalStyles.sectionHeading}>Class Description</Text>
 
                         <View style={styles.classLocationAndSpots}>
                             <Image source={PriceTag} style={styles.priceTag} />
-                            <Text style={globalStyles.heading4}>$0.00</Text>
+                            <Text style={styles.subheading}>$0.00</Text>
                         </View>
 
-                        <Text style={globalStyles.paragraphText}>
+                        <Text style={globalStyles.normalText}>
                             This 45 minute class is fast-paced, efficient, and fun. Each workout is a complete calorie killer that will keep you motivated to move more. 
                             F-45 is a fun HIIT (high intensity interval training) workout that uses functional exercise equipment like battling ropes, sleds, bikes, rowers, medicine balls, and more 
                             – with exercises that are demonstrated on televisions. The workouts are wild – more than 10 completely different protocols, changing every single day. 
@@ -50,12 +50,12 @@ export default function ARCDetailsScreen() {
 
                     {/* Class Times */}
                     <View style={styles.classTimeContainer}>
-                        <Text style={[globalStyles.heading2, { marginTop: 16, marginBottom: 8 }]}>Class Times</Text>
+                        <Text style={[globalStyles.sectionHeading, { marginTop: 16 }]}>Class Times</Text>
 
                         {['630', '800', '930', '100'].map(classId => (
                             <AppCard style={styles.classCard} key={classId}>
                                 <View style={styles.leftSide}>
-                                    <Text style={styles.classTime}>
+                                    <Text style={headingStyles.heading2}>
                                         {{
                                             '630': '6:30-7:15AM',
                                             '800': '8:00-8:45AM',
@@ -66,7 +66,7 @@ export default function ARCDetailsScreen() {
 
                                     <View style={styles.locationRow}>
                                         <Image source={LocationPin} style={styles.locationPin} />
-                                        <Text style={globalStyles.paragraphText}>F45 Studio</Text>
+                                        <Text style={globalStyles.normalText}>F45 Studio</Text>
                                     </View>
 
                                     <Text style={styles.openClassText}>
@@ -147,7 +147,10 @@ export default function ARCDetailsScreen() {
     classLocationAndSpots: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginVertical: 8,
+    },
+    subheading: {
+        ...headingStyles.heading4,
+        marginBottom: 8,
     },
 
     priceTag: {
@@ -188,12 +191,6 @@ export default function ARCDetailsScreen() {
         justifyContent: 'center',
     },
 
-    classTime: {
-        fontSize: 16,
-        fontFamily: 'Montserrat_700Bold',
-        color: 'black',
-    },
-
     locationRow: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -209,15 +206,13 @@ export default function ARCDetailsScreen() {
     },
 
     openClassText: {
+        ...globalStyles.normalText,
         color: '#1E8D2F',
-        fontFamily: 'Montserrat_400Regular',
-        fontSize: 12,
     },
 
     fullClassText: {
+        ...globalStyles.normalText,
         color: '#FF0000',
-        fontFamily: 'Montserrat_400Regular',
-        fontSize: 12,
     },
 
     bookButton: {
@@ -234,21 +229,20 @@ export default function ARCDetailsScreen() {
     },
 
     bookButtonText: {
-        fontSize: 12,
-        fontFamily: 'Montserrat_400Regular',
+        ...globalStyles.normalText,
         color: 'white',
     },
 
     modalContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 999,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 999,
     },
 
     modalContent: {
@@ -268,34 +262,33 @@ export default function ARCDetailsScreen() {
     },
 
     modalButtonRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 12,
-    marginTop: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        gap: 12,
+        marginTop: 20,
     },
 
     confirmButton: {
-    backgroundColor: '#255799',
-    padding: 12,
-    borderRadius: 8,
-    flex: 1,
-    alignItems: 'center',
+        backgroundColor: '#255799',
+        padding: 12,
+        borderRadius: 8,
+        flex: 1,
+        alignItems: 'center',
     },
 
     cancelButtonModal: {
-    backgroundColor: '#FF0000',
-    padding: 12,
-    borderRadius: 8,
-    flex: 1,
-    alignItems: 'center',
+        backgroundColor: '#FF0000',
+        padding: 12,
+        borderRadius: 8,
+        flex: 1,
+        alignItems: 'center',
     },
 
     modalButtonText: {
-    color: 'white',
-    fontSize: 14,
-    fontFamily: 'Montserrat_400Regular',
-    textAlign: 'center',
+        color: 'white',
+        fontSize: 14,
+        fontFamily: 'Montserrat_400Regular',
+        textAlign: 'center',
     },
-
 });
 

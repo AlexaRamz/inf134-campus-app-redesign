@@ -1,5 +1,6 @@
 import { Text, StyleSheet, View, ImageSourcePropType, Image } from 'react-native';
 import AppCard from './AppCard';
+import { globalStyles } from '@/styles/globalStyles';
 import VegetarianIcon from '../assets/icons/VegetarianIcon.png';
 import VeganIcon from '../assets/icons/VeganIcon.png';
 import GlutenFreeIcon from '../assets/icons/GlutenFreeIcon.png';
@@ -70,14 +71,12 @@ const styles = StyleSheet.create({
 		marginRight: 8,
 	},
 	itemDesc: {
-		fontFamily: 'Montserrat_400Regular',
-		fontSize: 13,
+		...globalStyles.normalText,
 		color: '#434343',
 	},
 	cal: {
-		fontFamily: 'Montserrat_400Regular',
+		...globalStyles.normalText,
 		color: '#434343',
-		fontSize: 13,
 	},
 	dietIcon: {
 		width: 26,

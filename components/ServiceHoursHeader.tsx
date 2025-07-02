@@ -1,20 +1,20 @@
 import { View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
-import { globalStyles } from '@/styles/globalStyles';
+import { headingStyles } from '@/styles/globalStyles';
 import Arrow from '../assets/images/arrow.png';
 
 interface ServiceHoursComponentProps {
-	serviceName: string;
+	serviceTitle: string;
 	isOpen: boolean;
 	availabilityText: string;
 	onPressCallback: () => void;
 }
 
-export default function ServiceHoursHeader({ serviceName, isOpen, availabilityText, onPressCallback }: ServiceHoursComponentProps) {
+export default function ServiceHoursHeader({ serviceTitle, isOpen, availabilityText, onPressCallback }: ServiceHoursComponentProps) {
 	return (
 		<TouchableOpacity onPress={onPressCallback}>
 			<View style={styles.contentWrapper}>
 				<View>
-					<Text style={[globalStyles.sectionTitle, styles.serviceName]}>{serviceName}</Text>
+					<Text style={[headingStyles.heading1, styles.serviceTitle]}>{serviceTitle}</Text>
 					<Text style={styles.openText}>● {availabilityText}</Text>
 				</View>
 				<Image
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		marginBottom: 16,
 	},
-	serviceName: {
+	serviceTitle: {
 		marginBottom: 4,
 	},
 	openText: {

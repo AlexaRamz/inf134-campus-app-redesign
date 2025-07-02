@@ -19,7 +19,7 @@ export default function AppModal({ children, title, isVisible, setVisible, style
 			<View style={styles.modalContainer}>
 				<View style={[styles.modalContent, style]}>
 					<View style={styles.titleContainer}>
-						<Text style={[globalStyles.sectionTitle, styles.modalTitle]}>{title}</Text>
+						<Text style={[globalStyles.sectionHeading, styles.modalTitle]}>{title}</Text>
 
 						<TouchableOpacity onPress={() => setVisible(false)}>
 							<Image source={ExitX} style={styles.exitIcon} />

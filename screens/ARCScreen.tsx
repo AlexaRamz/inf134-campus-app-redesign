@@ -25,36 +25,42 @@ export default function ARCScreen({navigation} : any) {
 	const [showModal, setShowModal] = useState(false);
 
 	return (
-		<ScrollView showsVerticalScrollIndicator={true} style={globalStyles.scrollView}>
+		<ScrollView style={globalStyles.scrollView}>
 			<AppHeader title="ARC"></AppHeader>
 			
 			<CrowdBarHeader backgroundImage={ArcBackground}/>
 
 			<View style={globalStyles.bodyContentContainer} >
 				{/* ARC Hours Section */}
-				<ServiceHoursHeader serviceName={'ARC'} isOpen={true} availabilityText={'Open until 12:00AM'} onPressCallback={() => setShowModal(true)}></ServiceHoursHeader>
+				<ServiceHoursHeader serviceTitle={'ARC'} isOpen={true} availabilityText={'Open until 12:00AM'} onPressCallback={() => setShowModal(true)}></ServiceHoursHeader>
 						
 				<AppModal title='Hours' isVisible={showModal} setVisible={setShowModal} style={styles.hoursModal}>
 					<View style={styles.hoursModalContent}>
-						<Text style={globalStyles.heading2}>ARC</Text>
-						<Text style={styles.modalBodyText}>Monday - Friday: 6:00am - 12:00am</Text>
-						<Text style={styles.modalBodyText}>Saturday: 8:00am - 9:00pm</Text>
-						<Text style={styles.modalBodyText}>Sunday: 8:00am - 12:00am</Text>
+						<View>
+							<Text style={globalStyles.sectionSubheading}>ARC</Text>
+							<Text style={styles.modalBodyText}>Monday - Friday: 6:00am - 12:00am</Text>
+							<Text style={styles.modalBodyText}>Saturday: 8:00am - 9:00pm</Text>
+							<Text style={styles.modalBodyText}>Sunday: 8:00am - 12:00am</Text>
+						</View>
 
-						<Text style={globalStyles.heading2}>Pool</Text>
-						<Text style={styles.modalBodyText}>Monday - Friday: 6:30am - 12:00am</Text>
-						<Text style={styles.modalBodyText}>Saturday: 8:30am - 9:00pm</Text>
-						<Text style={styles.modalBodyText}>Sunday: 8:30am - 12:00am</Text>
+						<View>
+							<Text style={globalStyles.sectionSubheading}>Pool</Text>
+							<Text style={styles.modalBodyText}>Monday - Friday: 6:30am - 12:00am</Text>
+							<Text style={styles.modalBodyText}>Saturday: 8:30am - 9:00pm</Text>
+							<Text style={styles.modalBodyText}>Sunday: 8:30am - 12:00am</Text>
+						</View>
 
-						<Text style={globalStyles.heading2}>Field</Text>
-						<Text style={styles.modalBodyText}>Monday - Friday: 7:00am - 9:00pm</Text>
-						<Text style={styles.modalBodyText}>Saturday: 8:00am - 8:00pm</Text>
-						<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
+						<View>
+							<Text style={globalStyles.sectionSubheading}>Field</Text>
+							<Text style={styles.modalBodyText}>Monday - Friday: 7:00am - 9:00pm</Text>
+							<Text style={styles.modalBodyText}>Saturday: 8:00am - 8:00pm</Text>
+							<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
+						</View>
 					</View>
 				</AppModal>
 
 				{/* Crowd History */}
-				<Text style={globalStyles.heading2}>Crowd History</Text>
+				<Text style={globalStyles.sectionSubheading}>Crowd History</Text>
 				<ScrollView
 					horizontal={true}
 					style={[styles.crowdScrollContainer]}
@@ -68,7 +74,7 @@ export default function ARCScreen({navigation} : any) {
 
 				{/* Classes */}
 				<View style={styles.classHeading}>
-					<Text style={globalStyles.heading2}>Today's Classes</Text>
+					<Text style={globalStyles.sectionSubheading}>Today's Classes</Text>
 					<Text style={globalStyles.linkText}>See All →</Text>
 				</View>
 
@@ -84,7 +90,7 @@ export default function ARCScreen({navigation} : any) {
 
 				{/* Court Status Section */}
 				<View>
-					<Text style={globalStyles.heading2}>Court Status</Text>
+					<Text style={globalStyles.sectionSubheading}>Court Status</Text>
 
 					<CourtCard name={'Basketball'} location={'Courts 1 & 2'} time={'6:00AM-11:30PM'} icon={Basketball} isOpen={true}/>
 					<CourtCard name={'Volleyball'} location={'Court 3'} time={'7:00AM-11:30PM'} icon={Volleyball} isOpen={true}/>
@@ -105,6 +111,8 @@ const styles = StyleSheet.create({
 	},
 	hoursModalContent: {
 		minWidth: 300,
+		flexDirection: 'column',
+		gap: 16,
 	},
 	hoursModal: {
 		paddingHorizontal: 25,

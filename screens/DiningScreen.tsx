@@ -3,7 +3,6 @@ import AppHeader from '@/components/AppHeader';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { globalStyles } from '@/styles/globalStyles';
 import FoodCard from '@/components/FoodCard';
-import ExitX from '../assets/images/exitX.png';
 import CrowdBarHeader from '@/components/CrowdBarHeader';
 import AnteateryBackground from '../assets/images/anteaterybg.png';
 import BrandywineBackground from '../assets/images/brandywinebg.png';
@@ -58,14 +57,14 @@ export default function DiningScreen() {
 				<CrowdBarHeader backgroundImage={AnteateryBackground}/>
 				
 				<View style={globalStyles.bodyContentContainer}>
-					<ServiceHoursComponent serviceName={selectedMeal} isOpen={true} availabilityText={'Open until 11:00PM'} onPressCallback={() => setMealModalVisible(true)}></ServiceHoursComponent>
+					<ServiceHoursComponent serviceTitle={selectedMeal} isOpen={true} availabilityText={'Open until 11:00PM'} onPressCallback={() => setMealModalVisible(true)}></ServiceHoursComponent>
 
-					<Text style={globalStyles.heading2}>Home</Text>
+					<Text style={globalStyles.sectionSubheading}>Home</Text>
 					<FoodCard name="Taco Seasoned Beef" calories={110} description="Ground beef seasoned with chili, garlic, and cumin"/>
 					<FoodCard name="Spanish Rice" calories={100} description="White rice with tomatoes, onions, garlic" dietHighlights={ ['vegan', 'gluten free'] }/>
 					<FoodCard name="Charro Beans" calories={80} description="Pinto beans with broth, salsa, and cumin" dietHighlights={ ['vegetarian', 'eat well'] }/>
 
-					<Text style={globalStyles.heading2}>The Oven</Text>
+					<Text style={globalStyles.sectionSubheading}>The Oven</Text>
 					<FoodCard name="Classic Cheese Pizza" calories={340} description="Rich tomato sauce & generous layer of mozzerella cheese on a golden brown crust" dietHighlights={ ['vegetarian'] }/>
 					<FoodCard name="Pepperoni Pizza" calories={370} description="Topped with crispy pepperoni slices, rich tomato sauce & mozzerella cheese on a golden brown crust"/>
 				</View>
@@ -75,14 +74,14 @@ export default function DiningScreen() {
 				<CrowdBarHeader backgroundImage={BrandywineBackground}/>
 
 				<View style={globalStyles.bodyContentContainer}>
-					<ServiceHoursComponent serviceName={selectedMeal} isOpen={true} availabilityText={'Open until 11:00PM'} onPressCallback={() => setMealModalVisible(true)}></ServiceHoursComponent>
+					<ServiceHoursComponent serviceTitle={selectedMeal} isOpen={true} availabilityText={'Open until 11:00PM'} onPressCallback={() => setMealModalVisible(true)}></ServiceHoursComponent>
 
-					<Text style={globalStyles.heading2}>Grubb</Text>
+					<Text style={globalStyles.sectionSubheading}>Grubb</Text>
 					<FoodCard name="BBQ Chicken Drumstick" calories={220} description="Savor the bold flavors of our Baked BBQ-Seasoned Chicken Drumstick, a perfect blend of smoky and sweet" dietHighlights={ ['gluten free', 'eat well'] }/>
 					<FoodCard name="Corn on the Cobb" calories={45} description="Steamed corn on the cob" dietHighlights={ ['vegan', 'gluten free'] }/>
 					<FoodCard name="Lexington Slaw" calories={80} description="Pinto beans simmered with broth, salsa, and cumin" dietHighlights={ ['vegetarian', 'gluten free', 'eat well'] }/>
 
-					<Text style={globalStyles.heading2}>The Crossroads</Text>
+					<Text style={globalStyles.sectionSubheading}>The Crossroads</Text>
 					<FoodCard name="Lemongrass Banh Mi" calories={500} description="Lemongrass marinated chicken, pickled daikon and carrots, cilantro and lime corriander mayo on a light and crispy roll." dietHighlights={ ['eat well'] }/>
 				</View>
 			</>

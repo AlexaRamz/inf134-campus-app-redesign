@@ -9,9 +9,10 @@ import DataBox from '@/components/DataBox';
 
 export default function HomeScreen({navigation} : any) {
 	return (
-		<View style={globalStyles.outerContainer}>
+		<ScrollView style={globalStyles.scrollView}>
 			<AppHeader title="Welcome"></AppHeader>
-			<ScrollView contentContainerStyle={globalStyles.bodyContentContainer} style={globalStyles.scrollView}>
+
+			<View style={globalStyles.bodyContentContainer}>
 				<AppCard style={globalStyles.barcodeBox}>
 					<TouchableOpacity onPress={() => navigation.navigate('Profile')}>
 					<Image
@@ -24,18 +25,18 @@ export default function HomeScreen({navigation} : any) {
 
 				<View style={globalStyles.line} />
 
-				<Text style={globalStyles.heading}>Meal Plan</Text>
+				<Text style={globalStyles.sectionHeading}>Meal Plan</Text>
 
 				<View style={styles.dataBoxesContainer}>
 					<DataBox label="Meals" value="30"/>
 					<DataBox label="Guest Swipes" value="10"/>
 					<DataBox label="Flexdine" value="$65.51"/>
 					<DataBox label="ZotBucks" value="$20.01"/>
-            	</View>
+				</View>
 
 				<View style={globalStyles.line} />
 
-				<Text style={globalStyles.heading}>ARC Crowd Meter</Text>
+				<Text style={globalStyles.sectionHeading}>ARC Crowd Meter</Text>
 
 				<AppCard style={styles.crowdMeterBox}>
 					<Image
@@ -43,8 +44,8 @@ export default function HomeScreen({navigation} : any) {
 						style={styles.crowdMeterImage}
 					/>
 				</AppCard>
-			</ScrollView>
-		</View>
+			</View>
+		</ScrollView>
 	);
 };
 

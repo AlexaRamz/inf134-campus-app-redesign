@@ -1,5 +1,5 @@
 import { View, StyleSheet, Image, Text, ImageSourcePropType} from 'react-native';
-import { globalStyles } from '@/styles/globalStyles';
+import { globalStyles, headingStyles } from '@/styles/globalStyles';
 import ClosedCircle from '../assets/images/closedcircle.png';
 import OpenCircle from '../assets/images/opencircle.png';
 import AppCard from './AppCard';
@@ -18,9 +18,9 @@ export default function CourtCard({ name, location, time, icon, isOpen}: AppCard
 			<View style={styles.courtContentWrapper}>
 				<Image source={icon} resizeMode='cover' style={styles.courtIcon} />
 				<View style={styles.courtTextContainer}>
-					<Text style={globalStyles.heading4}>{name}</Text>
-					<Text style={globalStyles.paragraphText}>{location}</Text>
-					<Text style={globalStyles.paragraphText}>{time}</Text>
+					<Text style={headingStyles.heading4}>{name}</Text>
+					<Text style={globalStyles.normalText}>{location}</Text>
+					<Text style={globalStyles.normalText }>{time}</Text>
 				</View>
 				<Image
 					source={isOpen ? OpenCircle : ClosedCircle}
