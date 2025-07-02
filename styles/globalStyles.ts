@@ -1,7 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const { width: screenWidth } = Dimensions.get('window');
-
 export const globalStyles = StyleSheet.create({
 	outerContainer: {
 		flex: 1,
@@ -95,21 +93,4 @@ export const globalStyles = StyleSheet.create({
 	backButton: {
     padding: 10, 
   	},
-	
-	crowdContainer: {
-		marginBottom: 20,
-	},
-	crowdMeterBox: {
-		width: screenWidth * 0.7,
-		height: 140,
-		marginRight: 10,
-		padding: 5,
-	},
-	crowdMeterImage: {
-		width: '100%',
-		height: 130,
-		padding: 0,
-		resizeMode: 'contain',
-		overflow: 'hidden',
-	},
 });
