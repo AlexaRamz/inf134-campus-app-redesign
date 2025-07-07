@@ -28,20 +28,22 @@ export default function FoodCard({ name, calories, description, dietHighlights}:
 			<View style={styles.titleContainer}>
 				<View style={styles.leftContent}>
 					<Text style={styles.itemTitle}>{name}</Text>
-					{dietHighlights && dietHighlights.map((highlight) => {
-						const imageSource = dietHighlightIcons[highlight];
-						if (imageSource) {
-							return (
-								<View key={highlight}>
-                                    <Image
-                                        source={imageSource}
-                                        style={styles.dietIcon}
-                                    />
-                                </View>
-							);
-						}
-						return null;
-					})}
+					<View style={styles.dietIconContainer}>
+						{dietHighlights && dietHighlights.map((highlight) => {
+							const imageSource = dietHighlightIcons[highlight];
+							if (imageSource) {
+								return (
+									<View key={highlight}>
+										<Image
+											source={imageSource}
+											style={styles.dietIcon}
+										/>
+									</View>
+								);
+							}
+							return null;
+						})}
+					</View>
 				</View>
 				<Text style={styles.cal}>{calories} cal</Text>
 			</View>
@@ -63,6 +65,13 @@ const styles = StyleSheet.create({
 	leftContent: {
 		flexDirection: 'row',
 		alignItems: 'center',
+		flexWrap: 'wrap',
+		flexShrink: 1,
+	},
+	dietIconContainer: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		gap: 5,
 	},
 
 	itemTitle: {
@@ -82,6 +91,5 @@ const styles = StyleSheet.create({
 		width: 26,
 		height: 26,
 		resizeMode: 'contain',
-		marginRight: 5,
 	},
 })

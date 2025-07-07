@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const headingStyles = StyleSheet.create({
 	heading1: {
@@ -21,6 +21,10 @@ export const headingStyles = StyleSheet.create({
 	},
 });
 
+const BODY_PADDING_TOP = 25;
+const BODY_PADDING_BOTTOM = 14;
+const BODY_PADDING_HORIZONTAL = 29;
+
 export const globalStyles = StyleSheet.create({
 	outerContainer: {
 		flex: 1,
@@ -31,9 +35,16 @@ export const globalStyles = StyleSheet.create({
 		backgroundColor: 'white',
 	},
 	bodyContentContainer: {
-		paddingHorizontal: 29,
-		paddingTop: 25,
-		paddingBottom: 14,
+		paddingHorizontal: BODY_PADDING_HORIZONTAL,
+		paddingTop: BODY_PADDING_TOP,
+		paddingBottom: BODY_PADDING_BOTTOM,
+	},
+	verticalBodyPadding: {
+		paddingTop: BODY_PADDING_TOP,
+		paddingBottom: BODY_PADDING_BOTTOM,
+	},
+	horizontalBodyPadding: {
+		paddingHorizontal: BODY_PADDING_HORIZONTAL,
 	},
 
 	/* BARCODE */
@@ -91,4 +102,22 @@ export const globalStyles = StyleSheet.create({
 	backButton: {
     padding: 10, 
   	},
+
+	appCardShadow: {
+		...Platform.select({
+            ios: {
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.15,
+                shadowRadius: 5,
+            },
+            android: {
+                elevation: 3,
+            },
+            web: {
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.1,
+                shadowRadius: 10,
+            },
+        }),
+	}
 });

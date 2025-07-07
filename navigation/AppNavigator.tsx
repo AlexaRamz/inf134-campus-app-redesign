@@ -1,4 +1,4 @@
-import { Image } from 'react-native';
+import { Image, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -32,9 +32,13 @@ export default function AppNavigator() {
       <Tab.Navigator screenOptions={{
         tabBarStyle: {
             backgroundColor: '#255799',
-            height: 74,
-            paddingTop: 10,       // Push icons downward
-            paddingBottom: 10,
+            ...Platform.select({
+              web: {
+                  height: 74,
+                  paddingBottom: 10,
+              },
+            }),
+            paddingTop: 10,
         },
         tabBarActiveTintColor: '#FECC07',
         tabBarInactiveTintColor: 'white', 

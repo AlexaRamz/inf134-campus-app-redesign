@@ -1,4 +1,5 @@
 import { View, StyleSheet, ViewStyle } from 'react-native';
+import { globalStyles } from '@/styles/globalStyles';
 
 interface AppCardProps {
 	children: React.ReactNode;
@@ -18,11 +19,8 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		borderWidth: 1,
 		borderColor: '#D9D9D9',
+		backgroundColor: '#FFFFFF',
 
-		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 4 },
-		shadowOpacity: 0.1,
-		shadowRadius: 10,
-		elevation: 3,
+		...globalStyles.appCardShadow
 	},
 })

@@ -30,42 +30,44 @@ export default function ARCScreen({navigation} : any) {
 			
 			<CrowdBarHeader backgroundImage={ArcBackground}/>
 
-			<View style={globalStyles.bodyContentContainer} >
+			<View style={globalStyles.verticalBodyPadding} >
+				<View style={globalStyles.horizontalBodyPadding}>
 				{/* ARC Hours Section */}
-				<ServiceHoursHeader serviceTitle={'ARC'} isOpen={true} availabilityText={'Open until 12:00AM'} onPressCallback={() => setShowModal(true)}></ServiceHoursHeader>
-						
-				<AppModal title='Hours' isVisible={showModal} setVisible={setShowModal} style={styles.hoursModal}>
-					<View style={styles.hoursModalContent}>
-						<View>
-							<Text style={globalStyles.sectionSubheading}>ARC</Text>
-							<Text style={styles.modalBodyText}>Monday - Friday: 6:00am - 12:00am</Text>
-							<Text style={styles.modalBodyText}>Saturday: 8:00am - 9:00pm</Text>
-							<Text style={styles.modalBodyText}>Sunday: 8:00am - 12:00am</Text>
-						</View>
+					<ServiceHoursHeader serviceTitle={'ARC'} isOpen={true} availabilityText={'Open until 12:00AM'} onPressCallback={() => setShowModal(true)}></ServiceHoursHeader>
+							
+					<AppModal title='Hours' isVisible={showModal} setVisible={setShowModal} style={styles.hoursModal}>
+						<View style={styles.hoursModalContent}>
+							<View>
+								<Text style={globalStyles.sectionSubheading}>ARC</Text>
+								<Text style={styles.modalBodyText}>Monday - Friday: 6:00am - 12:00am</Text>
+								<Text style={styles.modalBodyText}>Saturday: 8:00am - 9:00pm</Text>
+								<Text style={styles.modalBodyText}>Sunday: 8:00am - 12:00am</Text>
+							</View>
 
-						<View>
-							<Text style={globalStyles.sectionSubheading}>Pool</Text>
-							<Text style={styles.modalBodyText}>Monday - Friday: 6:30am - 12:00am</Text>
-							<Text style={styles.modalBodyText}>Saturday: 8:30am - 9:00pm</Text>
-							<Text style={styles.modalBodyText}>Sunday: 8:30am - 12:00am</Text>
-						</View>
+							<View>
+								<Text style={globalStyles.sectionSubheading}>Pool</Text>
+								<Text style={styles.modalBodyText}>Monday - Friday: 6:30am - 12:00am</Text>
+								<Text style={styles.modalBodyText}>Saturday: 8:30am - 9:00pm</Text>
+								<Text style={styles.modalBodyText}>Sunday: 8:30am - 12:00am</Text>
+							</View>
 
-						<View>
-							<Text style={globalStyles.sectionSubheading}>Field</Text>
-							<Text style={styles.modalBodyText}>Monday - Friday: 7:00am - 9:00pm</Text>
-							<Text style={styles.modalBodyText}>Saturday: 8:00am - 8:00pm</Text>
-							<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
+							<View>
+								<Text style={globalStyles.sectionSubheading}>Field</Text>
+								<Text style={styles.modalBodyText}>Monday - Friday: 7:00am - 9:00pm</Text>
+								<Text style={styles.modalBodyText}>Saturday: 8:00am - 8:00pm</Text>
+								<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
+							</View>
 						</View>
-					</View>
-				</AppModal>
+					</AppModal>
 
 				{/* Crowd History */}
-				<Text style={globalStyles.sectionSubheading}>Crowd History</Text>
+					<Text style={globalStyles.sectionSubheading}>Crowd History</Text>
+				</View>
 				<ScrollView
 					horizontal={true}
-					style={[styles.crowdScrollContainer]}
 					showsHorizontalScrollIndicator={false}
-					contentContainerStyle={styles.crowdScrollContent}
+					style={styles.horizontalScrollContainer}
+					contentContainerStyle={styles.horizontalScrollContent}
 				>
 					<CrowdHistoryCard dayChartImage={MondayChart}/>
 					<CrowdHistoryCard dayChartImage={TuesdayChart}/>
@@ -73,29 +75,32 @@ export default function ARCScreen({navigation} : any) {
 				</ScrollView>
 
 				{/* Classes */}
-				<View style={styles.classHeading}>
-					<Text style={globalStyles.sectionSubheading}>Today's Classes</Text>
-					<Text style={globalStyles.linkText}>See All →</Text>
+				<View style={globalStyles.horizontalBodyPadding}>
+					<View style={styles.classHeading}>
+						<Text style={globalStyles.sectionSubheading}>Today's Classes</Text>
+						<Text style={globalStyles.linkText}>See All →</Text>
+					</View>
 				</View>
-
 				<ScrollView
 					horizontal={true}
 					showsHorizontalScrollIndicator={false}
-					contentContainerStyle={styles.classesScrollContent}
-					style={[styles.classScrollContainer]}
+					style={styles.horizontalScrollContainer}
+					contentContainerStyle={styles.horizontalScrollContent}
 				>
 					<ClassCard name={'F45'} backgroundImage={F45} navigation={navigation} detailsPage={'ARCDetails'}/>
 					<ClassCard name={'Boxing Club'} backgroundImage={Boxing} navigation={navigation} detailsPage={''}/>
 				</ScrollView>
 
 				{/* Court Status Section */}
-				<View>
-					<Text style={globalStyles.sectionSubheading}>Court Status</Text>
+				<View style={globalStyles.horizontalBodyPadding}>
+					<View>
+						<Text style={globalStyles.sectionSubheading}>Court Status</Text>
 
-					<CourtCard name={'Basketball'} location={'Courts 1 & 2'} time={'6:00AM-11:30PM'} icon={Basketball} isOpen={true}/>
-					<CourtCard name={'Volleyball'} location={'Court 3'} time={'7:00AM-11:30PM'} icon={Volleyball} isOpen={true}/>
-					<CourtCard name={'Badminton'} location={'Back Court'} time={'11:00AM-11:30PM'} icon={Badminton} isOpen={false}/>
-					<CourtCard name={'Pickleball'} location={'Pickleball Courts'} time={'12:00PM-5:30PM'} icon={Pickleball} isOpen={false}/>
+						<CourtCard name={'Basketball'} location={'Courts 1 & 2'} time={'6:00AM-11:30PM'} icon={Basketball} isOpen={true}/>
+						<CourtCard name={'Volleyball'} location={'Court 3'} time={'7:00AM-11:30PM'} icon={Volleyball} isOpen={true}/>
+						<CourtCard name={'Badminton'} location={'Back Court'} time={'11:00AM-11:30PM'} icon={Badminton} isOpen={false}/>
+						<CourtCard name={'Pickleball'} location={'Pickleball Courts'} time={'12:00PM-5:30PM'} icon={Pickleball} isOpen={false}/>
+					</View>
 				</View>
 			</View>
 		</ScrollView>
@@ -124,23 +129,13 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		alignItems: 'center',
 	},
-	crowdScrollContainer: {
-		marginHorizontal: -29,
-		paddingLeft: 29,
-		paddingRight: 6,
+	horizontalScrollContainer: {
 		marginBottom: 10,
 	},
-	crowdScrollContent: {
+	horizontalScrollContent: {
 		overflow: 'visible',
 		paddingBottom: 10,
-	},
-	classScrollContainer: {
-		marginHorizontal: -29,
 		paddingLeft: 29,
 		paddingRight: 6,
-		marginBottom: 25,
-	},
-	classesScrollContent: {
-		overflow: 'visible',
 	},
 });

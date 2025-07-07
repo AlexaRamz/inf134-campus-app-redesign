@@ -1,4 +1,5 @@
-import { View, StyleSheet, Image, Text, ImageSourcePropType, TouchableOpacity, ImageBackground, Dimensions} from 'react-native';
+import { View, StyleSheet, Text, ImageSourcePropType, TouchableOpacity, ImageBackground, Dimensions} from 'react-native';
+import { globalStyles } from '@/styles/globalStyles';
 
 interface AppCardProps {
 	name: string;
@@ -11,9 +12,9 @@ export default function ClassCard({ name, backgroundImage, navigation, detailsPa
 	return (
 		<View style={styles.classCard}>
 			<TouchableOpacity onPress={() => navigation.navigate(detailsPage)} style={{ flex: 1 }}>
-				<ImageBackground source={backgroundImage} style={styles.classCardImageBackground} imageStyle={{ borderRadius: 8 }}>
-					<View> 
-						<Text style={styles.cardText}>{name}</Text>
+				<ImageBackground source={backgroundImage} style={styles.classBackgroundImage} imageStyle={{ borderRadius: 8 }}>
+					<View style={styles.classTextContainer}> 
+						<Text style={styles.classTitle}>{name}</Text>
 					</View>
 				</ImageBackground>
 			</TouchableOpacity>
@@ -27,25 +28,23 @@ const styles = StyleSheet.create({
 	classCard: {
 		backgroundColor: '#fff',
 		borderRadius: 12,
-		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 2 },
-		shadowOpacity: 0.1,
-		shadowRadius: 4,
-		elevation: 3,
 		overflow: 'hidden',
 		width: screenWidth * 0.6,
 		height: 120,
 		marginRight: 10,
+
+		...globalStyles.appCardShadow
 	},
-	classCardImageBackground: {
+	classBackgroundImage: {
 		flex: 1,
 		width: '100%',
 		height: '100%',
 		justifyContent: 'flex-end',
+	},
+	classTextContainer: {
 		padding: 15,
 	},
-
-	cardText: {
+	classTitle: {
 		textAlign: 'left',
 		color: 'white',
 		fontFamily: 'Montserrat_700Bold',
