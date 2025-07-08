@@ -1,7 +1,7 @@
 # INF 134 Campus App Redesign
 This project is an app redesign we developed for UCI's Informatics 134 course. It aims to combine the UCI Campus Rec and Atrium Campus Connect services to improve student access to gym facilities, dining, and recreational programs. The app is created using React Native along with Expo, allowing it to be targeted for both web and mobile and platforms.
 
-[Link to the web app](https://inf134-campus-app-redesign--04xv58jghx.expo.app)
+[Link to the web app](https://inf134-campus-app-redesign.expo.app/)
 ## How to Set up
 ### Prerequisites
 - Download Node.js
