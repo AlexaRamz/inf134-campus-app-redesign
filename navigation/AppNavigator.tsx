@@ -13,8 +13,13 @@ import DiningIcon from '../assets/icons/dining_icon.png';
 import ARCIcon from '../assets/icons/arc_icon.png';
 import ProfileIcon from '../assets/icons/profile_icon.png';
 import ARCStackScreen from './ARCStackScreen';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator()
+
+const ADDITIONAL_BOTTOM_PADDING = 10;
+const TOP_PADDING = 10;
+const BASE_TAB_BAR_HEIGHT = 68;
 
 export default function AppNavigator() {
   const [fontsLoaded] = useFonts({
@@ -27,18 +32,17 @@ export default function AppNavigator() {
     return null;
   }
 
+  const insets = useSafeAreaInsets();
+  const totalBottomPadding = Math.max(ADDITIONAL_BOTTOM_PADDING, insets.bottom);
+
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={{
         tabBarStyle: {
             backgroundColor: '#255799',
-            ...Platform.select({
-              web: {
-                  height: 74,
-                  paddingBottom: 10,
-              },
-            }),
-            paddingTop: 10,
+            paddingTop: TOP_PADDING,
+            paddingBottom: totalBottomPadding,
+            height: BASE_TAB_BAR_HEIGHT + totalBottomPadding,
         },
         tabBarActiveTintColor: '#FECC07',
         tabBarInactiveTintColor: 'white', 

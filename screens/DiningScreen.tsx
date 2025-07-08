@@ -89,7 +89,7 @@ export default function DiningScreen() {
 	};
 
 	return (
-		<View style={globalStyles.outerContainer}>
+		<View style={globalStyles.screenContainer}>
 			<AppHeader title="Dining" renderTabs={diningHallTabs}></AppHeader>
 			
 			<ScrollView style={globalStyles.scrollView}>

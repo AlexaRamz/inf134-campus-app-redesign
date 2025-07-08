@@ -16,7 +16,7 @@ export default function ProfileScreen() {
   );
 
   return (
-    <View style={globalStyles.outerContainer}>
+    <View style={globalStyles.screenContainer}>
       <AppHeader title="Profile" />
       <View style={styles.screenContainer}>
         <AppCard style={styles.barcodeBox}>

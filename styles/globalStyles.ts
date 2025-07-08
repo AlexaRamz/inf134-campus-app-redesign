@@ -26,7 +26,7 @@ const BODY_PADDING_BOTTOM = 14;
 const BODY_PADDING_HORIZONTAL = 29;
 
 export const globalStyles = StyleSheet.create({
-	outerContainer: {
+	screenContainer: {
 		flex: 1,
 		backgroundColor: 'white',
 	},
