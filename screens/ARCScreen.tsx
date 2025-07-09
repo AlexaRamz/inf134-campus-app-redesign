@@ -25,6 +25,7 @@ export default function ARCScreen({navigation} : any) {
 	const [showModal, setShowModal] = useState(false);
 
 	return (
+		<>
 		<ScrollView style={globalStyles.scrollView}>
 			<AppHeader title="ARC"></AppHeader>
 			
@@ -35,30 +36,6 @@ export default function ARCScreen({navigation} : any) {
 				{/* ARC Hours Section */}
 					<ServiceHoursHeader serviceTitle={'ARC'} isOpen={true} availabilityText={'Open until 12:00AM'} onPressCallback={() => setShowModal(true)}></ServiceHoursHeader>
 							
-					<AppModal title='Hours' isVisible={showModal} setVisible={setShowModal} style={styles.hoursModal}>
-						<View style={styles.hoursModalContent}>
-							<View>
-								<Text style={globalStyles.sectionSubheading}>ARC</Text>
-								<Text style={styles.modalBodyText}>Monday - Friday: 6:00am - 12:00am</Text>
-								<Text style={styles.modalBodyText}>Saturday: 8:00am - 9:00pm</Text>
-								<Text style={styles.modalBodyText}>Sunday: 8:00am - 12:00am</Text>
-							</View>
-
-							<View>
-								<Text style={globalStyles.sectionSubheading}>Pool</Text>
-								<Text style={styles.modalBodyText}>Monday - Friday: 6:30am - 12:00am</Text>
-								<Text style={styles.modalBodyText}>Saturday: 8:30am - 9:00pm</Text>
-								<Text style={styles.modalBodyText}>Sunday: 8:30am - 12:00am</Text>
-							</View>
-
-							<View>
-								<Text style={globalStyles.sectionSubheading}>Field</Text>
-								<Text style={styles.modalBodyText}>Monday - Friday: 7:00am - 9:00pm</Text>
-								<Text style={styles.modalBodyText}>Saturday: 8:00am - 8:00pm</Text>
-								<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
-							</View>
-						</View>
-					</AppModal>
 
 				{/* Crowd History */}
 					<Text style={globalStyles.sectionSubheading}>Crowd History</Text>
@@ -104,6 +81,31 @@ export default function ARCScreen({navigation} : any) {
 				</View>
 			</View>
 		</ScrollView>
+		<AppModal title='Hours' isVisible={showModal} setVisible={setShowModal} style={styles.hoursModal}>
+			<View style={styles.hoursModalContent}>
+				<View>
+					<Text style={globalStyles.sectionSubheading}>ARC</Text>
+					<Text style={styles.modalBodyText}>Monday - Friday: 6:00am - 12:00am</Text>
+					<Text style={styles.modalBodyText}>Saturday: 8:00am - 9:00pm</Text>
+					<Text style={styles.modalBodyText}>Sunday: 8:00am - 12:00am</Text>
+				</View>
+
+				<View>
+					<Text style={globalStyles.sectionSubheading}>Pool</Text>
+					<Text style={styles.modalBodyText}>Monday - Friday: 6:30am - 12:00am</Text>
+					<Text style={styles.modalBodyText}>Saturday: 8:30am - 9:00pm</Text>
+					<Text style={styles.modalBodyText}>Sunday: 8:30am - 12:00am</Text>
+				</View>
+
+				<View>
+					<Text style={globalStyles.sectionSubheading}>Field</Text>
+					<Text style={styles.modalBodyText}>Monday - Friday: 7:00am - 9:00pm</Text>
+					<Text style={styles.modalBodyText}>Saturday: 8:00am - 8:00pm</Text>
+					<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
+				</View>
+			</View>
+		</AppModal>
+		</>
 	);
 };
 
@@ -115,8 +117,8 @@ const styles = StyleSheet.create({
 		lineHeight: 24,
 	},
 	hoursModalContent: {
-		minWidth: 300,
 		flexDirection: 'column',
+		width: 300,
 		gap: 16,
 	},
 	hoursModal: {

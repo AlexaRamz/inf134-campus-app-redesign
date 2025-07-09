@@ -5,21 +5,19 @@ import VegetarianIcon from '../assets/icons/VegetarianIcon.png';
 import VeganIcon from '../assets/icons/VeganIcon.png';
 import GlutenFreeIcon from '../assets/icons/GlutenFreeIcon.png';
 import EatWellIcon from '../assets/icons/EatWellIcon.png';
+import LowCarbonIcon from '../assets/icons/LowCarbonIcon.png';
+import WholeGrainsIcon from '../assets/icons/WholeGrainsIcon.png';
+import { DietHighlight, FoodItem } from '@/types/menuTypes';
 
-type DietHighlight = 'vegetarian' | 'vegan' | 'gluten free' | 'eat well';
-
-interface FoodCardProps {
-	name: string;
-	calories: number;
-	description: string;
-	dietHighlights?: DietHighlight[];
-}
+interface FoodCardProps extends FoodItem {}
 
 const dietHighlightIcons: Record<DietHighlight, ImageSourcePropType> = {
 	'vegetarian': VegetarianIcon,
 	'vegan': VeganIcon,
 	'gluten free': GlutenFreeIcon,
 	'eat well': EatWellIcon,
+	'low carbon': LowCarbonIcon,
+	'whole grains': WholeGrainsIcon,
 };
 
 export default function FoodCard({ name, calories, description, dietHighlights}: FoodCardProps) {
