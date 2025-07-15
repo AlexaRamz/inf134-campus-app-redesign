@@ -22,6 +22,9 @@ const TOP_PADDING = 10;
 const BASE_TAB_BAR_HEIGHT = 68;
 
 export default function AppNavigator() {
+  const insets = useSafeAreaInsets();
+  const totalBottomPadding = Math.max(ADDITIONAL_BOTTOM_PADDING, insets.bottom);
+
   const [fontsLoaded] = useFonts({
     Montserrat_700Bold: Montserrat_700Bold,
     Montserrat_500Medium: Montserrat_500Medium,
@@ -31,9 +34,6 @@ export default function AppNavigator() {
   if (!fontsLoaded) {
     return null;
   }
-
-  const insets = useSafeAreaInsets();
-  const totalBottomPadding = Math.max(ADDITIONAL_BOTTOM_PADDING, insets.bottom);
 
   return (
     <NavigationContainer>
