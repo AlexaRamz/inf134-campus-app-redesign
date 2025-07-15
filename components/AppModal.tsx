@@ -1,25 +1,27 @@
-import { StyleSheet, View, Image, Text, TouchableOpacity, ViewStyle, Modal, Animated, Dimensions, Pressable, Platform } from 'react-native';
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { globalStyles } from '@/styles/globalStyles';
-import ExitX from '@/assets/images/exitX.png';
+import { StyleSheet, ViewStyle, Modal, Animated, Dimensions, Pressable, Platform } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
 
 const { height } = Dimensions.get('window');
 
-interface AppCardProps {
+export interface AppModalProps {
     children: React.ReactNode;
-    title: string;
     isVisible: boolean;
     setVisible: (visible: boolean) => void;
-    style?: ViewStyle;
+    contentStyle?: ViewStyle;
+    onCloseAnimationEnd?: () => void;
 }
 
-export default function AppModal({ children, title, isVisible, setVisible, style }: AppCardProps) {
+/**
+ * The base modal component for our app. 
+ * Has a white rounded background, sliding transition, and a darkened backdrop with fading transition
+ */
+export default function AppModal({ children, isVisible, setVisible, contentStyle, onCloseAnimationEnd }: AppModalProps) {
     const [showContent, setShowContent] = useState(false);
     const [modalComponentVisible, setModalComponentVisible] = useState(false);
     const slideAnim = useRef(new Animated.Value(height)).current;
     const backdropOpacityAnim = useRef(new Animated.Value(0)).current;
 
-    const handleClose = useCallback(() => {
+    const handleClose = () => {
         Animated.parallel([
             Animated.timing(backdropOpacityAnim, {
                 toValue: 0,
@@ -28,7 +30,7 @@ export default function AppModal({ children, title, isVisible, setVisible, style
             }),
             Animated.timing(slideAnim, {
                 toValue: height,
-                duration: 300,
+                duration: 400,
                 useNativeDriver: true,
             }),
         ]).start(() => {
@@ -36,9 +38,9 @@ export default function AppModal({ children, title, isVisible, setVisible, style
             setModalComponentVisible(false);
             slideAnim.setValue(height);
             backdropOpacityAnim.setValue(0);
-            setVisible(false);
+            onCloseAnimationEnd?.();
         });
-    }, [slideAnim, backdropOpacityAnim, height, setVisible]);
+    };
 
     useEffect(() => {
         let enterTimer: number;
@@ -102,20 +104,12 @@ export default function AppModal({ children, title, isVisible, setVisible, style
                             <Pressable
                                 style={[
 									styles.modalContent, 
-									style, 
+									contentStyle, 
 									Platform.select({ web: { cursor: 'default' as any} }),
 								]}
                                 onPress={(e) => e.stopPropagation()}
 								
                             >
-                                <View style={styles.titleContainer}>
-                                    <Text style={[globalStyles.sectionHeading, styles.modalTitle]}>{title}</Text>
-
-                                    <TouchableOpacity onPress={handleClose}>
-                                        <Image source={ExitX} style={styles.exitIcon} />
-                                    </TouchableOpacity>
-                                </View>
-
                                 {children}
                             </Pressable>
                         </Animated.View>
@@ -144,16 +138,5 @@ const styles = StyleSheet.create({
     titleContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-    },
-    exitIcon: {
-        width: 16,
-        height: 16,
-        resizeMode: 'contain',
-		marginTop: 4,
-		marginRight: 4,
-    },
-    modalTitle: {
-        textAlign: 'left',
-		marginBottom: 16,
     },
 });

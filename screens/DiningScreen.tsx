@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import AppHeader from '@/components/AppHeader';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { globalStyles } from '@/styles/globalStyles';
 import FoodCard from '@/components/FoodCard';
 import CrowdBarHeader from '@/components/CrowdBarHeader';
 import AnteateryBackground from '../assets/images/anteaterybg.png';
 import BrandywineBackground from '../assets/images/brandywinebg.png';
 import ServiceHoursComponent from '@/components/ServiceHoursHeader';
-import AppModal from '@/components/AppModal';
 import { mealTimes, menuData } from '@/data/menuData';
-import { FoodItem, MenuSection } from '@/types/menuTypes';
+import AppModalWithClose from '@/components/AppModalWithClose';
 
 const ANTEATERY_KEY = 'anteatery';
 const BRANDYWINE_KEY = 'brandywine';
@@ -72,7 +71,7 @@ export default function DiningScreen() {
 			</>
 		} else {
 			return <>
-				<CrowdBarHeader backgroundImage={BrandywineBackground}/>
+				<CrowdBarHeader backgroundImage={BrandywineBackground} numBarsFilled={8}/>
 
 				<View style={globalStyles.bodyContentContainer}>
 					<ServiceHoursComponent serviceTitle={selectedMeal} isOpen={true} availabilityText={'Open until 11:00PM'} onPressCallback={() => setMealModalVisible(true)}></ServiceHoursComponent>
@@ -104,7 +103,7 @@ export default function DiningScreen() {
 				{renderMenuContent()}
 			</ScrollView>
 
-			<AppModal title='Chosen Menu' isVisible={mealModalVisible} setVisible={setMealModalVisible}>
+			<AppModalWithClose title='Chosen Menu' isVisible={mealModalVisible} setVisible={setMealModalVisible}>
 				<View style={styles.mealModalContent}>
 					{mealTimes.map(meal => (
 						<TouchableOpacity
@@ -157,7 +156,7 @@ export default function DiningScreen() {
 						</TouchableOpacity>
 					))}
 				</View>
-			</AppModal>
+			</AppModalWithClose>
 		</View>
 	);
 };

@@ -17,8 +17,8 @@ import WednesdayChart from '../assets/images/wednesdaycard.png';
 import CourtCard from '@/components/CourtCard';
 import ClassCard from '@/components/ClassCard';
 import ServiceHoursHeader from '@/components/ServiceHoursHeader';
-import AppModal from '@/components/AppModal';
 import CrowdHistoryCard from '@/components/CrowdHistoryCard';
+import AppModalWithClose from '@/components/AppModalWithClose';
 
 
 export default function ARCScreen({navigation} : any) {
@@ -29,7 +29,7 @@ export default function ARCScreen({navigation} : any) {
 		<ScrollView style={globalStyles.scrollView}>
 			<AppHeader title="ARC"></AppHeader>
 			
-			<CrowdBarHeader backgroundImage={ArcBackground}/>
+			<CrowdBarHeader backgroundImage={ArcBackground} numBarsFilled={4}/>
 
 			<View style={globalStyles.verticalBodyPadding} >
 				<View style={globalStyles.horizontalBodyPadding}>
@@ -81,7 +81,7 @@ export default function ARCScreen({navigation} : any) {
 				</View>
 			</View>
 		</ScrollView>
-		<AppModal title='Hours' isVisible={showModal} setVisible={setShowModal} style={styles.hoursModal}>
+		<AppModalWithClose title='Hours' isVisible={showModal} setVisible={setShowModal} contentStyle={styles.hoursModal}>
 			<View style={styles.hoursModalContent}>
 				<View>
 					<Text style={globalStyles.sectionSubheading}>ARC</Text>
@@ -104,7 +104,7 @@ export default function ARCScreen({navigation} : any) {
 					<Text style={styles.modalBodyText}>Sunday: 8:00am - 10:00pm</Text>
 				</View>
 			</View>
-		</AppModal>
+		</AppModalWithClose>
 		</>
 	);
 };

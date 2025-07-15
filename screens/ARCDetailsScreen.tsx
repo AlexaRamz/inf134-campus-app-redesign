@@ -5,6 +5,7 @@ import { globalStyles, headingStyles } from '@/styles/globalStyles';
 import AppHeaderWithBack from '@/components/AppHeaderWithBack';
 import PriceTag from '../assets/images/pricetag.png';
 import LocationPin from '../assets/images/locationpin.png';
+import AppModal from '@/components/AppModal';
 
 export default function ARCDetailsScreen() {
     type ClassId = '630' | '800' | '930' | '100';
@@ -16,14 +17,20 @@ export default function ARCDetailsScreen() {
         '100': false,
     });
 
-    const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
     const [selectedClass, setSelectedClass] = useState<ClassId | null>(null);
+    const [classIsBooked, setClassIsBooked] = useState<boolean>(false);
 
     // Always open modal when button pressed
     const handleBookingPress = (classId: ClassId) => {
         setSelectedClass(classId);
         setModalVisible(true);
+        setClassIsBooked(bookings[classId])
     };
+
+    const onModalCloseEnd = () => {
+        setSelectedClass(null)
+    }
 
     return (
         <View style={{ flex: 1 }}>
@@ -88,7 +95,7 @@ export default function ARCDetailsScreen() {
                                         onPress={() => handleBookingPress(classId as ClassId)}
                                     >
                                         <Text style={styles.bookButtonText}>
-                                            {bookings[classId as ClassId] ? 'Cancel Booking' : 'Book Now'}
+                                            {bookings[classId as ClassId] ? 'Remove Booking' : 'Book Now'}
                                         </Text>
                                     </TouchableOpacity>
                                 </View>
@@ -99,45 +106,40 @@ export default function ARCDetailsScreen() {
             </ScrollView>
 
             {/* Booking/Cancel Modal */}
-            {modalVisible && selectedClass && (
-                <View style={styles.modalContainer}>
-                    <View style={styles.modalContent}>
-                        <Text style={styles.modalTitle}>
-                            {bookings[selectedClass]
-                                ? 'Cancel booking for this class?'
-                                : 'Confirm booking for this class?'}
-                        </Text>
+            <AppModal isVisible={modalVisible} setVisible={setModalVisible} contentStyle={styles.modalContent} onCloseAnimationEnd={onModalCloseEnd}>
+                <Text style={styles.modalTitle}>
+                    {classIsBooked 
+                        ? 'Remove booking for this class?' 
+                        : 'Add booking for this class?'
+                    }
+                </Text>
 
-                        <View style={styles.modalButtonRow}>
-                            <TouchableOpacity
-                                style={styles.confirmButton}
-                                onPress={() => {
-                                    if (selectedClass) {
-                                        setBookings(prev => ({
-                                            ...prev,
-                                            [selectedClass]: !prev[selectedClass], // toggle booking
-                                        }));
-                                        setModalVisible(false);
-                                        setSelectedClass(null);
-                                    }
-                                }}
-                            >
-                                <Text style={styles.modalButtonText}>Confirm</Text>
-                            </TouchableOpacity>
+                <View style={styles.modalButtonRow}>
+                    <TouchableOpacity
+                        style={styles.confirmButton}
+                        onPress={() => {
+                            if (selectedClass) {
+                                setBookings(prev => ({
+                                    ...prev,
+                                    [selectedClass]: !prev[selectedClass], // toggle booking
+                                }));
+                                setModalVisible(false);
+                            }
+                        }}
+                    >
+                        <Text style={styles.modalButtonText}>Confirm</Text>
+                    </TouchableOpacity>
 
-                            <TouchableOpacity
-                                style={styles.cancelButtonModal}
-                                onPress={() => {
-                                    setModalVisible(false);
-                                    setSelectedClass(null);
-                                }}
-                            >
-                                <Text style={styles.modalButtonText}>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
+                    <TouchableOpacity
+                        style={styles.cancelButtonModal}
+                        onPress={() => {
+                            setModalVisible(false);
+                        }}
+                    >
+                        <Text style={styles.modalButtonText}>Cancel</Text>
+                    </TouchableOpacity>
                 </View>
-            )}
+            </AppModal>
         </View>
     );
 }
@@ -233,23 +235,8 @@ export default function ARCDetailsScreen() {
         color: 'white',
     },
 
-    modalContainer: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: 999,
-    },
-
     modalContent: {
         width: 300,
-        backgroundColor: 'white',
-        borderRadius: 10,
-        padding: 20,
         alignItems: 'center',
     },
 
@@ -259,6 +246,7 @@ export default function ARCDetailsScreen() {
         color: 'black',
         marginBottom: 16,
         textAlign: 'center',
+        marginHorizontal: 10,
     },
 
     modalButtonRow: {
