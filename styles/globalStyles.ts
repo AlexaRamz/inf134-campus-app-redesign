@@ -94,13 +94,13 @@ export const globalStyles = StyleSheet.create({
 
 	/* BACK BUTTON */
 	backArrow: {
-    width: 24,
-    height: 24,
-    marginRight: 10,
-    resizeMode: 'contain',
+		width: 24,
+		height: 24,
+		marginRight: 10,
+		resizeMode: 'contain',
   	},
 	backButton: {
-    padding: 10, 
+    	padding: 10, 
   	},
 
 	appCardShadow: {
